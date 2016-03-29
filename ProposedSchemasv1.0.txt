@@ -1,0 +1,51 @@
+﻿users(UCA, password, fname, lname)
+        Fname and lname can not be null
+
+
+instructor(UCA)
+        UCA is a foreign key of Users
+
+
+course(CID,semester, courseName)
+
+
+taughtCourse(UCA, CID, semester)
+        UCA is a foreign key from instructor CID and semester is a foreign key from Course
+
+
+stakeholder(UCA)
+        UCA is a foreign key of Users
+
+
+projectManager(UCA)
+        UCA is a foreign key of Users
+
+
+dev(UCA)
+        UCA is a foreign key of Users
+
+
+group(GID,stakeholders, projectManagers, devs)
+        Stakeholders, projectManagers, and devs may not be null
+
+
+groupsInCourse (CID, semester, GID)
+        CID and semester are foreign keys of Course. GID is a foreign key of group
+
+
+assessments(GID, aName)
+        aName may not be null
+
+
+assessmentQuestion(aid, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14,....,qn)
+AID is a foreign key from Assessments, q1, ….., qn are foreign keys to questions
+
+
+questions(QID, questionText)
+
+
+type(tid, type, size, arrayName)
+
+
+answers(AID,UCA,GID,a1,a2,a3,a4,.....,aN)
+        AID is foreign key from assessment, GID and UCA are foreign keys to group
