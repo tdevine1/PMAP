@@ -67,28 +67,11 @@ html, body {
         data-dojo-type="dijit.layout.BorderContainer"
         data-dojo-props="design: 'headline'">
         <div class="centerPanel" data-dojo-type="dijit.layout.ContentPane"
-             data-dojo-props="region: 'center'" href="/PMA/instructorTabContainer">
+             data-dojo-props="region: 'center'" href="/PMA/studentTabContainer">
             <div id="tabContainer"></div>
         </div>
         <div class="edgePanel" data-dojo-type="dijit.layout.ContentPane"
-            data-dojo-props="region: 'top'">Header</div>
-        <div id="leftCol" class="edgePanel"
-            data-dojo-type="dijit.layout.ContentPane"
-            data-dojo-props="region: 'right', splitter: true">
-                <div style="width: 300px; height: 300px">
-                    <div data-dojo-type="dijit/layout/AccordionContainer" style="height: 300px;">
-                        <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options" selected="true">
-                            Feature to be implemented in future release
-                        </div>
-                        <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options">
-                            Feature to be implemented in future release
-                        </div>
-                        <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options">
-                            Feature to be implemented in future release
-                        </div>
-                    </div>
-                </div>
-        </div>
+            data-dojo-props="region: 'top'">PM Assessment</div>
     </div>
 </body>
 </html>

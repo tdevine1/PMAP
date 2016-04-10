@@ -1,6 +1,8 @@
 package com.softwareengineers.web.controller.instructor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,16 @@ public class InstructorController {
         if((Boolean)flashMap.get("isAdmin")){
             Map<String,String> model = new HashMap<String,String>();
             model.put("username", (String)flashMap.get("username"));
+            String classArray = "Project Management";
+            model.put("classes", classArray);
             return new ModelAndView("instructorSite", "model", model);
         }
         else
             return new ModelAndView("error");
+    }
+    
+    @RequestMapping(value="/instructorTabContainer")
+    public ModelAndView tab(HttpServletRequest request) {
+    return new ModelAndView("instructorTabContainer");
     }
 }

@@ -16,7 +16,11 @@ public class StudentController {
     public ModelAndView login(HttpServletRequest request) {
         Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
         
-        //I WILL WORK ON THIS LATER  I JUST WANTED A TEMPLATE UP SO I CAN JUST JUMP RIGHT IN
-        return new ModelAndView();
+        return new ModelAndView("studentSite");
+    }
+    
+    @RequestMapping(value="/studentTabContainer")
+    public ModelAndView tabContainer() {
+        return new ModelAndView("studentTabContainer");
     }
 }
