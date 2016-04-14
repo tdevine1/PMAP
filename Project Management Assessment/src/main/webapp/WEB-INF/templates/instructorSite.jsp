@@ -31,32 +31,76 @@ html, body {
     dojo.require("dojo.parser");
     dojo.require("dojo.query");
     dojo.require("dojo.dom-attr");
+    dojo.require("dojo.on");
     dojo.require("dojo.ready");
     dojo.require("dijit.layout.BorderContainer");
     dojo.require("dijit.layout.TabContainer");
     dojo.require("dijit.layout.ContentPane");
+    dojo.require("dijit.form.Button")
+    dojo.require("dijit.registry")
+    
     
     var classes = "${model.classes}".split(",");
-    for(i=0; i< classes.length; i++){
-        console.log(classes[i]);
+    var assessments = "${model.assessments}".split(",");
+    
+
+    require(["dijit/layout/AccordionContainer", "dijit/layout/ContentPane", "dojo/domReady!"],
+        function(AccordionContainer, ContentPane){
+            var aContainer = new AccordionContainer({style: "height:20%;"}, "tabContainer");
+            for(i=0; i< classes.length; i++){
+                aContainer.addChild(new ContentPane({
+                title: classes[i],
+                id: classes[i].replace(" ","")
+                }));
+                
+                console.log(dijit.byId(classes[i].replace(" ","")).get("id"));
+            }
+            aContainer.startup();
+            createButtons();
+    });
+    
+    function createLabel(type) {
+        if(type == "peer"){
+            return "Peer Assessment";
+        }
+        else if(type == "self"){
+            return "Self Evaluation";
+        }
+        else{
+            return "Assessment not found";
+        }
     }
     
-//    require(["dijit/layout/TabContainer", "dijit/layout/ContentPane", "dojo/domReady!"], function(TabContainer, ContentPane){
-//    var tc = new TabContainer({
-//        style: "height: 100%; width: 100%;"
-//    }, "tabContainer");
-//    
-//    for(i=0; i< classes.length; i++){
-//    var cp = new ContentPane({
-//         title: classes[i],
-//         id: classes[i],
-//         content: "Will contain Buttons for each assessment in the class"
-//    });
-//    tc.addChild(cp);
-//    
-//    tc.startup();
-//    }
-//});
+    function setAssessmentButtonEvent(type){
+        console.log(type);
+        if(type == "peer"){
+            dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
+        }
+        else if(type == "self"){
+            dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
+        }
+        else{
+            console.log("Nothing here");
+        }
+    }
+    
+    function createButtons(){
+//        dojo.place("<button id='"classes[0].replace(" ","") + i"' type='button'></button>", classes[0].replace(" ",""), "after");
+        for(i=0;i<assessments.length; i++){
+            var buttonId = classes[0].replace(" ","").concat(i);
+            var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
+            dojo.place(nodePath, classes[0].replace(" ",""), "after");
+            var myButton = new dijit.form.Button({
+                label: createLabel(assessments[i]),
+                title: assessments[i],
+                onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
+                    setAssessmentButtonEvent(button.title)}
+            }, buttonId).startup();
+            
+            //dojo.on(dijit.byId(buttonId), "click", setAssessmentButtonEvent(assessments[i]));
+//            dojo.place(myButton, classes[0].replace(" ",""), "after");
+        }
+    }
    
 </script>
 
@@ -67,15 +111,16 @@ html, body {
         data-dojo-type="dijit.layout.BorderContainer"
         data-dojo-props="design: 'headline'">
         <div class="centerPanel" data-dojo-type="dijit.layout.ContentPane"
-             data-dojo-props="region: 'center'" href="/PMA/instructorTabContainer">
-            <div id="tabContainer"></div>
+             data-dojo-props="region: 'center'"> <!-- href="/PMA/instructorTabContainer"-->
+            <div id="tabContainer" style="width:100%; height:25%;"></div>
+            <div id='assessmentDiv'>No assessment is currently selected</div>
         </div>
         <div class="edgePanel" data-dojo-type="dijit.layout.ContentPane"
             data-dojo-props="region: 'top'">Header</div>
         <div id="leftCol" class="edgePanel"
             data-dojo-type="dijit.layout.ContentPane"
             data-dojo-props="region: 'right', splitter: true">
-                <div style="width: 300px; height: 300px">
+                <div style="width: auto; height: 300px">
                     <div data-dojo-type="dijit/layout/AccordionContainer" style="height: 300px;">
                         <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options" selected="true">
                             Feature to be implemented in future release
