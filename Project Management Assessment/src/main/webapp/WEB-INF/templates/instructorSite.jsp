@@ -42,22 +42,38 @@ html, body {
     
     var classes = "${model.classes}".split(",");
     var assessments = "${model.assessments}".split(",");
+    var map = {};
+    map[classes[0]] = assessments;
     
 
-    require(["dijit/layout/AccordionContainer", "dijit/layout/ContentPane", "dojo/domReady!"],
-        function(AccordionContainer, ContentPane){
-            var aContainer = new AccordionContainer({style: "height:20%;"}, "tabContainer");
-            for(i=0; i< classes.length; i++){
-                aContainer.addChild(new ContentPane({
+//    require(["dijit/layout/AccordionContainer", "dijit/layout/ContentPane", "dojo/domReady!"],
+//        function(AccordionContainer, ContentPane){
+//            var aContainer = new AccordionContainer({style: "height:20%;"}, "tabContainer");
+//            for(i=0; i< classes.length; i++){
+//                aContainer.addChild(new ContentPane({
+//                title: classes[i],
+//                id: classes[i].replace(" ","")
+//                }));
+//                
+//                console.log(dijit.byId(classes[i].replace(" ","")).get("id"));
+//            }
+//            aContainer.startup();
+//            createButtons();
+//    });
+    dojo.ready(function(){
+        for(i=0; i< classes.length; i++){
+            var buttonId = classes[i].replace(" ","");
+            var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
+            dojo.place(nodePath, "courseContainer", "after");
+            new dijit.form.Button({
+                label: classes[i],
                 title: classes[i],
-                id: classes[i].replace(" ","")
-                }));
-                
-                console.log(dijit.byId(classes[i].replace(" ","")).get("id"));
-            }
-            aContainer.startup();
-            createButtons();
+                onClick: function(){
+                    createAssessmentButtons(map[classes[0]]);}
+            }, buttonId).startup();
+        }
     });
+    
     
     function createLabel(type) {
         if(type == "peer"){
@@ -84,13 +100,18 @@ html, body {
         }
     }
     
-    function createButtons(){
+    function createAssessmentButtons(classAssessments){
 //        dojo.place("<button id='"classes[0].replace(" ","") + i"' type='button'></button>", classes[0].replace(" ",""), "after");
-        for(i=0;i<assessments.length; i++){
-            var buttonId = classes[0].replace(" ","").concat(i);
+        var node = dojo.byId("buttonContainer");
+        while(node.hasChildNodes()){
+            node.destory(true);
+        }
+        dojo.byId("buttonContainer").innerHTML = "";
+        for(i=0;i<classAssessments.length; i++){
+            var buttonId = classAssessments[i].replace(" ","").concat(i);
             var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
-            dojo.place(nodePath, classes[0].replace(" ",""), "after");
-            var myButton = new dijit.form.Button({
+            dojo.place(nodePath, "buttonContainer", "after");
+            new dijit.form.Button({
                 label: createLabel(assessments[i]),
                 title: assessments[i],
                 onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
@@ -101,18 +122,6 @@ html, body {
 //            dojo.place(myButton, classes[0].replace(" ",""), "after");
         }
     }
-	function gradingFunction() {
-    document.getElementById(
-"weighted1").value = document.getElementById("weight1").value * document.getElementById("grade1").value;
-    document.getElementById(
-"weighted2").value = document.getElementById("weight2").value * document.getElementById("grade2").value;
-    document.getElementById(
-"weighted3").value = document.getElementById("weight3").value * document.getElementById("grade3").value;
-    document.getElementById(
-"weighted4").value = document.getElementById("weight4").value * document.getElementById("grade4").value;
-    document.getElementById(
-"total").value = Number(document.getElementById("weighted1").value) + Number(document.getElementById("weighted2").value) + Number(document.getElementById("weighted3").value) + Number(document.getElementById("weighted4").value);
-}
    
 </script>
 
@@ -123,8 +132,9 @@ html, body {
         data-dojo-type="dijit.layout.BorderContainer"
         data-dojo-props="design: 'headline'">
         <div class="centerPanel" data-dojo-type="dijit.layout.ContentPane"
-             data-dojo-props="region: 'center'"> <!-- href="/PMA/instructorTabContainer"-->
-            <div id="tabContainer" style="width:100%; height:25%;"></div>
+             data-dojo-props="region: 'center'">
+            <div id="courseContainer" style="width:100%; height:10;"></div>
+            <div id="buttonContainer" style="width:100%; height:10;"></div>
             <div id='assessmentDiv'>No assessment is currently selected</div>
         </div>
         <div class="edgePanel" data-dojo-type="dijit.layout.ContentPane"
@@ -134,38 +144,8 @@ html, body {
             data-dojo-props="region: 'right', splitter: true">
                 <div style="width: auto; height: 300px">
                     <div data-dojo-type="dijit/layout/AccordionContainer" style="height: 300px;">
-                        <div data-dojo-type="dijit/layout/ContentPane" title="Presentation Grade" selected="true">
-                            <form>
-							<table border = 1 style="width:10%">
-							  <tr>
-								<td><input type = "text" id="teachName1" value="Prof. Devine" style="width:auto;"</td>
-								<td><input type = "text" id="grade1" value="" style="width:auto;"</td>
-								<td><input type = "text" id="weight1" value="" onblur="gradingFunction()" style="width:auto;"</td>
-								<td><input type = "text" id="weighted1" value="" style="width:auto;"</td>
-							  </tr>
-							  <tr>
-								<td><input type = "text" id="teachName2" value="Dr. Giorcelli" style="width:auto;"</td>
-								<td><input type = "text" id="grade2" value="" style="width:auto;"</td>
-								<td><input type = "text" id="weight2" value="" onblur="gradingFunction()"style="width:auto;"</td>
-								<td><input type = "text" id="weighted2" value="" style="width:auto;"</td>
-							  </tr>
-							  <tr>
-								<td><input type = "text" id="teachName3" value="Ms. RaeAnne" style="width:auto;"</td>
-								<td><input type = "text" id="grade3" value="" style="width:auto;"</td>
-								<td><input type = "text" id="weight3" value="" onblur="gradingFunction()"style="width:auto;"</td>
-								<td><input type = "text" id="weighted3" value="" style="width:auto;"</td>
-							  </tr>
-							  <tr>
-								<td><input type = "text" id="teachName4" value="Ms. Jennifer" style="width:auto;"</td>
-								<td><input type = "text" id="grade4" value="" style="width:auto;"</td>
-								<td><input type = "text" id="weight4" value="" onblur="gradingFunction()"style="width:auto;"</td>
-								<td><input type = "text" id="weighted4" value="" style="width:auto;"</td>
-							  </tr>
-							  <tr>
-								<th colspan="3">Weighted Total</th>
-								<td><input type = "text" id="total" value="0" </td>
-							</table>
-							</form>
+                        <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options" selected="true">
+                            Feature to be implemented in future release
                         </div>
                         <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options">
                             Feature to be implemented in future release

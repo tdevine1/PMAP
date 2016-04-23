@@ -27,7 +27,7 @@ public class InstructorController {
         //For example, the class array will be split with just commas (no whitespace between them) for each class
         //The assessments with have each assessment separated by comma (no whitespace) and then a slash as a separater for when
         //we have reached the assessments for the next class
-        String classArray = "Project Management,Software Engineering";
+        String classArray = "Project Management";
         model.put("classes", classArray);
         model.put("assessments", "peer,self");
             
