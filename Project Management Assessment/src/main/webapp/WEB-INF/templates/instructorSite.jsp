@@ -101,6 +101,18 @@ html, body {
 //            dojo.place(myButton, classes[0].replace(" ",""), "after");
         }
     }
+	function gradingFunction() {
+    document.getElementById(
+"weighted1").value = document.getElementById("weight1").value * document.getElementById("grade1").value;
+    document.getElementById(
+"weighted2").value = document.getElementById("weight2").value * document.getElementById("grade2").value;
+    document.getElementById(
+"weighted3").value = document.getElementById("weight3").value * document.getElementById("grade3").value;
+    document.getElementById(
+"weighted4").value = document.getElementById("weight4").value * document.getElementById("grade4").value;
+    document.getElementById(
+"total").value = Number(document.getElementById("weighted1").value) + Number(document.getElementById("weighted2").value) + Number(document.getElementById("weighted3").value) + Number(document.getElementById("weighted4").value);
+}
    
 </script>
 
@@ -122,8 +134,38 @@ html, body {
             data-dojo-props="region: 'right', splitter: true">
                 <div style="width: auto; height: 300px">
                     <div data-dojo-type="dijit/layout/AccordionContainer" style="height: 300px;">
-                        <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options" selected="true">
-                            Feature to be implemented in future release
+                        <div data-dojo-type="dijit/layout/ContentPane" title="Presentation Grade" selected="true">
+                            <form>
+							<table border = 1 style="width:10%">
+							  <tr>
+								<td><input type = "text" id="teachName1" value="Prof. Devine" style="width:auto;"</td>
+								<td><input type = "text" id="grade1" value="" style="width:auto;"</td>
+								<td><input type = "text" id="weight1" value="" onblur="gradingFunction()" style="width:auto;"</td>
+								<td><input type = "text" id="weighted1" value="" style="width:auto;"</td>
+							  </tr>
+							  <tr>
+								<td><input type = "text" id="teachName2" value="Dr. Giorcelli" style="width:auto;"</td>
+								<td><input type = "text" id="grade2" value="" style="width:auto;"</td>
+								<td><input type = "text" id="weight2" value="" onblur="gradingFunction()"style="width:auto;"</td>
+								<td><input type = "text" id="weighted2" value="" style="width:auto;"</td>
+							  </tr>
+							  <tr>
+								<td><input type = "text" id="teachName3" value="Ms. RaeAnne" style="width:auto;"</td>
+								<td><input type = "text" id="grade3" value="" style="width:auto;"</td>
+								<td><input type = "text" id="weight3" value="" onblur="gradingFunction()"style="width:auto;"</td>
+								<td><input type = "text" id="weighted3" value="" style="width:auto;"</td>
+							  </tr>
+							  <tr>
+								<td><input type = "text" id="teachName4" value="Ms. Jennifer" style="width:auto;"</td>
+								<td><input type = "text" id="grade4" value="" style="width:auto;"</td>
+								<td><input type = "text" id="weight4" value="" onblur="gradingFunction()"style="width:auto;"</td>
+								<td><input type = "text" id="weighted4" value="" style="width:auto;"</td>
+							  </tr>
+							  <tr>
+								<th colspan="3">Weighted Total</th>
+								<td><input type = "text" id="total" value="0" </td>
+							</table>
+							</form>
                         </div>
                         <div data-dojo-type="dijit/layout/ContentPane" title="Instructor Options">
                             Feature to be implemented in future release

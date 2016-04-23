@@ -116,10 +116,9 @@ DROP TABLE IF EXISTS `assessments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `assessments` (
-  `GID` varchar(15) NOT NULL,
   `aName` varchar(45) NOT NULL,
   `AID` int(11) NOT NULL,
-  PRIMARY KEY (`GID`)
+  PRIMARY KEY (`AID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,7 +128,7 @@ CREATE TABLE `assessments` (
 
 LOCK TABLES `assessments` WRITE;
 /*!40000 ALTER TABLE `assessments` DISABLE KEYS */;
-INSERT INTO `assessments` VALUES ('1','selfAssessment',1),('2','selfAssessment',2),('3','peerAssessment',3);
+INSERT INTO `assessments` VALUES ('selfAssessment',1),('selfAssessment',2),('peerAssessment',3);
 /*!40000 ALTER TABLE `assessments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +166,7 @@ DROP TABLE IF EXISTS `dev`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dev` (
   `GID` varchar(45) NOT NULL,
-  `names` mediumtext,
+  `UCA` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`GID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -204,31 +203,6 @@ LOCK TABLES `group` WRITE;
 /*!40000 ALTER TABLE `group` DISABLE KEYS */;
 INSERT INTO `group` VALUES ('1','PMAP','Alisa, Andrew Lyon, Chris Browning, Lesley Kuffour, Quintin, Samuel Blankenship');
 /*!40000 ALTER TABLE `group` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `grouplist`
---
-
-DROP TABLE IF EXISTS `grouplist`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `grouplist` (
-  `instructor` varchar(15) NOT NULL,
-  `masterGroupIDList` longtext,
-  `masterGroupNameList` longtext,
-  PRIMARY KEY (`instructor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `grouplist`
---
-
-LOCK TABLES `grouplist` WRITE;
-/*!40000 ALTER TABLE `grouplist` DISABLE KEYS */;
-INSERT INTO `grouplist` VALUES ('TDevine','1','PMAP');
-/*!40000 ALTER TABLE `grouplist` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -280,6 +254,30 @@ INSERT INTO `instructor` VALUES ('tdevine');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `programmanager`
+--
+
+DROP TABLE IF EXISTS `programmanager`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `programmanager` (
+  `Course` varchar(45) NOT NULL,
+  `Semester` varchar(45) NOT NULL,
+  `UCA` varchar(45) NOT NULL,
+  PRIMARY KEY (`UCA`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `programmanager`
+--
+
+LOCK TABLES `programmanager` WRITE;
+/*!40000 ALTER TABLE `programmanager` DISABLE KEYS */;
+/*!40000 ALTER TABLE `programmanager` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `projectmanager`
 --
 
@@ -288,7 +286,7 @@ DROP TABLE IF EXISTS `projectmanager`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `projectmanager` (
   `GID` varchar(45) NOT NULL,
-  `names` mediumtext,
+  `UCA` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`GID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -359,7 +357,7 @@ DROP TABLE IF EXISTS `stakeholder`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stakeholder` (
   `GID` varchar(45) NOT NULL,
-  `names` mediumtext,
+  `UCA` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`GID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -458,4 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-19 21:51:39
+-- Dump completed on 2016-04-23  2:51:11
