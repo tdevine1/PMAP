@@ -12,26 +12,70 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 @Controller
 public class InstructorController {
     
     @RequestMapping(value="/instructor/show", method=RequestMethod.GET)
     public ModelAndView login(HttpServletRequest request) {
-        Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
-        Map<String,String> model = new HashMap<String,String>();
-        model.put("username", (String)flashMap.get("username"));
+        try {
+            Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+            Map<String,String> model = new HashMap<String,String>();
+            model.put("username", (String)flashMap.get("username"));
+            ResultSet rs;
+            String classArray;
+            String assessments;
+            //ALL DB TRANSACTIONS NEED PUT IN A NEW CLASS AND NEED TO WORK ON POJO MODELS TO HOLD REQUESTS IN ALL FUTURE QUERIES SINCE THEY WILL BE AJAX CALLS
+            SimpleDriverDataSource dataSource;
+            dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , "jdbc:mysql://127.0.0.1:3306/mydb", "root", "Prog1");
+            java.sql.Connection con = dataSource.getConnection();
+            java.sql.PreparedStatement pStmt = con.prepareStatement("SELECT fname, lname FROM users WHERE UCA = ?");
+            pStmt.clearParameters();
+            pStmt.setString(1, model.get("username"));
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+                model.put("FirstName", rs.getString("fname"));
+                model.put("LastName", rs.getString("lname"));
+            }
+            rs.close();
             
-        //THESE WILL BE PULLED FROM THE DATABASE, HARD CODING THEM FOR NOW TO GET THE FRONT END WORKING
-        //To get these in the jsp we will use tokens
-        //For example, the class array will be split with just commas (no whitespace between them) for each class
-        //The assessments with have each assessment separated by comma (no whitespace) and then a slash as a separater for when
-        //we have reached the assessments for the next class
-        String classArray = "Project Management";
-        model.put("classes", classArray);
-        model.put("assessments", "peer,self");
+            pStmt = con.prepareStatement("SELECT CID FROM taughtCourse WHERE UCA = ?");
+            pStmt.clearParameters();
+            pStmt.setString(1, model.get("username"));
+            rs = pStmt.executeQuery();
+            rs.next();
+            classArray = rs.getString("CID");
+            while(rs.next()){
+                classArray += "," + rs.getString("CID");
+            }
+            rs.close();
             
-        return new ModelAndView("instructorSite", "model", model);
+            pStmt = con.prepareStatement("SELECT aName FROM assessments WHERE CID = ?");
+            pStmt.clearParameters();
+            pStmt.setString(1, classArray);
+            rs = pStmt.executeQuery();
+            rs.next();
+            assessments = rs.getString("aName");
+            while(rs.next()){
+                assessments += "," + rs.getString("aName");
+            }
+            rs.close();
+            
+            model.put("classes", classArray);
+            model.put("assessments", assessments);
+            
+            return new ModelAndView("instructorSite", "model", model);
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ModelAndView("error");
+        }
     }
     
     @RequestMapping(value="/instructorTabContainer")

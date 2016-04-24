@@ -42,6 +42,7 @@ html, body {
     
     var classes = "${model.classes}".split(",");
     var assessments = "${model.assessments}".split(",");
+    var welcome = "Hello, ".concat("${model.FirstName}".concat(" ".concat("${model.LastName}")));
     var map = {};
     map[classes[0]] = assessments;
     
@@ -61,6 +62,7 @@ html, body {
 //            createButtons();
 //    });
     dojo.ready(function(){
+        dojo.byId("header").innerHTML = welcome;
         for(i=0; i< classes.length; i++){
             var buttonId = classes[i].replace(" ","");
             var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
@@ -76,10 +78,10 @@ html, body {
     
     
     function createLabel(type) {
-        if(type == "peer"){
+        if(type == "peerAssessment"){
             return "Peer Assessment";
         }
-        else if(type == "self"){
+        else if(type == "selfAssessment"){
             return "Self Evaluation";
         }
         else{
@@ -89,10 +91,10 @@ html, body {
     
     function setAssessmentButtonEvent(type){
         console.log(type);
-        if(type == "peer"){
+        if(type == "peerAssessment"){
             dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
         }
-        else if(type == "self"){
+        else if(type == "selfAssessment"){
             dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
         }
         else{
@@ -137,7 +139,7 @@ html, body {
             <div id="buttonContainer" style="width:100%; height:10;"></div>
             <div id='assessmentDiv'>No assessment is currently selected</div>
         </div>
-        <div class="edgePanel" data-dojo-type="dijit.layout.ContentPane"
+        <div id="header" class="edgePanel" data-dojo-type="dijit.layout.ContentPane"
             data-dojo-props="region: 'top'">Header</div>
         <div id="leftCol" class="edgePanel"
             data-dojo-type="dijit.layout.ContentPane"
