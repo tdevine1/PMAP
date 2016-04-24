@@ -36,27 +36,80 @@ html, body {
     dojo.require("dijit.layout.TabContainer");
     dojo.require("dijit.layout.ContentPane");
     
-    var classes = "${model.classes}".split(",");
-    for(i=0; i< classes.length; i++){
-        console.log(classes[i]);
+    var groups = "${model.Groups}".split(",");
+    var groupMembers = "${model.GroupMembers}".split("%");
+    var welcome = "Hello, ".concat("${model.Name}");
+    var map = {};
+    for(i = 0; i<groups.length; i++){
+        var members = groupMembers[i].split(",");
+        console.log(members);
+        map[groups[i]] = members;
     }
     
-//    require(["dijit/layout/TabContainer", "dijit/layout/ContentPane", "dojo/domReady!"], function(TabContainer, ContentPane){
-//    var tc = new TabContainer({
-//        style: "height: 100%; width: 100%;"
-//    }, "tabContainer");
-//    
-//    for(i=0; i< classes.length; i++){
-//    var cp = new ContentPane({
-//         title: classes[i],
-//         id: classes[i],
-//         content: "Will contain Buttons for each assessment in the class"
-//    });
-//    tc.addChild(cp);
-//    
-//    tc.startup();
-//    }
-//});
+     dojo.ready(function(){
+        dojo.byId("header").innerHTML = welcome;
+        for(i=0; i < groups.length; i++){
+            var buttonId = groups[i].replace(" ","");
+            var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
+            var gName = groups[i];
+            dojo.place(nodePath, "groupContainer", "after");
+            new dijit.form.Button({
+                label: groups[i],
+                title: groups[i],
+                onClick: function(){
+                    createAssessmentButtons(map[gName]);}
+            }, buttonId).startup();
+        }
+    });
+    
+    function createAssessmentButtons(gMembers){
+        var node = dojo.byId("assessmentButtonContainer");
+        while(node.hasChildNodes()){
+            node.destory(true);
+        }
+        dojo.byId("assessmentButtonContainer").innerHTML = "";
+        console.log(gMembers);
+        for(i=0;i < gMembers.length; i++){
+            if(gMembers[i].trim() != "${model.Name}"){
+                var buttonId = gMembers[i].replace(" ","").concat("PeerAseessment");
+                var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
+                dojo.place(nodePath, "assessmentButtonContainer", "after");
+                new dijit.form.Button({
+                    label: "Peer Assessment of ".concat(gMembers[i].trim()),
+                    title: "peerAssessment",
+                    onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
+                        setAssessmentButtonEvent(button.title)}
+                }, buttonId).startup();
+            }
+        }
+        
+        var buttonId = "${model.Name}".replace(" ","").concat("SelfEval");
+        var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
+        dojo.place(nodePath, "assessmentButtonContainer", "after");
+        new dijit.form.Button({
+            label: "Self Evaluation",
+            title: "selfAssessment",
+            onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
+                setAssessmentButtonEvent(button.title)}
+        }, buttonId).startup();
+    }
+    
+    function setAssessmentButtonEvent(type){
+        console.log(type);
+        if(type == "peerAssessment"){
+            dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
+        }
+        else if(type == "selfAssessment"){
+            dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
+        }
+        else{
+            console.log("Nothing here");
+        }
+    }
+    
+   // dojo.ready(function(){
+        
+   // });
    
 </script>
 
@@ -67,11 +120,13 @@ html, body {
         data-dojo-type="dijit.layout.BorderContainer"
         data-dojo-props="design: 'headline'">
         <div class="centerPanel" data-dojo-type="dijit.layout.ContentPane"
-             data-dojo-props="region: 'center'" href="/PMA/studentTabContainer">
-            <div id="tabContainer"></div>
+             data-dojo-props="region: 'center'">
+            <div id="groupContainer"></div>
+            <div id="assessmentButtonContainer"></div>
+            <div id="assessmentDiv"></div>
         </div>
-        <div class="edgePanel" data-dojo-type="dijit.layout.ContentPane"
-            data-dojo-props="region: 'top'">PM Assessment</div>
+        <div id="header" class="edgePanel" data-dojo-type="dijit.layout.ContentPane"
+            data-dojo-props="region: 'top'">STUFF</div>
     </div>
 </body>
 </html>
