@@ -38,13 +38,16 @@ html, body {
     
     var groups = "${model.Groups}".split(",");
     var groupMembers = "${model.GroupMembers}".split("%");
-    var welcome = "Hello, ".concat("${model.Name}");
+    var name = "${model.Name}";
+    var welcome = "Hello, ".concat(name);
     var map = {};
     for(i = 0; i<groups.length; i++){
         var members = groupMembers[i].split(",");
         console.log(members);
         map[groups[i]] = members;
     }
+    var peerEvalOf;
+    var selectedGroup;
     
      dojo.ready(function(){
         dojo.byId("header").innerHTML = welcome;
@@ -56,7 +59,10 @@ html, body {
             new dijit.form.Button({
                 label: groups[i],
                 title: groups[i],
-                onClick: function(){
+                name: gName,
+                onClick: function(event){
+                    var button = dijit.registry.getEnclosingWidget(event.target);
+                    selectedGroup = button.name;
                     createAssessmentButtons(map[gName]);}
             }, buttonId).startup();
         }
@@ -71,14 +77,17 @@ html, body {
         console.log(gMembers);
         for(i=0;i < gMembers.length; i++){
             if(gMembers[i].trim() != "${model.Name}"){
-                var buttonId = gMembers[i].replace(" ","").concat("PeerAseessment");
+                var gMember = gMembers[i];
+                var buttonId = gMember.replace(" ","").concat("PeerAseessment");
                 var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
                 dojo.place(nodePath, "assessmentButtonContainer", "after");
                 new dijit.form.Button({
-                    label: "Peer Assessment of ".concat(gMembers[i].trim()),
+                    label: "Peer Assessment of ".concat(gMember.trim()),
                     title: "peerAssessment",
+                    name: gMember,
                     onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
-                        setAssessmentButtonEvent(button.title)}
+                        peerEvalOf = button.name;
+                        setAssessmentButtonEvent(button.title);}
                 }, buttonId).startup();
             }
         }

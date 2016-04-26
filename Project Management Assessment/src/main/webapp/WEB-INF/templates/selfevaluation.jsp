@@ -14,11 +14,89 @@
         </script>
         <script>
             dojo.require("dojo.parser");
-            dojo.require("dijit/form/DateTextBox");
+            dojo.require("dijit.form.DateTextBox");
             dojo.require("dijit.dijit");
             dojo.require("dojox.layout.TableContainer");
             dojo.require("dijit.form.TextBox");
-            dojo.require("dijit.form.Checkbox");
+            dojo.require("dijit.form.Button");
+            
+            var answerMap = {
+                AID: 1,
+                UCA: "sblankenship3",
+                GID: "1",
+                Name: "PMAPSelfSamuel",
+                A1: null,
+                A2: parent.name,
+                A3: null,
+                A4: null,
+                A5: null,
+                A6: null,
+                A7: null,
+                A8: null,
+                A9: null,
+                A10: null,
+                A11: null,
+                A12: null,
+                A13: null,
+                A14: null,
+                A15: null
+            }
+            
+//            function saveSelfAssessment(){
+//                if(document.getElementById("A1").value.trim() != ""){
+//                    answerMap.A1 = document.getElementById("A1").value.trim();
+//                }
+//                answerMap.A2 = document.getElementById("A2").value;
+//                answerMap.A3 = "PMAP";
+//                answerMap.A4 = getCheckBoxAnswer("A4");
+//                answerMap.A5 = getCheckBoxAnswer("A5");
+//                answerMap.A6 = getCheckBoxAnswer("A6");
+//                answerMap.A7 = getCheckBoxAnswer("A7");
+//                answerMap.A8 = getCheckBoxAnswer("A8");
+//                answerMap.A9 = getCheckBoxAnswer("A9");
+//                answerMap.A10 = getCheckBoxAnswer("A10");
+//                answerMap.A11 = getCheckBoxAnswer("A11");
+//                if(document.getElementById("A12").value.trim() != ""){
+//                    answerMap.A12 = document.getElementById("A12").value.trim();
+//                }
+//                if(document.getElementById("A13").value.trim() != ""){
+//                    answerMap.A13 = document.getElementById("A13").value.trim();
+//                }
+//                if(document.getElementById("A14").value.trim() != ""){
+//                    answerMap.A14 = document.getElementById("A14").value.trim();
+//                }
+//                if(document.getElementById("A15").value.trim() != ""){
+//                    answerMap.A15 = document.getElementById("A15").value.trim();
+//                }
+//                
+//                dojo.xhrPost({
+//                   url:  
+//                });
+//            }
+//            function getCheckBoxAnswer(question){
+//                if(document.getElementById(question.concat("-5")).checked){
+//                    return 5;
+//                }
+//                else if(document.getElementById(question.concat("-4")).checked){
+//                    return 4;
+//                }
+//                else if(document.getElementById(question.concat("-3")).checked){
+//                    return 3;
+//                }
+//                else if(document.getElementById(question.concat("-2")).checked){
+//                    return 2;
+//                }
+//                else if(document.getElementById(question.concat("-1")).checked){
+//                    return 1;
+//                }
+//                else{
+//                    return null;
+//                }
+//            }
+            
+            dojo.ready(function(){
+                document.getElementById("A2").value=answerMap.A2;
+            });
         </script>
     </head>
     <body class="claro">
@@ -26,17 +104,18 @@
         <br><br>
         <div style="width: 800%; margin: auto;">
             <label for="date">Date:</label>
-            <input type="text" name="date" id="date1" title="Date"
-            data-dojo-type="dijit/form/DateTextBox"
+            <input type="text" name="date" id="A1" title="Date"
+            data-dojo-type="dijit.form.DateTextBox"
             required="true" />
             <label for="teamMemberName" >Team Member Name:</label>
             <input type="text" name="teamMemberName" title="Team Member Name"
-            data-dojo-type="dijit/form/TextBox"
-            data-dojo-props="trim:true" id="teamMember" />
+            data-dojo-type="dijit.form.TextBox"
+            data-dojo-props="trim:true" id="A2" />
             <label for="project" >Project:</label>
             <input type="text" name="project" title="Project"
-            data-dojo-type="dijit/form/TextBox"
-            data-dojo-props="trim:true" id="project" />
+            data-dojo-type="dijit.form.TextBox"
+            data-dojo-props="trim:true" id="A3" />
+            <button data-dojo-type="dijit/form/Button" type="button" id="saveButton" label="Save" onclick=""></button>
         </div>
         <br><br>
         <div style="font-weight: bold;">1.  Please rate yourself on the following*:</div>
@@ -52,67 +131,67 @@
             </tr>
             <tr>
                 <td class="tg-yw4l">Meeting attendance</td>
-                <td class="tg-yw4l"><input type="checkbox" id="MA5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="MA4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="MA3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="MA2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="MA1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-1" value="1" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Preparation for meeting</td>
-                <td class="tg-yw4l"><input type="checkbox" id="PFM5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="PFM4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="PFM3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="PFM2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="PFM1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-1" value="1" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Efficiency of meeting</td>
-                <td class="tg-yw4l"><input type="checkbox" id="EOM5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="EOM4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="EOM3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="EOM2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="EOM1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-1" value="1" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Communication skills</td>
-                <td class="tg-yw4l"><input type="checkbox" id="CS5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="CS4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="CS3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="CS2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="CS1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-1" value="1" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Equal sharing of workload</td>
-                <td class="tg-yw4l"><input type="checkbox" id="ES5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="ES4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="ES3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="ES2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="ES1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-1" value="1" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Motivation</td>
-                <td class="tg-yw4l"><input type="checkbox" id="M5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="M4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="M3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="M2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="M1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-1" value="1" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Supportiveness</td>
-                <td class="tg-yw4l"><input type="checkbox" id="S5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="S4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="S3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="S2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="S1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-1" value="1" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Overall performance</td>
-                <td class="tg-yw4l"><input type="checkbox" id="OP5" data-dojo-type="dijit/form/CheckBox" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="OP4" data-dojo-type="dijit/form/CheckBox" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="OP3" data-dojo-type="dijit/form/CheckBox" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="OP2" data-dojo-type="dijit/form/CheckBox" value="2" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="OP1" data-dojo-type="dijit/form/CheckBox" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-5" value="5" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-1" value="1" /></td>
             </tr>
         </table>
         <br><br>
@@ -120,25 +199,25 @@
         2.  Please provide a narrative with evidence to support any factors for which you have rated yourself as Excellent or Unacceptable.
         </div>
         <br>
-        <textarea id="textarea2" name="textarea2" data-dojo-type="dijit.form.Textarea" style="width:50%;"></textarea>
+        <textarea id="A12" name="textarea1" style="width:50%;"></textarea>
         <br><br>
         <div style="font-weight: bold;">
         3.  Please list any additional factors that you believe are important for consideration in assessing your performance to date.
         </div>
         <br>
-        <textarea id="textarea2" name="textarea2" data-dojo-type="dijit.form.Textarea" style="width:50%;"></textarea>
+        <textarea id="A13" name="textarea2" style="width:50%;"></textarea>
         <br><br>
         <div style="font-weight: bold;">
         4. Describe two strengths that you bring to your team.
         </div>
         <br>
-        <textarea id="textarea2" name="textarea2" data-dojo-type="dijit.form.Textarea" style="width:50%;"></textarea>
+        <textarea id="A14" name="textarea3" style="width:50%;"></textarea>
         <br><br>
         <div style="font-weight: bold;">
         5. Describe the two most significant areas for improvement for yourself as a team member.
         </div>
         <br>
-        <textarea id="textarea2" name="textarea2" data-dojo-type="dijit.form.Textarea" style="width:50%;"></textarea>
+        <textarea id="A15" name="textarea4" style="width:50%;"></textarea>
         <br><br>
         <hr>
         <br>

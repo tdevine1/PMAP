@@ -1,5 +1,6 @@
 package com.softwareengineers.web.controller.student;
 
+import com.softwareengineers.web.model.AssessmentAnswers;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class StudentController {
@@ -80,6 +82,24 @@ public class StudentController {
             return new ModelAndView("error");
         }
     }
+    
+//    @RequestMapping(value="/student/saveSelf")
+//    public @ResponseBody AssessmentAnswers saveSelfAssessment(HttpServletRequest request){
+//        try {
+//            AssessmentAnswers answers = new AssessmentAnswers();
+//            ResultSet rs;
+//            SimpleDriverDataSource dataSource;
+//            dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , "jdbc:mysql://127.0.0.1:3306/mydb", "root", "Prog1");
+//            java.sql.Connection con = dataSource.getConnection();
+//            java.sql.PreparedStatement pStmt = con.prepareStatement("INSERT INTO answers (AID, UCA, GID, assessmentName, " +
+//                    "a2, a3, a4, a14, a15) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) " +
+//                    "ON DUPLICATE KEY UPDATE a2=?, a3=?, a4=?, a14=?, a15=?");
+//            
+//            return answers;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
     @RequestMapping(value="/studentTabContainer")
     public ModelAndView tabContainer() {
