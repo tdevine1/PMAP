@@ -25,21 +25,21 @@
                 UCA: parent.username,
                 GID: "1",
                 Name: (parent.name).concat(" SelfEval"),
-                A1: null,
-                A2: parent.name,
-                A3: null,
-                A4: null,
-                A5: null,
-                A6: null,
-                A7: null,
-                A8: null,
-                A9: null,
-                A10: null,
-                A11: null,
-                A12: null,
-                A13: null,
-                A14: null,
-                A15: null
+                A1: "",
+                A2: "",
+                A3: "",
+                A4: "",
+                A5: "",
+                A6: "",
+                A7: "",
+                A8: "",
+                A9: "",
+                A10: "",
+                A11: "",
+                A12: "",
+                A13: "",
+                A14: "",
+                A15: ""
             };
             
             function saveSelfAssessment(){
@@ -127,8 +127,77 @@
                 }
             }
             
+            function loadAssessment(response){
+                if(response.answers == "Y"){
+                    answerMap.A1 = response.a1;
+                    answerMap.A2 = response.a2;
+                    answerMap.A3 = response.a3;
+                    answerMap.A4 = response.a4;
+                    answerMap.A5 = response.a5;
+                    answerMap.A6 = response.a6;
+                    answerMap.A7 = response.a7;
+                    answerMap.A8 = response.a8;
+                    answerMap.A9 = response.a9;
+                    answerMap.A10 = response.a10;
+                    answerMap.A11 = response.a11;
+                    answerMap.A12 = response.a12;
+                    answerMap.A13 = response.a13;
+                    answerMap.A14 = response.a14;
+                    answerMap.A15 = response.a15;
+                }
+                
+                if(response.msg == "Display"){
+                    display();
+                }
+            }
+            
+            function display(){
+                document.getElementById("A1").value = answerMap.A1;
+                document.getElementById("A2").value = answerMap.A2;
+                document.getElementById("A3").value = answerMap.A3;
+                if(answerMap.A4 != ""){
+                    document.getElementById("A4-".concat(answerMap.A4)).checked = true;
+                }
+                if(answerMap.A5 != ""){
+                    document.getElementById("A5-".concat(answerMap.A5)).checked = true;
+                }
+                if(answerMap.A6 != ""){
+                    document.getElementById("A6-".concat(answerMap.A6)).checked = true;
+                }
+                if(answerMap.A7 != ""){
+                    document.getElementById("A7-".concat(answerMap.A7)).checked = true;
+                }
+                if(answerMap.A8 != ""){
+                    document.getElementById("A8-".concat(answerMap.A8)).checked = true;
+                }
+                if(answerMap.A9 != ""){
+                    document.getElementById("A9-".concat(answerMap.A9)).checked = true;
+                }
+                if(answerMap.A10 != ""){
+                    document.getElementById("A10-".concat(answerMap.A10)).checked = true;
+                }
+                if(answerMap.A11 != ""){
+                    document.getElementById("A11-".concat(answerMap.A11)).checked = true;
+                }
+                document.getElementById("A12").value = answerMap.A12;
+                document.getElementById("A13").value = answerMap.A13;
+                document.getElementById("A14").value = answerMap.A14;
+                document.getElementById("A15").value = answerMap.A15;
+            }
+            
+            
             dojo.ready(function(){
-                document.getElementById("A2").value=answerMap.A2;
+                dojo.xhrPost({
+                   url:  "/PMA/student/getAssessment",
+                   handleAs: "json",
+                   content: {
+                       "AID": answerMap.AID,
+                       "UCA": answerMap.UCA,
+                       "GID": answerMap.GID,
+                       "Name": answerMap.Name
+                   },
+                   load: loadAssessment
+                });
             });
         </script>
     </head>

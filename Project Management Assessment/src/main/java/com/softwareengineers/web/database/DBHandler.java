@@ -28,11 +28,7 @@ public class DBHandler {
     }
     
     public int insertOrUpdateAssessment(int AID, String UCA, String GID, String Name, String[] answers) throws SQLException{
-        java.sql.PreparedStatement pStmt = con.prepareStatement(
-                "INSERT into answers (AID, UCA, GID, assessmentName, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
-                "ON DUPLICATE KEY UPDATE a1=?, a2=?, a3=?, a4=?, a5=?, a6=?, a7=?, a8=?, a9=?, a10=?, a11=?, a12=?, a13=?, a14=?, a15=?, a16=?, a17=?, a18=?, a19=?, a20=?"
-        );
+        java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.INSERTORUPDATEASSESSMENT);
         
         pStmt.clearParameters();
         pStmt.setInt(1, AID);
@@ -59,6 +55,18 @@ public class DBHandler {
         }
         
         return pStmt.executeUpdate();
+    }
+    
+    public ResultSet getAssessment(int AID, String UCA, String GID, String Name) throws SQLException{
+        java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.GETASSESSMENT);
+        
+        pStmt.clearParameters();
+        pStmt.setInt(1, AID);
+        pStmt.setString(2, UCA);
+        pStmt.setString(3, GID);
+        pStmt.setString(4, Name);
+        
+        return pStmt.executeQuery();
     }
 
     

@@ -87,7 +87,7 @@ public class StudentController {
     }
     
     @RequestMapping(value="/student/saveSelf")
-    public @ResponseBody AssessmentAnswers saveSelfAssessment(HttpServletRequest request){
+    public @ResponseBody AssessmentAnswers saveAssessment(HttpServletRequest request){
         try {
             String[] answerArray = new String[Integer.parseInt(request.getParameter("answers"))];
             int numSaved=0;
@@ -104,20 +104,56 @@ public class StudentController {
             }
             else{
                 AssessmentAnswers response = new AssessmentAnswers();
-                response.setErrorMSG("SAVE FAILED");
+                response.setmsg("SAVE FAILED");
                 return response;
             }
                 
         } catch (SQLException ex) {
             Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
             AssessmentAnswers response = new AssessmentAnswers();
-            response.setErrorMSG("AN ERROR OCCURED WHILE SAVING");
+            response.setmsg("AN ERROR OCCURED WHILE SAVING");
             return response;
         }
     }
     
-    @RequestMapping(value="/studentTabContainer")
-    public ModelAndView tabContainer() {
-        return new ModelAndView("studentTabContainer");
+    @RequestMapping(value="/student/getAssessment")
+    public @ResponseBody AssessmentAnswers getAssessment(HttpServletRequest request){
+        try{
+            ResultSet rs;
+            rs = db.getAssessment(Integer.parseInt(request.getParameter("AID")), request.getParameter("UCA"), request.getParameter("GID"), request.getParameter("Name"));
+            
+            if(rs.next()){
+                AssessmentAnswers answer;
+                String[] array = populateArray(rs);
+                answer = new AssessmentAnswers(array);
+                answer.setmsg("Display");
+                return answer;
+            }
+            else{
+                AssessmentAnswers answer = new AssessmentAnswers();
+                return answer;
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            AssessmentAnswers response = new AssessmentAnswers();
+            response.setmsg("AN ERROR OCCURED WHILE SAVING");
+            return response;
+        }
+    }
+    
+    public String[] populateArray(ResultSet rs) throws SQLException{
+        String output;
+        String [] array = new String[20];
+        for(int i = 0; i < 20; i++){
+            output = rs.getString(i+1);
+            if(output == null){
+                array[i] = "";
+            }
+            else{
+                array[i] = output;
+            }
+        }
+        
+        return array;
     }
 }

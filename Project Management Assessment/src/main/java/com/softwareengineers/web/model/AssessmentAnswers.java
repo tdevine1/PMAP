@@ -26,7 +26,8 @@ public class AssessmentAnswers {
     private String A18;
     private String A19;
     private String A20;
-    private String errorMSG;
+    private String msg;
+    private String answers;
 
     /**
      * CONSTRUCTOR FOR ASSESSMENTANSWERS.  The String array argument must contain 20 elements or default constructor will be used
@@ -55,6 +56,7 @@ public class AssessmentAnswers {
             this.A18 = answers[17];
             this.A19 = answers[18];
             this.A20 = answers[19];
+            this.answers = "Y";
         }
     }
 
@@ -80,7 +82,8 @@ public class AssessmentAnswers {
         this.A18 = "";
         this.A19 = "";
         this.A20 = "";
-        this.errorMSG = "";
+        this.msg = "";
+        this.answers = "N";
     }
 
     
@@ -246,12 +249,20 @@ public class AssessmentAnswers {
         this.A20 = A20;
     }
 
-    public String getErrorMSG() {
-        return errorMSG;
+    public String getmsg() {
+        return msg;
     }
 
-    public void setErrorMSG(String errorMSG) {
-        this.errorMSG = errorMSG;
+    public void setmsg(String MSG) {
+        this.msg = MSG;
+    }
+    
+    public String getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(String answers) {
+        this.answers = answers;
     }
 //</editor-fold>
 }
