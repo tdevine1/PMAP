@@ -1,5 +1,7 @@
-C:\Users\Chris\Desktop\PMAP\PMAP\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\student\StudentController.java
-C:\Users\Chris\Desktop\PMAP\PMAP\Project Management Assessment\src\main\java\com\softwareengineers\web\model\AssessmentAnswers.java
-C:\Users\Chris\Desktop\PMAP\PMAP\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\instructor\InstructorController.java
-C:\Users\Chris\Desktop\PMAP\PMAP\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\login\LoginController.java
-C:\Users\Chris\Desktop\PMAP\PMAP\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\assessments\AssessmentController.java
+C:\Users\Samuel\Programs\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\assessments\AssessmentController.java
+C:\Users\Samuel\Programs\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\student\StudentController.java
+C:\Users\Samuel\Programs\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\instructor\InstructorController.java
+C:\Users\Samuel\Programs\Project Management Assessment\src\main\java\com\softwareengineers\web\database\DatabaseConstants.java
+C:\Users\Samuel\Programs\Project Management Assessment\src\main\java\com\softwareengineers\web\database\DBHandler.java
+C:\Users\Samuel\Programs\Project Management Assessment\src\main\java\com\softwareengineers\web\model\AssessmentAnswers.java
+C:\Users\Samuel\Programs\Project Management Assessment\src\main\java\com\softwareengineers\web\controller\login\LoginController.java

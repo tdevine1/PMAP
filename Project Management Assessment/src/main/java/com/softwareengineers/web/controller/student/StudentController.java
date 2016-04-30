@@ -16,13 +16,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.softwareengineers.web.database.DBHandler;
 
 @Controller
 public class StudentController {
+    DBHandler db;
     
     @RequestMapping(value="/student/show", method=RequestMethod.GET)
-    public ModelAndView login(HttpServletRequest request) {
+    public ModelAndView show(HttpServletRequest request) {
         try {
+            db = new DBHandler();
             Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
             Map<String,String> model = new HashMap<String,String>();
             model.put("username", (String)flashMap.get("username"));
@@ -83,23 +86,35 @@ public class StudentController {
         }
     }
     
-//    @RequestMapping(value="/student/saveSelf")
-//    public @ResponseBody AssessmentAnswers saveSelfAssessment(HttpServletRequest request){
-//        try {
-//            AssessmentAnswers answers = new AssessmentAnswers();
-//            ResultSet rs;
-//            SimpleDriverDataSource dataSource;
-//            dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , "jdbc:mysql://127.0.0.1:3306/mydb", "root", "Prog1");
-//            java.sql.Connection con = dataSource.getConnection();
-//            java.sql.PreparedStatement pStmt = con.prepareStatement("INSERT INTO answers (AID, UCA, GID, assessmentName, " +
-//                    "a2, a3, a4, a14, a15) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) " +
-//                    "ON DUPLICATE KEY UPDATE a2=?, a3=?, a4=?, a14=?, a15=?");
-//            
-//            return answers;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    @RequestMapping(value="/student/saveSelf")
+    public @ResponseBody AssessmentAnswers saveSelfAssessment(HttpServletRequest request){
+        try {
+            String[] answerArray = new String[Integer.parseInt(request.getParameter("answers"))];
+            int numSaved=0;
+            for(int i = 0; i<answerArray.length; i++){
+                answerArray[i] = request.getParameter("A"+(i+1));
+            }
+            numSaved = db.insertOrUpdateAssessment(Integer.parseInt(request.getParameter("AID")), request.getParameter("UCA"), request.getParameter("GID"), request.getParameter("Name"), answerArray); 
+            if(numSaved != 0){
+                String[] array = {"","","","","","","","","","","","","","","","","","","",""};
+                for(int i = 0; i<answerArray.length; i++){
+                    array[i] = answerArray[i];
+                }
+                return new AssessmentAnswers(array);
+            }
+            else{
+                AssessmentAnswers response = new AssessmentAnswers();
+                response.setErrorMSG("SAVE FAILED");
+                return response;
+            }
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            AssessmentAnswers response = new AssessmentAnswers();
+            response.setErrorMSG("AN ERROR OCCURED WHILE SAVING");
+            return response;
+        }
+    }
     
     @RequestMapping(value="/studentTabContainer")
     public ModelAndView tabContainer() {

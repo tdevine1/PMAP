@@ -22,9 +22,9 @@
             
             var answerMap = {
                 AID: 1,
-                UCA: "sblankenship3",
+                UCA: parent.username,
                 GID: "1",
-                Name: "PMAPSelfSamuel",
+                Name: (parent.name).concat(" SelfEval"),
                 A1: null,
                 A2: parent.name,
                 A3: null,
@@ -40,59 +40,92 @@
                 A13: null,
                 A14: null,
                 A15: null
+            };
+            
+            function saveSelfAssessment(){
+                if(document.getElementById("A1").value.trim() != ""){
+                    answerMap.A1 = document.getElementById("A1").value.trim();
+                }
+                answerMap.A2 = document.getElementById("A2").value.trim();
+                answerMap.A3 = document.getElementById("A3").value.trim();
+                answerMap.A4 = getCheckBoxAnswer("A4");
+                answerMap.A5 = getCheckBoxAnswer("A5");
+                answerMap.A6 = getCheckBoxAnswer("A6");
+                answerMap.A7 = getCheckBoxAnswer("A7");
+                answerMap.A8 = getCheckBoxAnswer("A8");
+                answerMap.A9 = getCheckBoxAnswer("A9");
+                answerMap.A10 = getCheckBoxAnswer("A10");
+                answerMap.A11 = getCheckBoxAnswer("A11");
+                if(document.getElementById("A12").value.trim() != ""){
+                    answerMap.A12 = document.getElementById("A12").value.trim();
+                }
+                if(document.getElementById("A13").value.trim() != ""){
+                    answerMap.A13 = document.getElementById("A13").value.trim();
+                }
+                if(document.getElementById("A14").value.trim() != ""){
+                    answerMap.A14 = document.getElementById("A14").value.trim();
+                }
+                if(document.getElementById("A15").value.trim() != ""){
+                    answerMap.A15 = document.getElementById("A15").value.trim();
+                }
+                
+                console.log(answerMap);
+                
+                dojo.xhrPost({
+                   url:  "/PMA/student/saveSelf",
+                   handleAs: "json",
+                   content: {
+                       "AID": answerMap.AID,
+                       "UCA": answerMap.UCA,
+                       "GID": answerMap.GID,
+                       "Name": answerMap.Name,
+                       "A1": answerMap.A1,
+                       "A2": answerMap.A2,
+                       "A3": answerMap.A3,
+                       "A4": answerMap.A4,
+                       "A5": answerMap.A5,
+                       "A6": answerMap.A6,
+                       "A7": answerMap.A7,
+                       "A8": answerMap.A8,
+                       "A9": answerMap.A9,
+                       "A10": answerMap.A10,
+                       "A11": answerMap.A11,
+                       "A12": answerMap.A12,
+                       "A13": answerMap.A13,
+                       "A14": answerMap.A14,
+                       "A15": answerMap.A15,
+                       "answers": 15
+                   },
+                   load: test
+                });
             }
             
-//            function saveSelfAssessment(){
-//                if(document.getElementById("A1").value.trim() != ""){
-//                    answerMap.A1 = document.getElementById("A1").value.trim();
-//                }
-//                answerMap.A2 = document.getElementById("A2").value;
-//                answerMap.A3 = "PMAP";
-//                answerMap.A4 = getCheckBoxAnswer("A4");
-//                answerMap.A5 = getCheckBoxAnswer("A5");
-//                answerMap.A6 = getCheckBoxAnswer("A6");
-//                answerMap.A7 = getCheckBoxAnswer("A7");
-//                answerMap.A8 = getCheckBoxAnswer("A8");
-//                answerMap.A9 = getCheckBoxAnswer("A9");
-//                answerMap.A10 = getCheckBoxAnswer("A10");
-//                answerMap.A11 = getCheckBoxAnswer("A11");
-//                if(document.getElementById("A12").value.trim() != ""){
-//                    answerMap.A12 = document.getElementById("A12").value.trim();
-//                }
-//                if(document.getElementById("A13").value.trim() != ""){
-//                    answerMap.A13 = document.getElementById("A13").value.trim();
-//                }
-//                if(document.getElementById("A14").value.trim() != ""){
-//                    answerMap.A14 = document.getElementById("A14").value.trim();
-//                }
-//                if(document.getElementById("A15").value.trim() != ""){
-//                    answerMap.A15 = document.getElementById("A15").value.trim();
-//                }
-//                
-//                dojo.xhrPost({
-//                   url:  
-//                });
-//            }
-//            function getCheckBoxAnswer(question){
-//                if(document.getElementById(question.concat("-5")).checked){
-//                    return 5;
-//                }
-//                else if(document.getElementById(question.concat("-4")).checked){
-//                    return 4;
-//                }
-//                else if(document.getElementById(question.concat("-3")).checked){
-//                    return 3;
-//                }
-//                else if(document.getElementById(question.concat("-2")).checked){
-//                    return 2;
-//                }
-//                else if(document.getElementById(question.concat("-1")).checked){
-//                    return 1;
-//                }
-//                else{
-//                    return null;
-//                }
-//            }
+            function test(response){
+                console.log("I got a response");
+                console.log(response);
+                //var json = JSON.parse(response);
+                console.log(response.a15);
+            }
+            function getCheckBoxAnswer(question){
+                if(document.getElementById(question.concat("-5")).checked){
+                    return 5;
+                }
+                else if(document.getElementById(question.concat("-4")).checked){
+                    return 4;
+                }
+                else if(document.getElementById(question.concat("-3")).checked){
+                    return 3;
+                }
+                else if(document.getElementById(question.concat("-2")).checked){
+                    return 2;
+                }
+                else if(document.getElementById(question.concat("-1")).checked){
+                    return 1;
+                }
+                else{
+                    return null;
+                }
+            }
             
             dojo.ready(function(){
                 document.getElementById("A2").value=answerMap.A2;
@@ -115,7 +148,7 @@
             <input type="text" name="project" title="Project"
             data-dojo-type="dijit.form.TextBox"
             data-dojo-props="trim:true" id="A3" />
-            <button data-dojo-type="dijit/form/Button" type="button" id="saveButton" label="Save" onclick=""></button>
+            <button data-dojo-type="dijit/form/Button" type="button" id="saveButton" label="Save" onclick="saveSelfAssessment"></button>
         </div>
         <br><br>
         <div style="font-weight: bold;">1.  Please rate yourself on the following*:</div>

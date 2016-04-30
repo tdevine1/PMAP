@@ -40,6 +40,7 @@ html, body {
     var groupMembers = "${model.GroupMembers}".split("%");
     var name = "${model.Name}";
     var welcome = "Hello, ".concat(name);
+    var username = "${model.username}";
     var map = {};
     for(i = 0; i<groups.length; i++){
         var members = groupMembers[i].split(",");

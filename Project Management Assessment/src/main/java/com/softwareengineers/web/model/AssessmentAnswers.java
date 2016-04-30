@@ -21,6 +21,67 @@ public class AssessmentAnswers {
     private String A13;
     private String A14;
     private String A15;
+    private String A16;
+    private String A17;
+    private String A18;
+    private String A19;
+    private String A20;
+    private String errorMSG;
+
+    /**
+     * CONSTRUCTOR FOR ASSESSMENTANSWERS.  The String array argument must contain 20 elements or default constructor will be used
+     * @param answers 
+     */
+    public AssessmentAnswers(String[] answers) {
+        this();
+        if(answers.length == 20){
+            this.A1 = answers[0];
+            this.A2 = answers[1];
+            this.A3 = answers[2];
+            this.A4 = answers[3];
+            this.A5 = answers[4];
+            this.A6 = answers[5];
+            this.A7 = answers[6];
+            this.A8 = answers[7];
+            this.A9 = answers[8];
+            this.A10 = answers[9];
+            this.A11 = answers[10];
+            this.A12 = answers[11];
+            this.A13 = answers[12];
+            this.A14 = answers[13];
+            this.A15 = answers[14];
+            this.A16 = answers[15];
+            this.A17 = answers[16];
+            this.A18 = answers[17];
+            this.A19 = answers[18];
+            this.A20 = answers[19];
+        }
+    }
+
+
+    public AssessmentAnswers() {
+        this.A1 = "";
+        this.A2 = "";
+        this.A3 = "";
+        this.A4 = "";
+        this.A5 = "";
+        this.A6 = "";
+        this.A7 = "";
+        this.A8 = "";
+        this.A9 = "";
+        this.A10 = "";
+        this.A11 = "";
+        this.A12 = "";
+        this.A13 = "";
+        this.A14 = "";
+        this.A15 = "";
+        this.A16 = "";
+        this.A17 = "";
+        this.A18 = "";
+        this.A19 = "";
+        this.A20 = "";
+        this.errorMSG = "";
+    }
 
     
     
@@ -144,6 +205,53 @@ public class AssessmentAnswers {
     public void setA15(String A15) {
         this.A15 = A15;
     }
-//</editor-fold>
+    
+     public String getA16() {
+        return A16;
+    }
 
+    public void setA16(String A16) {
+        this.A16 = A16;
+    }
+
+    public String getA17() {
+        return A17;
+    }
+
+    public void setA17(String A17) {
+        this.A17 = A17;
+    }
+
+    public String getA18() {
+        return A18;
+    }
+
+    public void setA18(String A18) {
+        this.A18 = A18;
+    }
+
+    public String getA19() {
+        return A19;
+    }
+
+    public void setA19(String A19) {
+        this.A19 = A19;
+    }
+
+    public String getA20() {
+        return A20;
+    }
+
+    public void setA20(String A20) {
+        this.A20 = A20;
+    }
+
+    public String getErrorMSG() {
+        return errorMSG;
+    }
+
+    public void setErrorMSG(String errorMSG) {
+        this.errorMSG = errorMSG;
+    }
+//</editor-fold>
 }

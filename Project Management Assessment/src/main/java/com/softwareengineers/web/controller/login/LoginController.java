@@ -61,6 +61,7 @@ public class LoginController {
                 while(rs.next()){
                     isInstructor = rs.getBoolean("IsInstructor");
                 }
+                con.close();
                 if(isInstructor){
                     return "redirect:/instructor/show";
                 }
