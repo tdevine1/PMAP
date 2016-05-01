@@ -23,7 +23,7 @@
             var answerMap = {
                 AID: 1,
                 UCA: parent.username,
-                GID: "1",
+                GID: parent.selectedGroupId,
                 Name: (parent.name).concat(" SelfEval"),
                 A1: "",
                 A2: "",
@@ -204,12 +204,12 @@
     <body class="claro">
         <div style="width: 150px; margin: auto;">Self-Assessment Form</div>
         <br><br>
-        <div style="width: 800%; margin: auto;">
+        <div style="width: 70%; margin: auto;">
             <label for="date">Date:</label>
             <input type="text" name="date" id="A1" title="Date"
             data-dojo-type="dijit.form.DateTextBox"
             required="true" />
-            <label for="teamMemberName" >Team Member Name:</label>
+            <label for="teamMemberName" >Name:</label>
             <input type="text" name="teamMemberName" title="Team Member Name"
             data-dojo-type="dijit.form.TextBox"
             data-dojo-props="trim:true" id="A2" />

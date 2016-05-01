@@ -49,6 +49,7 @@ html, body {
     }
     var peerEvalOf;
     var selectedGroup;
+    var selectedGroupId;
     
      dojo.ready(function(){
         dojo.byId("header").innerHTML = welcome;
@@ -100,21 +101,32 @@ html, body {
             label: "Self Evaluation",
             title: "selfAssessment",
             onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
-                setAssessmentButtonEvent(button.title)}
+                setAssessmentButtonEvent(button.title);}
         }, buttonId).startup();
     }
     
     function setAssessmentButtonEvent(type){
-        console.log(type);
-        if(type == "peerAssessment"){
-            dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
-        }
-        else if(type == "selfAssessment"){
-            dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
-        }
-        else{
-            console.log("Nothing here");
-        }
+        dojo.xhrPost({
+            url:  "/PMA/student/getGroupInfo",
+            handleAs: "json",
+            content: {
+                "Name": name,
+                "Group": selectedGroup,
+                "Type": type
+            },
+            load: function(response){
+                selectedGroupId = response.groupID;
+                console.log(response);
+                if(response.type == "peerAssessment"){
+                    dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
+                }
+                else if(response.type == "selfAssessment"){
+                    dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
+                }
+                else{
+                    console.log("Nothing here");
+                }
+        }});
     }
     
    // dojo.ready(function(){

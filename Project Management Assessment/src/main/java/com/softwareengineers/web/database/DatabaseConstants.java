@@ -22,4 +22,5 @@ public class DatabaseConstants{
         public static final String GETASSESSMENT = "SELECT a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20 " +
                                                    "FROM answers A " +
                                                    "WHERE A.AID = ? AND A.UCA = ? AND A.GID = ? AND A.assessmentName = ?";
+        public static final String GETGID = "SELECT GID FROM `group` WHERE groupName = ? AND groupMembers like ?";
 }

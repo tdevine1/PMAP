@@ -1,6 +1,7 @@
 package com.softwareengineers.web.controller.student;
 
 import com.softwareengineers.web.model.AssessmentAnswers;
+import com.softwareengineers.web.model.GroupInfoForAssessment;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.softwareengineers.web.database.DBHandler;
+import com.softwareengineers.web.database.DatabaseConstants;
 
 @Controller
 public class StudentController {
@@ -155,5 +157,28 @@ public class StudentController {
         }
         
         return array;
+    }
+    
+    @RequestMapping(value="/student/getGroupInfo")
+    public @ResponseBody GroupInfoForAssessment getGroupInfo(HttpServletRequest request){
+        String type = request.getParameter("Type");
+        String name = request.getParameter("Name");
+        String gName = request.getParameter("Group");
+        String gId;
+        
+        String[] params = {gName, "%"+name+"%"};
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.GETGID, params);
+            if(rs.next()){
+                gId = rs.getString("GID");
+                return new GroupInfoForAssessment(gId, gName, type);
+            }
+            else{
+                return new GroupInfoForAssessment("", gName, type);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            return new GroupInfoForAssessment("", gName, type);
+        }
     }
 }
