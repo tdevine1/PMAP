@@ -19,13 +19,20 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.softwareengineers.web.model.GroupsForClass;
+import com.softwareengineers.web.model.MembersOfGroup;
+import com.softwareengineers.web.database.DBHandler;
+import com.softwareengineers.web.database.DatabaseConstants;
 
 @Controller
 public class InstructorController {
+    DBHandler db;
     
     @RequestMapping(value="/instructor/show", method=RequestMethod.GET)
-    public ModelAndView login(HttpServletRequest request) {
+    public ModelAndView show(HttpServletRequest request) {
         try {
+            db = new DBHandler();
             Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
             Map<String,String> model = new HashMap<String,String>();
             model.put("username", (String)flashMap.get("username"));
@@ -78,8 +85,56 @@ public class InstructorController {
         }
     }
     
-    @RequestMapping(value="/instructorTabContainer")
-    public ModelAndView tab(HttpServletRequest request) {
-    return new ModelAndView("instructorTabContainer");
+    @RequestMapping(value="/instructor/groupsForClass")
+    public @ResponseBody GroupsForClass groupsForClass(HttpServletRequest request) {
+        String cid = request.getParameter("course");
+        ArrayList<String> gids = new ArrayList<String>();
+        ArrayList<String> groups = new ArrayList<String>();
+        
+        String[] params = {cid};
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.GROUPSINCOURSE, params);
+            while(rs.next()){
+                gids.add(rs.getString("GID"));
+                groups.add(rs.getString("groupName"));
+            }
+            rs.close();
+            
+            return new GroupsForClass(groups.toArray(new String[groups.size()]), gids.toArray(new String[gids.size()]));
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new GroupsForClass();
+        }
+        
+    }
+    
+    @RequestMapping(value="/instructor/membersForGroup")
+    public @ResponseBody MembersOfGroup membersForGroup(HttpServletRequest request) {
+        String gid = request.getParameter("gid");
+        ArrayList<String> ucas = new ArrayList<String>();
+        ArrayList<String> names = new ArrayList<String>();
+        
+        String[] params = {gid};
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.PROJECTMANAGERSOFGROUP, params);
+            while(rs.next()){
+                ucas.add(rs.getString("UCA"));
+                names.add(rs.getString("fname") + " " + rs.getString("lname"));
+            }
+            rs.close();
+            
+            rs = db.processQuery(DatabaseConstants.DEVSOFGROUP, params);
+            while(rs.next()){
+                ucas.add(rs.getString("UCA"));
+                names.add(rs.getString("fname") + " " + rs.getString("lname"));
+            }
+            rs.close();
+            
+            return new MembersOfGroup(ucas.toArray(new String[ucas.size()]), names.toArray(new String[names.size()]));
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new MembersOfGroup();
+        }
+        
     }
 }

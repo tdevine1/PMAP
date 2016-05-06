@@ -23,4 +23,7 @@ public class DatabaseConstants{
                                                    "FROM answers A " +
                                                    "WHERE A.AID = ? AND A.UCA = ? AND A.GID = ? AND A.assessmentName = ?";
         public static final String GETGID = "SELECT GID FROM `group` WHERE groupName = ? AND groupMembers like ?";
+        public static final String GROUPSINCOURSE = "SELECT g.GID, g.groupName FROM groupsincourse gic, `group` g WHERE gic.CID = ? AND gic.GIDs = g.GID";
+        public static final String PROJECTMANAGERSOFGROUP = "SELECT u.UCA, u.fname, u.lname FROM projectmanager pjm, users u WHERE pjm.GID = ? AND pjm.UCA = u.UCA";
+        public static final String DEVSOFGROUP = "SELECT u.UCA, u.fname, u.lname FROM dev d, users u WHERE d.GID = ? AND d.UCA = u.UCA";
 }
