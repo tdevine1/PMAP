@@ -1,808 +1,7 @@
 <!DOCTYPE html>
 <html>
-<body onload = "loadNames();">
-<form>
-	<table border = 1 style="width:10%">
-	<tr>
-            <td><input Value = "1"/></td>
-            <td><input Value = "2"/></td>
-            <td><input Value = "3"/></td>
-            <td><input Value = "4"/></td>
-            <td><input Value = "5"/></td>
-	</tr>
-	<tr>
-		<td>Excellent</td>
-		<td>Good</td>
-		<td>Average</td>
-		<td>Poor</td>
-		<td>Unacceptable</td>
-	</tr>
-	</table>
-	<table border = 1 style ="width:10%"> <!--Building the table -->
-	<tr>
-            <td><input id = "name1" Value = ""/></td>
-            <td><input value = "Self"/></td>
-            <td><input id = "teamMember1.1" value = ""/></td>
-            <td><input id = "teamMember1.2" value = ""/></td>
-            <td><input id = "teamMember1.3" value = ""/></td>
-            <td><input id = "teamMember1.4" value = ""/></td>
-            <td><input id = "teamMember1.5" value = ""/></td>
-            <td><input id = "average1" value = Average/></td>
-	</tr>
-	<tr>
-            <td><input value = "Meeting Reliability"/></td>
-		<td><input id = "selfMeetingReliability1" /></td>
-                <td><input id = "peer1MeetingReliability1"/></td>
-                <td><input id = "peer2MeetingReliability1"/></td>
-                <td><input id = "peer3MeetingReliability1"/></td>
-                <td><input id = "peer4MeetingReliability1"/></td>
-                <td><input id = "peer5MeetingReliability1"/></td>
-                <td><input id = "averageMeetingReliability1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Meeting Preparadness" /></td>
-                <td><input id = "selfMeetingPreparadness1"/></td>
-                <td><input id = "peer1MeetingPreparadness1"/></td>
-		<td><input id = "peer2MeetingPreparadness1"/></td>
-                <td><input id = "peer3MeetingPreparadness1"/></td>
-		<td><input id = "peer4MeetingPreparadness1"/></td>
-		<td><input id = "peer5MeetingPreparadness1"/></td>
-                <td><input id = "averageMeetingPreparadness1"/></td>
-	</tr>
-	<tr>
-            <td><input value = "Idea Contribution" /></td>
-            <td><input id = "selfIdeaContribution1"/></td>
-            <td><input id = "peer1IdeaContribution1"/></td>
-            <td><input id = "peer2IdeaContribution1"/></td>
-            <td><input id = "peer3IdeaContribution1"/></td>
-            <td><input id = "peer4IdeaContribution1"/></td>
-            <td><input id = "peer5IdeaContribution1"/></td>
-            <td><input id = "averageIdeaContribution1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Discussion Contribution"/></td>
-                <td><input id = "selfDiscussionContribution1"/></td>
-                <td><input id = "peer1DiscussionContribution1"/></td>
-                <td><input id = "peer2DiscussionContribution1"/></td>
-                <td><input id = "peer3DiscussionContribution1"/></td>
-                <td><input id = "peer4DiscussionContribution1"/></td>
-                <td><input id = "peer5DiscussionContribution1"/></td>
-                <td><input id = "averageDiscussionContribution1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Respect of Group Members"/></td>
-                <td><input id = "selfRespect1"/></td>
-                <td><input id = "peer1Respect1"/></td>
-                <td><input id = "peer2Respect1"/></td>
-                <td><input id = "peer3Respect1"/></td>
-                <td><input id = "peer4Respect1"/></td>
-                <td><input id = "peer5Respect1"/></td>
-                <td><input id = "averageRespect1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Support of Team"/></td>
-                <td><input id = "selfSupport1"/></td>
-                <td><input id = "peer1Support1"/></td>
-                <td><input id = "peer2Support1"/></td>
-                <td><input id = "peer3Support1"/></td>
-                <td><input id = "peer4Support1"/></td>
-                <td><input id = "peer5Support1"/></td>
-                <td><input id = "averageSupport1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Role Knowledge and Fullfillment"/></td>
-                <td><input id = "selfRole1"/></td>
-                <td><input id = "peer1Role1"/></td>
-                <td><input id = "peer2Role1"/></td>
-                <td><input id = "peer3Role1"/></td>
-                <td><input id = "peer4Role1"/></td>
-                <td><input id = "peer5Role1"/></td>
-                <td><input id = "averageRole1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Providing Prompt Feedback"/></td>
-                <td><input id = "selfFeedback1"/></td>
-                <td><input id = "peer1Feedback1"/></td>
-                <td><input id = "peer2Feedback1"/></td>
-                <td><input id = "peer3Feedback1"/></td>
-                <td><input id = "peer4Feedback1"/></td>
-                <td><input id = "peer5Feedback1"/></td>
-                <td><input id = "averageFeedback1"/></td>
-	</tr>
-		<tr>
-		<td><input value = "Effective Contribution"/></td>
-                <td><input id = "selfEffective1"/></td>
-                <td><input id = "peer1Effective1"/></td>
-                <td><input id = "peer2Effective1"/></td>
-                <td><input id = "peer3Effective1"/></td>
-                <td><input id = "peer4Effective1"/></td>
-                <td><input id = "peer5Effective1"/></td>
-                <td><input id = "averageEffective1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Addressing Conflict"/></td>
-                <td><input id = "selfConflict1"/></td>
-                <td><input id = "peer1Conflict1"/></td>
-                <td><input id = "peer2Conflict1"/></td>
-                <td><input id = "peer3Conflict1"/></td>
-                <td><input id = "peer4Conflict1"/></td>
-                <td><input id = "peer5Conflict1"/></td>
-                <td><input id = "averageConflict1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Workload Contribution"/></td>
-                <td><input id = "selfContribution1"/></td>
-                <td><input id = "peer1Contribution1"/></td>
-                <td><input id = "peer2Contribution1"/></td>
-                <td><input id = "peer3Contribution1"/></td>
-                <td><input id = "peer4Contribution1"/></td>
-                <td><input id = "peer5Contribution1"/></td>
-                <td><input id = "averageContribution1"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Performance"/></td>
-                <td><input id = "selfPerformance1"/></td>
-                <td><input id = "peer1Performance1"/></td>
-                <td><input id = "peer2Performance1"/></td>
-                <td><input id = "peer3Performance1"/></td>
-                <td><input id = "peer4Performance1"/></td>
-                <td><input id = "peer5Performance1"/></td>
-                <td><input id = "averagePerformance1"/></td>
-	</tr>
-		<tr>
-		<td><input id ="name2" value = ""/></td>
-		<td>Self </td>
-		<td><input id = "teamMember2.1" value = ""/></td>
-		<td><input id = "teamMember2.2" value = ""/></td>
-		<td><input id = "teamMember2.3" value = ""/></td>
-		<td><input id = "teamMember2.4" value = ""/></td>
-		<td><input id = "teamMember2.5" value = ""/></td>
-		<td><input id = "average2" value = Average/></td>
-	</tr>
-		<tr>
-		<td><input value = "Meeting Reliability"/></td>
-                <td><input id = "selfMeetingReliability2"/></td>
-                <td><input id = "peer1MeetingReliability2"/></td>
-                <td><input id = "peer2MeetingReliability2"/></td>
-                <td><input id = "peer3MeetingReliability2"/></td>
-                <td><input id = "peer4MeetingReliability2"/></td>
-                <td><input id = "peer5MeetingReliability2"/></td>
-                <td><input id = "averageMeetingReliability2"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Meeting Preparadness"/></td>
-                <td><input id = "selfMeetingPreparadness2"/></td>
-                <td><input id = "peer1MeetingPreparadness2"/></td>
-                <td><input id = "peer2MeetingPreparadness2"/></td>
-                <td><input id = "peer3MeetingPreparadness2"/></td>
-                <td><input id = "peer4MeetingPreparadness2"/></td>
-                <td><input id = "peer5MeetingPreparadness2"/></td>
-                <td><input id = "averageMeetingPreparadness2"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Idea Contribution"/></td>
-                <td><input id = "selfIdeaContribution2"/></td>
-                <td><input id = "peer1IdeaContribution2"/></td>
-                <td><input id = "peer2IdeaContribution2"/></td>
-                <td><input id = "peer3IdeaContribution2"/></td>
-                <td><input id = "peer4IdeaContribution2"/></td>
-                <td><input id = "peer5IdeaContribution2"/></td>
-                <td><input id = "averageIdeaContribution2"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Discussion Contribution"/></td>
-                <td><input id = "selfDiscussionContribution2"/></td>
-                <td><input id = "peer1DiscussionContribution2"/></td>
-                <td><input id = "peer2DiscussionContribution2"/></td>
-                <td><input id = "peer3DiscussionContribution2"/></td>
-                <td><input id = "peer4DiscussionContribution2"/></td>
-                <td><input id = "peer5DiscussionContribution2"/></td>
-                <td><input id = "averageDiscussionContribution2"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Respect of Group Members "/></td>
-                <td><input id = "selfRespect2"/></td>
-                <td><input id = "peer1Respect2"/></td>
-                <td><input id = "peer2Respect2"/></td>
-		<td><input id = "peer3Respect2"/></td>
-                <td><input id = "peer4Respect2"/></td>
-                <td><input id = "peer5Respect2"/></td>
-                <td><input id = "averageRespect2"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Support of Team"/></td>
-                <td><input id = "selfSupport2"/></td>
-                <td><input id = "peer1Support2"/></td>
-                <td><input id = "peer2Support2"/></td>
-                <td><input id = "peer3Support2"/></td>
-                <td><input id = "peer4Support2"/></td>
-                <td><input id = "peer5Support2"/></td>
-                <td><input id = "averageSupport2"/></td>
-	</tr>
-	<tr>
-		<td><input value = "Role Knowledge and Fullfillment"/></td>
-                <td><input id = "selfRole2"/></td>
-                <td><input id = "peer1Role2"/></td>
-                <td><input id = "peer2Role2"/></td>
-                <td><input id = "peer3Role2"/></td>
-		<td><input id = "peer4Role2" </td>
-		<td><input id = "peer5Role2" </td>
-		<td><input id = "averageRole2" </td>
-	</tr>
-	<tr>
-		<td><input value = "Providing Prompt Feedback" </td>
-		<td><input id = "selfFeedback2" </td>
-		<td><input id = "peer1Feedback2" </td>
-		<td><input id = "peer2Feedback2" </td>
-		<td><input id = "peer3Feedback2" </td>
-		<td><input id = "peer4Feedback2" </td>
-		<td><input id = "peer5Feedback2" </td>
-		<td><input id = "averageFeedback2" </td>
-	</tr>
-		<tr>
-		<td><input value = "Effective Contribution " </td>
-		<td><input id = "selfEffective2" </td>
-		<td><input id = "peer1Effective2" </td>
-		<td><input id = "peer2Effective2" </td>
-		<td><input id = "peer3Effective2" </td>
-		<td><input id = "peer4Effective2" </td>
-		<td><input id = "peer5Effective2" </td>
-		<td><input id = "averageEffective2" </td>
-	</tr>
-	<tr>
-		<td><input value = "Addressing Conflict" </td>
-		<td><input id = "selfConflict2" </td>
-		<td><input id = "peer1Conflict2" </td>
-		<td><input id = "peer2Conflict2" </td>
-		<td><input id = "peer3Conflict2" </td>
-		<td><input id = "peer4Conflict2" </td>
-		<td><input id = "peer5Conflict2" </td>
-		<td><input id = "averageConflict2" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Workload Contribution" </td>
-		<td><input id = "selfContribution2" </td>
-		<td><input id = "peer1Contribution2" </td>
-		<td><input id = "peer2Contribution2" </td>
-		<td><input id = "peer3Contribution2" </td>
-		<td><input id = "peer4Contribution2" </td>
-		<td><input id = "peer5Contribution2" </td>
-		<td><input id = "averageContribution2" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Performance" </td>
-		<td><input id = "selfPerformance2" </td>
-		<td><input id = "peer1Performance2" </td>
-		<td><input id = "peer2Performance2" </td>
-		<td><input id = "peer3Performance2" </td>
-		<td><input id = "peer4Performance2" </td>
-		<td><input id = "peer5Performance2" </td>
-		<td><input id = "averagePerformance2" </td>
-	</tr>
-		<tr>
-		<td><input id ="name3" value = "" </td>
-		<td>Self </td>
-		<td><input id = "teamMember3.1" value = "" </td>
-		<td><input id = "teamMember3.2" value = "" </td>
-		<td><input id = "teamMember3.3" value = "" </td>
-		<td><input id = "teamMember3.4" value = "" </td>
-		<td><input id = "teamMember3.5" value = "" </td>
-		<td><input id = "average3" value = Average </td>
-	</tr>
-		<tr>
-		<td><input value = "Meeting Reliability" </td>
-		<td><input id = "selfMeetingReliability3" </td>
-		<td><input id = "peer1MeetingReliability3" </td>
-		<td><input id = "peer2MeetingReliability3" </td>
-		<td><input id = "peer3MeetingReliability3" </td>
-		<td><input id = "peer4MeetingReliability3" </td>
-		<td><input id = "peer5MeetingReliability3" </td>
-		<td><input id = "averageMeetingReliability3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Meeting Preparadness" </td>
-		<td><input id = "selfMeetingPreparadness3" </td>
-		<td><input id = "peer1MeetingPreparadness3" </td>
-		<td><input id = "peer2MeetingPreparadness3" </td>
-		<td><input id = "peer3MeetingPreparadness3" </td>
-		<td><input id = "peer4MeetingPreparadness3" </td>
-		<td><input id = "peer5MeetingPreparadness3" </td>
-		<td><input id = "averageMeetingPreparadness3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Idea Contribution" </td>
-		<td><input id = "selfIdeaContribution3" </td>
-		<td><input id = "peer1IdeaContribution3" </td>
-		<td><input id = "peer2IdeaContribution3" </td>
-		<td><input id = "peer3IdeaContribution3" </td>
-		<td><input id = "peer4IdeaContribution3" </td>
-		<td><input id = "peer5IdeaContribution3" </td>
-		<td><input id = "averageIdeaContribution3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Discussion Contribution" </td>
-		<td><input id = "selfDiscussionContribution3" </td>
-		<td><input id = "peer1DiscussionContribution3" </td>
-		<td><input id = "peer2DiscussionContribution3" </td>
-		<td><input id = "peer3DiscussionContribution3" </td>
-		<td><input id = "peer4DiscussionContribution3" </td>
-		<td><input id = "peer5DiscussionContribution3" </td>
-		<td><input id = "averageDiscussionContribution3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Respect of Group Members " </td>
-		<td><input id = "selfRespect3" </td>
-		<td><input id = "peer1Respect3" </td>
-		<td><input id = "peer2Respect3" </td>
-		<td><input id = "peer3Respect3" </td>
-		<td><input id = "peer4Respect3" </td>
-		<td><input id = "peer5Respect3" </td>
-		<td><input id = "averageRespect3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Support of Team" </td>
-		<td><input id = "selfSupport1" </td>
-		<td><input id = "peer1Support3" </td>
-		<td><input id = "peer2Support3" </td>
-		<td><input id = "peer3Support3" </td>
-		<td><input id = "peer4Support3" </td>
-		<td><input id = "peer5Support3" </td>
-		<td><input id = "averageSupport3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Role Knowledge and Fullfillment" </td>
-		<td><input id = "selfRole3" </td>
-		<td><input id = "peer1Role3" </td>
-		<td><input id = "peer2Role3" </td>
-		<td><input id = "peer3Role3" </td>
-		<td><input id = "peer4Role3" </td>
-		<td><input id = "peer5Role3" </td>
-		<td><input id = "averageRole3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Providing Prompt Feedback" </td>
-		<td><input id = "selfFeedback3" </td>
-		<td><input id = "peer1Feedback3" </td>
-		<td><input id = "peer2Feedback3" </td>
-		<td><input id = "peer3Feedback3" </td>
-		<td><input id = "peer4Feedback3" </td>
-		<td><input id = "peer5Feedback3" </td>
-		<td><input id = "averageFeedback3" </td>
-	</tr>
-		<tr>
-		<td><input value = "Effective Contribution " </td>
-		<td><input id = "selfEffective3" </td>
-		<td><input id = "peer1Effective3" </td>
-		<td><input id = "peer2Effective3" </td>
-		<td><input id = "peer3Effective3" </td>
-		<td><input id = "peer4Effective3" </td>
-		<td><input id = "peer5Effective3" </td>
-		<td><input id = "averageEffective3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Addressing Conflict" </td>
-		<td><input id = "selfConflict3" </td>
-		<td><input id = "peer1Conflict3" </td>
-		<td><input id = "peer2Conflict3" </td>
-		<td><input id = "peer3Conflict3" </td>
-		<td><input id = "peer4Conflict3" </td>
-		<td><input id = "peer5Conflict3" </td>
-		<td><input id = "averageConflict3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Workload Contribution" </td>
-		<td><input id = "selfContribution3" </td>
-		<td><input id = "peer1Contribution3" </td>
-		<td><input id = "peer2Contribution3" </td>
-		<td><input id = "peer3Contribution3" </td>
-		<td><input id = "peer4Contribution3" </td>
-		<td><input id = "peer5Contribution3" </td>
-		<td><input id = "averageContribution3" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Performance" </td>
-		<td><input id = "selfPerformance3" </td>
-		<td><input id = "peer1Performance3" </td>
-		<td><input id = "peer2Performance3" </td>
-		<td><input id = "peer3Performance3" </td>
-		<td><input id = "peer4Performance3" </td>
-		<td><input id = "peer5Performance3" </td>
-		<td><input id = "averagePerformance3" </td>
-	</tr>
-		<tr>
-		<td><input id ="name4" value = "" </td>
-		<td>Self </td>
-		<td><input id = "teamMember4.1" value = "" </td>
-		<td><input id = "teamMember4.2" value = "" </td>
-		<td><input id = "teamMember4.3" value = "" </td>
-		<td><input id = "teamMember4.4" value = "" </td>
-		<td><input id = "teamMember4.5" value = "" </td>
-		<td><input id = "average4" value = Average </td>
-	</tr>
-		<tr>
-		<td><input value = "Meeting Reliability" </td>
-		<td><input id = "selfMeetingReliability4" </td>
-		<td><input id = "peer1MeetingReliability4" </td>
-		<td><input id = "peer2MeetingReliability4" </td>
-		<td><input id = "peer3MeetingReliability4" </td>
-		<td><input id = "peer4MeetingReliability4" </td>
-		<td><input id = "peer5MeetingReliability4" </td>
-		<td><input id = "averageMeetingReliability4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Meeting Preparadness" </td>
-		<td><input id = "selfMeetingPreparadness4" </td>
-		<td><input id = "peer1MeetingPreparadness4" </td>
-		<td><input id = "peer2MeetingPreparadness4" </td>
-		<td><input id = "peer3MeetingPreparadness4" </td>
-		<td><input id = "peer4MeetingPreparadness4" </td>
-		<td><input id = "peer5MeetingPreparadness4" </td>
-		<td><input id = "averageMeetingPreparadness4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Idea Contribution" </td>
-		<td><input id = "selfIdeaContribution4" </td>
-		<td><input id = "peer1IdeaContribution4" </td>
-		<td><input id = "peer2IdeaContribution4" </td>
-		<td><input id = "peer3IdeaContribution4" </td>
-		<td><input id = "peer4IdeaContribution4" </td>
-		<td><input id = "peer5IdeaContribution4" </td>
-		<td><input id = "averageIdeaContribution4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Discussion Contribution" </td>
-		<td><input id = "selfDiscussionContribution4" </td>
-		<td><input id = "peer1DiscussionContribution4" </td>
-		<td><input id = "peer2DiscussionContribution4" </td>
-		<td><input id = "peer3DiscussionContribution4" </td>
-		<td><input id = "peer4DiscussionContribution4" </td>
-		<td><input id = "peer5DiscussionContribution4" </td>
-		<td><input id = "averageDiscussionContribution4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Respect of Group Members " </td>
-		<td><input id = "selfRespect4" </td>
-		<td><input id = "peer1Respect4" </td>
-		<td><input id = "peer2Respect4" </td>
-		<td><input id = "peer3Respect4" </td>
-		<td><input id = "peer4Respect4" </td>
-		<td><input id = "peer5Respect4" </td>
-		<td><input id = "averageRespect4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Support of Team" </td>
-		<td><input id = "selfSupport4" </td>
-		<td><input id = "peer1Support4" </td>
-		<td><input id = "peer2Support4" </td>
-		<td><input id = "peer3Support4" </td>
-		<td><input id = "peer4Support4" </td>
-		<td><input id = "peer5Support4" </td>
-		<td><input id = "averageSupport4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Role Knowledge and Fullfillment" </td>
-		<td><input id = "selfRole4" </td>
-		<td><input id = "peer1Role4" </td>
-		<td><input id = "peer2Role4" </td>
-		<td><input id = "peer3Role4" </td>
-		<td><input id = "peer4Role4" </td>
-		<td><input id = "peer5Role4" </td>
-		<td><input id = "averageRole4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Providing Prompt Feedback" </td>
-		<td><input id = "selfFeedback4" </td>
-		<td><input id = "peer1Feedback4" </td>
-		<td><input id = "peer2Feedback4" </td>
-		<td><input id = "peer3Feedback4" </td>
-		<td><input id = "peer4Feedback4" </td>
-		<td><input id = "peer5Feedback4" </td>
-		<td><input id = "averageFeedback4" </td>
-	</tr>
-		<tr>
-		<td><input value = "Effective Contribution " </td>
-		<td><input id = "selfEffective4" </td>
-		<td><input id = "peer1Effective4" </td>
-		<td><input id = "peer2Effective4" </td>
-		<td><input id = "peer3Effective4" </td>
-		<td><input id = "peer4Effective4" </td>
-		<td><input id = "peer5Effective4" </td>
-		<td><input id = "averageEffective4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Addressing Conflict" </td>
-		<td><input id = "selfConflict4" </td>
-		<td><input id = "peer1Conflict4" </td>
-		<td><input id = "peer2Conflict4" </td>
-		<td><input id = "peer3Conflict4" </td>
-		<td><input id = "peer4Conflict4" </td>
-		<td><input id = "peer5Conflict4" </td>
-		<td><input id = "averageConflict4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Workload Contribution" </td>
-		<td><input id = "selfContribution4" </td>
-		<td><input id = "peer1Contribution4" </td>
-		<td><input id = "peer2Contribution4" </td>
-		<td><input id = "peer3Contribution4" </td>
-		<td><input id = "peer4Contribution4" </td>
-		<td><input id = "peer5Contribution4" </td>
-		<td><input id = "averageContribution4" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Performance" </td>
-		<td><input id = "selfPerformance4" </td>
-		<td><input id = "peer1Performance4" </td>
-		<td><input id = "peer2Performance4" </td>
-		<td><input id = "peer3Performance4" </td>
-		<td><input id = "peer4Performance4" </td>
-		<td><input id = "peer5Performance4" </td>
-		<td><input id = "averagePerformance4" </td>
-	</tr>
-		<tr>
-		<td><input id ="name5" value = "" </td>
-		<td>Self </td>
-		<td><input id = "teamMember5.1" value = "" </td>
-		<td><input id = "teamMember5.2" value = "" </td>
-		<td><input id = "teamMember5.3" value = "" </td>
-		<td><input id = "teamMember5.4" value = "" </td>
-		<td><input id = "teamMember5.5" value = "" </td>
-		<td><input id = "average5" value = Average </td>
-	</tr>
-		<tr>
-		<td><input value = "Meeting Reliability" </td>
-		<td><input id = "selfMeetingReliability5" </td>
-		<td><input id = "peer1MeetingReliability5" </td>
-		<td><input id = "peer2MeetingReliability5" </td>
-		<td><input id = "peer3MeetingReliability5" </td>
-		<td><input id = "peer4MeetingReliability5" </td>
-		<td><input id = "peer5MeetingReliability5" </td>
-		<td><input id = "averageMeetingReliability5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Meeting Preparadness" </td>
-		<td><input id = "selfMeetingPreparadness5" </td>
-		<td><input id = "peer1MeetingPreparadness5" </td>
-		<td><input id = "peer2MeetingPreparadness5" </td>
-		<td><input id = "peer3MeetingPreparadness5" </td>
-		<td><input id = "peer4MeetingPreparadness5" </td>
-		<td><input id = "peer5MeetingPreparadness5" </td>
-		<td><input id = "averageMeetingPreparadness5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Idea Contribution" </td>
-		<td><input id = "selfIdeaContribution5" </td>
-		<td><input id = "peer1IdeaContribution5" </td>
-		<td><input id = "peer2IdeaContribution5" </td>
-		<td><input id = "peer3IdeaContribution5" </td>
-		<td><input id = "peer4IdeaContribution5" </td>
-		<td><input id = "peer5IdeaContribution5" </td>
-		<td><input id = "averageIdeaContribution5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Discussion Contribution" </td>
-		<td><input id = "selfDiscussionContribution5" </td>
-		<td><input id = "peer1DiscussionContribution5" </td>
-		<td><input id = "peer2DiscussionContribution5" </td>
-		<td><input id = "peer3DiscussionContribution5" </td>
-		<td><input id = "peer4DiscussionContribution5" </td>
-		<td><input id = "peer5DiscussionContribution5" </td>
-		<td><input id = "averageDiscussionContribution5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Respect of Group Members " </td>
-		<td><input id = "selfRespect5" </td>
-		<td><input id = "peer1Respect5" </td>
-		<td><input id = "peer2Respect5" </td>
-		<td><input id = "peer3Respect5" </td>
-		<td><input id = "peer4Respect5" </td>
-		<td><input id = "peer5Respect5" </td>
-		<td><input id = "averageRespect5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Support of Team" </td>
-		<td><input id = "selfSupport5" </td>
-		<td><input id = "peer1Support5" </td>
-		<td><input id = "peer2Support5" </td>
-		<td><input id = "peer3Support5" </td>
-		<td><input id = "peer4Support5" </td>
-		<td><input id = "peer5Support5" </td>
-		<td><input id = "averageSupport5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Role Knowledge and Fullfillment" </td>
-		<td><input id = "selfRole1" </td>
-		<td><input id = "peer1Role5" </td>
-		<td><input id = "peer2Role5" </td>
-		<td><input id = "peer3Role5" </td>
-		<td><input id = "peer4Role5" </td>
-		<td><input id = "peer5Role5" </td>
-		<td><input id = "averageRole5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Providing Prompt Feedback" </td>
-		<td><input id = "selfFeedback5" </td>
-		<td><input id = "peer1Feedback5" </td>
-		<td><input id = "peer2Feedback5" </td>
-		<td><input id = "peer3Feedback5" </td>
-		<td><input id = "peer4Feedback5" </td>
-		<td><input id = "peer5Feedback5" </td>
-		<td><input id = "averageFeedback5" </td>
-	</tr>
-		<tr>
-		<td><input value = "Effective Contribution " </td>
-		<td><input id = "selfEffective5" </td>
-		<td><input id = "peer1Effective5" </td>
-		<td><input id = "peer2Effective5" </td>
-		<td><input id = "peer3Effective5" </td>
-		<td><input id = "peer4Effective5" </td>
-		<td><input id = "peer5Effective5" </td>
-		<td><input id = "averageEffective5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Addressing Conflict" </td>
-		<td><input id = "selfConflict5" </td>
-		<td><input id = "peer1Conflict5" </td>
-		<td><input id = "peer2Conflict5" </td>
-		<td><input id = "peer3Conflict5" </td>
-		<td><input id = "peer4Conflict5" </td>
-		<td><input id = "peer5Conflict5" </td>
-		<td><input id = "averageConflict5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Workload Contribution" </td>
-		<td><input id = "selfContribution5" </td>
-		<td><input id = "peer1Contribution5" </td>
-		<td><input id = "peer2Contribution5" </td>
-		<td><input id = "peer3Contribution5" </td>
-		<td><input id = "peer4Contribution5" </td>
-		<td><input id = "peer5Contribution5" </td>
-		<td><input id = "averageContribution5" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Performance" </td>
-		<td><input id = "selfPerformance5" </td>
-		<td><input id = "peer1Performance5" </td>
-		<td><input id = "peer2Performance5" </td>
-		<td><input id = "peer3Performance5" </td>
-		<td><input id = "peer4Performance5" </td>
-		<td><input id = "peer5Performance5" </td>
-		<td><input id = "averagePerformance5" </td>
-	</tr>
-		<tr>
-		<td><input id ="name6" value = "" </td>
-		<td>Self </td>
-		<td><input id = "teamMember6.1" value = "" </td>
-		<td><input id = "teamMember6.2" value = "" </td>
-		<td><input id = "teamMember6.3" value = "" </td>
-		<td><input id = "teamMember6.4" value = "" </td>
-		<td><input id = "teamMember6.5" value = "" </td>
-		<td><input id = "average6" value = Average </td>
-	</tr>
-		<tr>
-		<td><input value = "Meeting Reliability" </td>
-		<td><input id = "selfMeetingReliability6" </td>
-		<td><input id = "peer1MeetingReliability6" </td>
-		<td><input id = "peer2MeetingReliability6" </td>
-		<td><input id = "peer3MeetingReliability6" </td>
-		<td><input id = "peer4MeetingReliability6" </td>
-		<td><input id = "peer5MeetingReliability6" </td>
-		<td><input id = "averageMeetingReliability6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Meeting Preparadness" </td>
-		<td><input id = "selfMeetingPreparadness6" </td>
-		<td><input id = "peer1MeetingPreparadness6" </td>
-		<td><input id = "peer2MeetingPreparadness6" </td>
-		<td><input id = "peer3MeetingPreparadness6" </td>
-		<td><input id = "peer4MeetingPreparadness6" </td>
-		<td><input id = "peer5MeetingPreparadness6" </td>
-		<td><input id = "averageMeetingPreparadness6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Idea Contribution" </td>
-		<td><input id = "selfIdeaContribution6" </td>
-		<td><input id = "peer1IdeaContribution6" </td>
-		<td><input id = "peer2IdeaContribution6" </td>
-		<td><input id = "peer3IdeaContribution6" </td>
-		<td><input id = "peer4IdeaContribution6" </td>
-		<td><input id = "peer5IdeaContribution6" </td>
-		<td><input id = "averageIdeaContribution6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Discussion Contribution" </td>
-		<td><input id = "selfDiscussionContribution6" </td>
-		<td><input id = "peer1DiscussionContribution6" </td>
-		<td><input id = "peer2DiscussionContribution6" </td>
-		<td><input id = "peer3DiscussionContribution6" </td>
-		<td><input id = "peer4DiscussionContribution6" </td>
-		<td><input id = "peer5DiscussionContribution6" </td>
-		<td><input id = "averageDiscussionContribution6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Respect of Group Members " </td>
-		<td><input id = "selfRespect6" </td>
-		<td><input id = "peer1Respect6" </td>
-		<td><input id = "peer2Respect6" </td>
-		<td><input id = "peer3Respect6" </td>
-		<td><input id = "peer4Respect6" </td>
-		<td><input id = "peer5Respect6" </td>
-		<td><input id = "averageRespect6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Support of Team" </td>
-		<td><input id = "selfSupport1" </td>
-		<td><input id = "peer1Support1" </td>
-		<td><input id = "peer2Support1" </td>
-		<td><input id = "peer3Support1" </td>
-		<td><input id = "peer4Support1" </td>
-		<td><input id = "peer5Support1" </td>
-		<td><input id = "averageSupport1" </td>
-	</tr>
-	<tr>
-		<td><input value = "Role Knowledge and Fullfillment" </td>
-		<td><input id = "selfRole6" </td>
-		<td><input id = "peer1Role6" </td>
-		<td><input id = "peer2Role6" </td>
-		<td><input id = "peer3Role6" </td>
-		<td><input id = "peer4Role6" </td>
-		<td><input id = "peer5Role6" </td>
-		<td><input id = "averageRole6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Providing Prompt Feedback" </td>
-		<td><input id = "selfFeedback6" </td>
-		<td><input id = "peer1Feedback6" </td>
-		<td><input id = "peer2Feedback6" </td>
-		<td><input id = "peer3Feedback6" </td>
-		<td><input id = "peer4Feedback6" </td>
-		<td><input id = "peer5Feedback6" </td>
-		<td><input id = "averageFeedback6" </td>
-	</tr>
-		<tr>
-		<td><input value = "Effective Contribution " </td>
-		<td><input id = "selfEffective6" </td>
-		<td><input id = "peer1Effective6" </td>
-		<td><input id = "peer2Effective6" </td>
-		<td><input id = "peer3Effective6" </td>
-		<td><input id = "peer4Effective6" </td>
-		<td><input id = "peer5Effective6" </td>
-		<td><input id = "averageEffective6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Addressing Conflict" </td>
-		<td><input id = "selfConflict6" </td>
-		<td><input id = "peer1Conflict6" </td>
-		<td><input id = "peer2Conflict6" </td>
-		<td><input id = "peer3Conflict6" </td>
-		<td><input id = "peer4Conflict6" </td>
-		<td><input id = "peer5Conflict6" </td>
-		<td><input id = "averageConflict6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Workload Contribution" </td>
-		<td><input id = "selfContribution6" </td>
-		<td><input id = "peer1Contribution6" </td>
-		<td><input id = "peer2Contribution6" </td>
-		<td><input id = "peer3Contribution6" </td>
-		<td><input id = "peer4Contribution6" </td>
-		<td><input id = "peer5Contribution6" </td>
-		<td><input id = "averageContribution6" </td>
-	</tr>
-	<tr>
-		<td><input value = "Overall Performance" </td>
-		<td><input id = "selfPerformance6" </td>
-		<td><input id = "peer1Performance6" </td>
-		<td><input id = "peer2Performance6" </td>
-		<td><input id = "peer3Performance6" </td>
-		<td><input id = "peer4Performance6" </td>
-		<td><input id = "peer5Performance6" </td>
-		<td><input id = "averagePerformance6" </td>
-	</tr>
-</form>
-</body>
+<head>
 <script>
-
 	function loadNames () //Given an array of six names this function cycles through them to fill the table name slots then calls the compute average fcts
 	{
 		var varNameArray = ["Chris", "Ryan", "Sarah", "Patterson", "Mike", "Mary"];
@@ -941,6 +140,808 @@
 		document.getElementById("averageContribution6").value = (Number(document.getElementById("selfContribution6").value) + Number(document.getElementById("peer1Contribution6").value) + Number(document.getElementById("peer2Contribution6").value) + Number(document.getElementById("peer3Contribution6").value) + Number(document.getElementById("peer4Contribution6").value) + Number(document.getElementById("peer5Contribution6").value) ) / 6;
 		document.getElementById("averagePerformance6").value = (Number(document.getElementById("selfPerformance6" ).value) + Number(document.getElementById("peer1Performance6").value) + Number(document.getElementById("peer2Performance6").value) + Number(document.getElementById("peer3Performance6").value) + Number(document.getElementById("peer4Performance6").value) + Number(document.getElementById("peer5Performance6").value) ) / 6;
 	}
-
-</script>
+</script>        
+</head>
+<body onload = "loadNames();">
+<form>
+	<table border = 1 style="width:10%">
+	<tr>
+            <td><input Value = "1"></td>
+            <td><input Value = "2"></td>
+            <td><input Value = "3"></td>
+            <td><input Value = "4"></td>
+            <td><input Value = "5"></td>
+	</tr>
+	<tr>
+		<td>Excellent</td>
+		<td>Good</td>
+		<td>Average</td>
+		<td>Poor</td>
+		<td>Unacceptable</td>
+	</tr>
+	</table>
+	<table border = 1 style ="width:10%"> <!--Building the table -->
+	<tr>
+            <td><input id = "name1" Value = ""/></td>
+            <td><input value = "Self"/></td>
+            <td><input id = "teamMember1.1" value = ""></td>
+            <td><input id = "teamMember1.2" value = ""></td>
+            <td><input id = "teamMember1.3" value = ""></td>
+            <td><input id = "teamMember1.4" value = ""></td>
+            <td><input id = "teamMember1.5" value = ""></td>
+            <td><input id = "average1" value = Average></td>
+	</tr>
+	<tr>
+            <td><input value = "Meeting Reliability"/></td>
+		<td><input id = "selfMeetingReliability1"></td>
+                <td><input id = "peer1MeetingReliability1"></td>
+                <td><input id = "peer2MeetingReliability1"></td>
+                <td><input id = "peer3MeetingReliability1"></td>
+                <td><input id = "peer4MeetingReliability1"></td>
+                <td><input id = "peer5MeetingReliability1"></td>
+                <td><input id = "averageMeetingReliability1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Meeting Preparadness"></td>
+                <td><input id = "selfMeetingPreparadness1"></td>
+                <td><input id = "peer1MeetingPreparadness1"></td>
+		<td><input id = "peer2MeetingPreparadness1"></td>
+                <td><input id = "peer3MeetingPreparadness1"></td>
+		<td><input id = "peer4MeetingPreparadness1"></td>
+		<td><input id = "peer5MeetingPreparadness1"></td>
+                <td><input id = "averageMeetingPreparadness1"></td>
+	</tr>
+	<tr>
+            <td><input value = "Idea Contribution"></td>
+            <td><input id = "selfIdeaContribution1"></td>
+            <td><input id = "peer1IdeaContribution1"></td>
+            <td><input id = "peer2IdeaContribution1"></td>
+            <td><input id = "peer3IdeaContribution1"></td>
+            <td><input id = "peer4IdeaContribution1"></td>
+            <td><input id = "peer5IdeaContribution1"></td>
+            <td><input id = "averageIdeaContribution1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Discussion Contribution"></td>
+                <td><input id = "selfDiscussionContribution1"></td>
+                <td><input id = "peer1DiscussionContribution1"></td>
+                <td><input id = "peer2DiscussionContribution1"></td>
+                <td><input id = "peer3DiscussionContribution1"></td>
+                <td><input id = "peer4DiscussionContribution1"></td>
+                <td><input id = "peer5DiscussionContribution1"></td>
+                <td><input id = "averageDiscussionContribution1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Respect of Group Members"></td>
+                <td><input id = "selfRespect1"></td>
+                <td><input id = "peer1Respect1"></td>
+                <td><input id = "peer2Respect1"></td>
+                <td><input id = "peer3Respect1"></td>
+                <td><input id = "peer4Respect1"></td>
+                <td><input id = "peer5Respect1"></td>
+                <td><input id = "averageRespect1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Support of Team"></td>
+                <td><input id = "selfSupport1"></td>
+                <td><input id = "peer1Support1"></td>
+                <td><input id = "peer2Support1"></td>
+                <td><input id = "peer3Support1"></td>
+                <td><input id = "peer4Support1"></td>
+                <td><input id = "peer5Support1"></td>
+                <td><input id = "averageSupport1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Role Knowledge and Fullfillment"></td>
+                <td><input id = "selfRole1"></td>
+                <td><input id = "peer1Role1"></td>
+                <td><input id = "peer2Role1"></td>
+                <td><input id = "peer3Role1"></td>
+                <td><input id = "peer4Role1"></td>
+                <td><input id = "peer5Role1"></td>
+                <td><input id = "averageRole1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Providing Prompt Feedback"></td>
+                <td><input id = "selfFeedback1"></td>
+                <td><input id = "peer1Feedback1"></td>
+                <td><input id = "peer2Feedback1"></td>
+                <td><input id = "peer3Feedback1"></td>
+                <td><input id = "peer4Feedback1"></td>
+                <td><input id = "peer5Feedback1"></td>
+                <td><input id = "averageFeedback1"></td>
+	</tr>
+		<tr>
+		<td><input value = "Effective Contribution"></td>
+                <td><input id = "selfEffective1"></td>
+                <td><input id = "peer1Effective1"></td>
+                <td><input id = "peer2Effective1"></td>
+                <td><input id = "peer3Effective1"></td>
+                <td><input id = "peer4Effective1"></td>
+                <td><input id = "peer5Effective1"></td>
+                <td><input id = "averageEffective1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Addressing Conflict"></td>
+                <td><input id = "selfConflict1"></td>
+                <td><input id = "peer1Conflict1"></td>
+                <td><input id = "peer2Conflict1"></td>
+                <td><input id = "peer3Conflict1"></td>
+                <td><input id = "peer4Conflict1"></td>
+                <td><input id = "peer5Conflict1"></td>
+                <td><input id = "averageConflict1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Overall Workload Contribution"></td>
+                <td><input id = "selfContribution1"></td>
+                <td><input id = "peer1Contribution1"></td>
+                <td><input id = "peer2Contribution1"></td>
+                <td><input id = "peer3Contribution1"></td>
+                <td><input id = "peer4Contribution1"></td>
+                <td><input id = "peer5Contribution1"></td>
+                <td><input id = "averageContribution1"></td>
+	</tr>
+	<tr>
+		<td><input value = "Overall Performance"></td>
+                <td><input id = "selfPerformance1"></td>
+                <td><input id = "peer1Performance1"></td>
+                <td><input id = "peer2Performance1"></td>
+                <td><input id = "peer3Performance1"></td>
+                <td><input id = "peer4Performance1"></td>
+                <td><input id = "peer5Performance1"></td>
+                <td><input id = "averagePerformance1"></td>
+	</tr>
+		<tr>
+		<td><input id ="name2" value = ""></td>
+		<td>Self </td>
+		<td><input id = "teamMember2.1" value = ""></td>
+		<td><input id = "teamMember2.2" value = ""></td>
+		<td><input id = "teamMember2.3" value = ""></td>
+		<td><input id = "teamMember2.4" value = ""></td>
+		<td><input id = "teamMember2.5" value = ""></td>
+		<td><input id = "average2" value = Average></td>
+	</tr>
+		<tr>
+		<td><input value = "Meeting Reliability"></td>
+                <td><input id = "selfMeetingReliability2"></td>
+                <td><input id = "peer1MeetingReliability2"></td>
+                <td><input id = "peer2MeetingReliability2"></td>
+                <td><input id = "peer3MeetingReliability2"></td>
+                <td><input id = "peer4MeetingReliability2"></td>
+                <td><input id = "peer5MeetingReliability2"></td>
+                <td><input id = "averageMeetingReliability2"></td>
+	</tr>
+	<tr>
+		<td><input value = "Meeting Preparadness"></td>
+                <td><input id = "selfMeetingPreparadness2"></td>
+                <td><input id = "peer1MeetingPreparadness2"></td>
+                <td><input id = "peer2MeetingPreparadness2"></td>
+                <td><input id = "peer3MeetingPreparadness2"></td>
+                <td><input id = "peer4MeetingPreparadness2"></td>
+                <td><input id = "peer5MeetingPreparadness2"></td>
+                <td><input id = "averageMeetingPreparadness2"></td>
+	</tr>
+	<tr>
+		<td><input value = "Idea Contribution"></td>
+                <td><input id = "selfIdeaContribution2"></td>
+                <td><input id = "peer1IdeaContribution2"></td>
+                <td><input id = "peer2IdeaContribution2"></td>
+                <td><input id = "peer3IdeaContribution2"></td>
+                <td><input id = "peer4IdeaContribution2"></td>
+                <td><input id = "peer5IdeaContribution2"></td>
+                <td><input id = "averageIdeaContribution2"></td>
+	</tr>
+	<tr>
+		<td><input value = "Discussion Contribution"></td>
+                <td><input id = "selfDiscussionContribution2"></td>
+                <td><input id = "peer1DiscussionContribution2"></td>
+                <td><input id = "peer2DiscussionContribution2"></td>
+                <td><input id = "peer3DiscussionContribution2"></td>
+                <td><input id = "peer4DiscussionContribution2"></td>
+                <td><input id = "peer5DiscussionContribution2"></td>
+                <td><input id = "averageDiscussionContribution2"></td>
+	</tr>
+	<tr>
+		<td><input value = "Respect of Group Members "></td>
+                <td><input id = "selfRespect2"></td>
+                <td><input id = "peer1Respect2"></td>
+                <td><input id = "peer2Respect2"></td>
+		<td><input id = "peer3Respect2"></td>
+                <td><input id = "peer4Respect2"></td>
+                <td><input id = "peer5Respect2"></td>
+                <td><input id = "averageRespect2"></td>
+	</tr>
+	<tr>
+		<td><input value = "Support of Team"></td>
+                <td><input id = "selfSupport2"></td>
+                <td><input id = "peer1Support2"></td>
+                <td><input id = "peer2Support2"></td>
+                <td><input id = "peer3Support2"></td>
+                <td><input id = "peer4Support2"></td>
+                <td><input id = "peer5Support2"></td>
+                <td><input id = "averageSupport2"></td>
+	</tr>
+	<tr>
+		<td><input value = "Role Knowledge and Fullfillment"></td>
+                <td><input id = "selfRole2"></td>
+                <td><input id = "peer1Role2"></td>
+                <td><input id = "peer2Role2"></td>
+                <td><input id = "peer3Role2"></td>
+		<td><input id = "peer4Role2"></td>
+		<td><input id = "peer5Role2"></td>
+		<td><input id = "averageRole2"></td>
+	</tr>
+	<tr>
+            <td><input value = "Providing Prompt Feedback"></td>
+		<td><input id = "selfFeedback2"></td>
+		<td><input id = "peer1Feedback2"></td>
+		<td><input id = "peer2Feedback2"></td>
+		<td><input id = "peer3Feedback2"></td>
+		<td><input id = "peer4Feedback2"></td>
+		<td><input id = "peer5Feedback2"></td>
+		<td><input id = "averageFeedback2"></td>
+	</tr>
+		<tr>
+                    <td><input value = "Effective Contribution"></td>
+		<td><input id = "selfEffective2"></td>
+		<td><input id = "peer1Effective2"></td>
+		<td><input id = "peer2Effective2"></td>
+		<td><input id = "peer3Effective2"></td>
+		<td><input id = "peer4Effective2"></td>
+		<td><input id = "peer5Effective2"></td>
+		<td><input id = "averageEffective2"></td>
+	</tr>
+	<tr>
+            <td><input value = "Addressing Conflict"></td>
+		<td><input id = "selfConflict2"></td>
+		<td><input id = "peer1Conflict2"></td>
+		<td><input id = "peer2Conflict2"></td>
+		<td><input id = "peer3Conflict2"></td>
+		<td><input id = "peer4Conflict2"></td>
+		<td><input id = "peer5Conflict2"></td>
+		<td><input id = "averageConflict2"></td>
+	</tr>
+	<tr>
+            <td><input value = "Overall Workload Contribution"></td>
+		<td><input id = "selfContribution2"></td>
+		<td><input id = "peer1Contribution2"></td>
+		<td><input id = "peer2Contribution2"></td>
+		<td><input id = "peer3Contribution2"></td>
+		<td><input id = "peer4Contribution2"></td>
+		<td><input id = "peer5Contribution2"></td>
+		<td><input id = "averageContribution2"></td>
+	</tr>
+	<tr>
+            <td><input value = "Overall Performance"></td>
+		<td><input id = "selfPerformance2"></td>
+		<td><input id = "peer1Performance2"></td>
+		<td><input id = "peer2Performance2"></td>
+		<td><input id = "peer3Performance2"></td>
+		<td><input id = "peer4Performance2"></td>
+		<td><input id = "peer5Performance2"></td>
+		<td><input id = "averagePerformance2"></td>
+	</tr>
+	<tr>
+            <td><input id = "name3" Value = ""/></td>
+            <td><input value = "Self"/></td>
+            <td><input id = "teamMember3.1" value = ""></td>
+            <td><input id = "teamMember3.2" value = ""></td>
+            <td><input id = "teamMember3.3" value = ""></td>
+            <td><input id = "teamMember3.4" value = ""></td>
+            <td><input id = "teamMember3.5" value = ""></td>
+            <td><input id = "average3" value = Average></td>
+	</tr>
+	<tr>
+            <td><input value = "Meeting Reliability"/></td>
+		<td><input id = "selfMeetingReliability3"></td>
+                <td><input id = "peer1MeetingReliability3"></td>
+                <td><input id = "peer2MeetingReliability3"></td>
+                <td><input id = "peer3MeetingReliability3"></td>
+                <td><input id = "peer4MeetingReliability3"></td>
+                <td><input id = "peer5MeetingReliability3"></td>
+                <td><input id = "averageMeetingReliability3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Meeting Preparadness"></td>
+                <td><input id = "selfMeetingPreparadness3"></td>
+                <td><input id = "peer1MeetingPreparadness3"></td>
+		<td><input id = "peer2MeetingPreparadness3"></td>
+                <td><input id = "peer3MeetingPreparadness3"></td>
+		<td><input id = "peer4MeetingPreparadness3"></td>
+		<td><input id = "peer5MeetingPreparadness3"></td>
+                <td><input id = "averageMeetingPreparadness3"></td>
+	</tr>
+	<tr>
+            <td><input value = "Idea Contribution"></td>
+            <td><input id = "selfIdeaContribution3"></td>
+            <td><input id = "peer1IdeaContribution3"></td>
+            <td><input id = "peer2IdeaContribution3"></td>
+            <td><input id = "peer3IdeaContribution3"></td>
+            <td><input id = "peer4IdeaContribution3"></td>
+            <td><input id = "peer5IdeaContribution3"></td>
+            <td><input id = "averageIdeaContribution3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Discussion Contribution"></td>
+                <td><input id = "selfDiscussionContribution3"></td>
+                <td><input id = "peer1DiscussionContribution3"></td>
+                <td><input id = "peer2DiscussionContribution3"></td>
+                <td><input id = "peer3DiscussionContribution3"></td>
+                <td><input id = "peer4DiscussionContribution3"></td>
+                <td><input id = "peer5DiscussionContribution3"></td>
+                <td><input id = "averageDiscussionContribution3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Respect of Group Members"></td>
+                <td><input id = "selfRespect3"></td>
+                <td><input id = "peer1Respect3"></td>
+                <td><input id = "peer2Respect3"></td>
+                <td><input id = "peer3Respect3"></td>
+                <td><input id = "peer4Respect3"></td>
+                <td><input id = "peer5Respect3"></td>
+                <td><input id = "averageRespect3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Support of Team"></td>
+                <td><input id = "selfSupport3"></td>
+                <td><input id = "peer1Support3"></td>
+                <td><input id = "peer2Support3"></td>
+                <td><input id = "peer3Support3"></td>
+                <td><input id = "peer4Support3"></td>
+                <td><input id = "peer5Support3"></td>
+                <td><input id = "averageSupport3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Role Knowledge and Fullfillment"></td>
+                <td><input id = "selfRole3"></td>
+                <td><input id = "peer1Role3"></td>
+                <td><input id = "peer2Role3"></td>
+                <td><input id = "peer3Role3"></td>
+                <td><input id = "peer4Role3"></td>
+                <td><input id = "peer5Role3"></td>
+                <td><input id = "averageRole3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Providing Prompt Feedback"></td>
+                <td><input id = "selfFeedback3"></td>
+                <td><input id = "peer1Feedback3"></td>
+                <td><input id = "peer2Feedback3"></td>
+                <td><input id = "peer3Feedback3"></td>
+                <td><input id = "peer4Feedback3"></td>
+                <td><input id = "peer5Feedback3"></td>
+                <td><input id = "averageFeedback3"></td>
+	</tr>
+		<tr>
+		<td><input value = "Effective Contribution"></td>
+                <td><input id = "selfEffective3"></td>
+                <td><input id = "peer1Effective3"></td>
+                <td><input id = "peer2Effective3"></td>
+                <td><input id = "peer3Effective3"></td>
+                <td><input id = "peer4Effective3"></td>
+                <td><input id = "peer5Effective3"></td>
+                <td><input id = "averageEffective3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Addressing Conflict"></td>
+                <td><input id = "selfConflict3"></td>
+                <td><input id = "peer1Conflict3"></td>
+                <td><input id = "peer2Conflict3"></td>
+                <td><input id = "peer3Conflict3"></td>
+                <td><input id = "peer4Conflict3"></td>
+                <td><input id = "peer5Conflict3"></td>
+                <td><input id = "averageConflict3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Overall Workload Contribution"></td>
+                <td><input id = "selfContribution3"></td>
+                <td><input id = "peer1Contribution3"></td>
+                <td><input id = "peer2Contribution3"></td>
+                <td><input id = "peer3Contribution3"></td>
+                <td><input id = "peer4Contribution3"></td>
+                <td><input id = "peer5Contribution3"></td>
+                <td><input id = "averageContribution3"></td>
+	</tr>
+	<tr>
+		<td><input value = "Overall Performance"></td>
+                <td><input id = "selfPerformance3"></td>
+                <td><input id = "peer1Performance3"></td>
+                <td><input id = "peer2Performance3"></td>
+                <td><input id = "peer3Performance3"></td>
+                <td><input id = "peer4Performance3"></td>
+                <td><input id = "peer5Performance3"></td>
+                <td><input id = "averagePerformance3"></td>
+	</tr>
+		<tr>
+		<td><input id ="name4" value = ""></td>
+		<td>Self </td>
+		<td><input id = "teamMember4.1" value = ""></td>
+		<td><input id = "teamMember4.2" value = ""></td>
+		<td><input id = "teamMember4.3" value = ""></td>
+		<td><input id = "teamMember4.4" value = ""></td>
+		<td><input id = "teamMember4.5" value = ""></td>
+		<td><input id = "average4" value = Average></td>
+	</tr>
+		<tr>
+		<td><input value = "Meeting Reliability"></td>
+                <td><input id = "selfMeetingReliability4"></td>
+                <td><input id = "peer1MeetingReliability4"></td>
+                <td><input id = "peer2MeetingReliability4"></td>
+                <td><input id = "peer3MeetingReliability4"></td>
+                <td><input id = "peer4MeetingReliability4"></td>
+                <td><input id = "peer5MeetingReliability4"></td>
+                <td><input id = "averageMeetingReliability4"></td>
+	</tr>
+	<tr>
+		<td><input value = "Meeting Preparadness"></td>
+                <td><input id = "selfMeetingPreparadness4"></td>
+                <td><input id = "peer1MeetingPreparadness4"></td>
+                <td><input id = "peer2MeetingPreparadness4"></td>
+                <td><input id = "peer3MeetingPreparadness4"></td>
+                <td><input id = "peer4MeetingPreparadness4"></td>
+                <td><input id = "peer5MeetingPreparadness4"></td>
+                <td><input id = "averageMeetingPreparadness4"></td>
+	</tr>
+	<tr>
+		<td><input value = "Idea Contribution"></td>
+                <td><input id = "selfIdeaContribution4"></td>
+                <td><input id = "peer1IdeaContribution4"></td>
+                <td><input id = "peer2IdeaContribution4"></td>
+                <td><input id = "peer3IdeaContribution4"></td>
+                <td><input id = "peer4IdeaContribution4"></td>
+                <td><input id = "peer5IdeaContribution4"></td>
+                <td><input id = "averageIdeaContribution4"></td>
+	</tr>
+	<tr>
+		<td><input value = "Discussion Contribution"></td>
+                <td><input id = "selfDiscussionContribution4"></td>
+                <td><input id = "peer1DiscussionContribution4"></td>
+                <td><input id = "peer2DiscussionContribution4"></td>
+                <td><input id = "peer3DiscussionContribution4"></td>
+                <td><input id = "peer4DiscussionContribution4"></td>
+                <td><input id = "peer5DiscussionContribution4"></td>
+                <td><input id = "averageDiscussionContribution4"></td>
+	</tr>
+	<tr>
+		<td><input value = "Respect of Group Members "></td>
+                <td><input id = "selfRespect4"></td>
+                <td><input id = "peer1Respect4"></td>
+                <td><input id = "peer2Respect4"></td>
+		<td><input id = "peer3Respect4"></td>
+                <td><input id = "peer4Respect4"></td>
+                <td><input id = "peer5Respect4"></td>
+                <td><input id = "averageRespect4"></td>
+	</tr>
+	<tr>
+		<td><input value = "Support of Team"></td>
+                <td><input id = "selfSupport4"></td>
+                <td><input id = "peer1Support4"></td>
+                <td><input id = "peer2Support4"></td>
+                <td><input id = "peer3Support4"></td>
+                <td><input id = "peer4Support4"></td>
+                <td><input id = "peer5Support4"></td>
+                <td><input id = "averageSupport4"></td>
+	</tr>
+	<tr>
+		<td><input value = "Role Knowledge and Fullfillment"></td>
+                <td><input id = "selfRole4"></td>
+                <td><input id = "peer1Role4"></td>
+                <td><input id = "peer2Role4"></td>
+                <td><input id = "peer3Role4"></td>
+		<td><input id = "peer4Role4"></td>
+		<td><input id = "peer5Role4"></td>
+		<td><input id = "averageRole4"></td>
+	</tr>
+	<tr>
+            <td><input value = "Providing Prompt Feedback"></td>
+		<td><input id = "selfFeedback4"></td>
+		<td><input id = "peer1Feedback4"></td>
+		<td><input id = "peer2Feedback4"></td>
+		<td><input id = "peer3Feedback4"></td>
+		<td><input id = "peer4Feedback4"></td>
+		<td><input id = "peer5Feedback4"></td>
+		<td><input id = "averageFeedback4"></td>
+	</tr>
+		<tr>
+                    <td><input value = "Effective Contribution"></td>
+		<td><input id = "selfEffective4"></td>
+		<td><input id = "peer1Effective4"></td>
+		<td><input id = "peer2Effective4"></td>
+		<td><input id = "peer3Effective4"></td>
+		<td><input id = "peer4Effective4"></td>
+		<td><input id = "peer5Effective4"></td>
+		<td><input id = "averageEffective4"></td>
+	</tr>
+	<tr>
+            <td><input value = "Addressing Conflict"></td>
+		<td><input id = "selfConflict4"></td>
+		<td><input id = "peer1Conflict4"></td>
+		<td><input id = "peer2Conflict4"></td>
+		<td><input id = "peer3Conflict4"></td>
+		<td><input id = "peer4Conflict4"></td>
+		<td><input id = "peer5Conflict4"></td>
+		<td><input id = "averageConflict4"></td>
+	</tr>
+	<tr>
+            <td><input value = "Overall Workload Contribution"></td>
+		<td><input id = "selfContribution4"></td>
+		<td><input id = "peer1Contribution4"></td>
+		<td><input id = "peer2Contribution4"></td>
+		<td><input id = "peer3Contribution4"></td>
+		<td><input id = "peer4Contribution4"></td>
+		<td><input id = "peer5Contribution4"></td>
+		<td><input id = "averageContribution4"></td>
+	</tr>
+	<tr>
+            <td><input value = "Overall Performance"></td>
+		<td><input id = "selfPerformance4"></td>
+		<td><input id = "peer1Performance4"></td>
+		<td><input id = "peer2Performance4"></td>
+		<td><input id = "peer3Performance4"></td>
+		<td><input id = "peer4Performance4"></td>
+		<td><input id = "peer5Performance4"></td>
+		<td><input id = "averagePerformance4"></td>
+	</tr>
+	<tr>
+            <td><input id = "name5" Value = ""/></td>
+            <td><input value = "Self"/></td>
+            <td><input id = "teamMember5.1" value = ""></td>
+            <td><input id = "teamMember5.2" value = ""></td>
+            <td><input id = "teamMember5.3" value = ""></td>
+            <td><input id = "teamMember5.4" value = ""></td>
+            <td><input id = "teamMember5.5" value = ""></td>
+            <td><input id = "average5" value = Average></td>
+	</tr>
+	<tr>
+            <td><input value = "Meeting Reliability"/></td>
+		<td><input id = "selfMeetingReliability5"></td>
+                <td><input id = "peer1MeetingReliability5"></td>
+                <td><input id = "peer2MeetingReliability5"></td>
+                <td><input id = "peer3MeetingReliability5"></td>
+                <td><input id = "peer4MeetingReliability5"></td>
+                <td><input id = "peer5MeetingReliability5"></td>
+                <td><input id = "averageMeetingReliability5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Meeting Preparadness"></td>
+                <td><input id = "selfMeetingPreparadness5"></td>
+                <td><input id = "peer1MeetingPreparadness5"></td>
+		<td><input id = "peer2MeetingPreparadness5"></td>
+                <td><input id = "peer3MeetingPreparadness5"></td>
+		<td><input id = "peer4MeetingPreparadness5"></td>
+		<td><input id = "peer5MeetingPreparadness5"></td>
+                <td><input id = "averageMeetingPreparadness5"></td>
+	</tr>
+	<tr>
+            <td><input value = "Idea Contribution"></td>
+            <td><input id = "selfIdeaContribution5"></td>
+            <td><input id = "peer1IdeaContribution5"></td>
+            <td><input id = "peer2IdeaContribution5"></td>
+            <td><input id = "peer3IdeaContribution5"></td>
+            <td><input id = "peer4IdeaContribution5"></td>
+            <td><input id = "peer5IdeaContribution5"></td>
+            <td><input id = "averageIdeaContribution5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Discussion Contribution"></td>
+                <td><input id = "selfDiscussionContribution5"></td>
+                <td><input id = "peer1DiscussionContribution5"></td>
+                <td><input id = "peer2DiscussionContribution5"></td>
+                <td><input id = "peer3DiscussionContribution5"></td>
+                <td><input id = "peer4DiscussionContribution5"></td>
+                <td><input id = "peer5DiscussionContribution5"></td>
+                <td><input id = "averageDiscussionContribution5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Respect of Group Members"></td>
+                <td><input id = "selfRespect5"></td>
+                <td><input id = "peer1Respect5"></td>
+                <td><input id = "peer2Respect5"></td>
+                <td><input id = "peer3Respect5"></td>
+                <td><input id = "peer4Respect5"></td>
+                <td><input id = "peer5Respect5"></td>
+                <td><input id = "averageRespect5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Support of Team"></td>
+                <td><input id = "selfSupport5"></td>
+                <td><input id = "peer1Support5"></td>
+                <td><input id = "peer2Support5"></td>
+                <td><input id = "peer3Support5"></td>
+                <td><input id = "peer4Support5"></td>
+                <td><input id = "peer5Support5"></td>
+                <td><input id = "averageSupport5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Role Knowledge and Fullfillment"></td>
+                <td><input id = "selfRole5"></td>
+                <td><input id = "peer1Role5"></td>
+                <td><input id = "peer2Role5"></td>
+                <td><input id = "peer3Role5"></td>
+                <td><input id = "peer4Role5"></td>
+                <td><input id = "peer5Role5"></td>
+                <td><input id = "averageRole5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Providing Prompt Feedback"></td>
+                <td><input id = "selfFeedback5"></td>
+                <td><input id = "peer1Feedback5"></td>
+                <td><input id = "peer2Feedback5"></td>
+                <td><input id = "peer3Feedback5"></td>
+                <td><input id = "peer4Feedback5"></td>
+                <td><input id = "peer5Feedback5"></td>
+                <td><input id = "averageFeedback5"></td>
+	</tr>
+		<tr>
+		<td><input value = "Effective Contribution"></td>
+                <td><input id = "selfEffective5"></td>
+                <td><input id = "peer1Effective5"></td>
+                <td><input id = "peer2Effective5"></td>
+                <td><input id = "peer3Effective5"></td>
+                <td><input id = "peer4Effective5"></td>
+                <td><input id = "peer5Effective5"></td>
+                <td><input id = "averageEffective5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Addressing Conflict"></td>
+                <td><input id = "selfConflict5"></td>
+                <td><input id = "peer1Conflict5"></td>
+                <td><input id = "peer2Conflict5"></td>
+                <td><input id = "peer3Conflict5"></td>
+                <td><input id = "peer4Conflict5"></td>
+                <td><input id = "peer5Conflict5"></td>
+                <td><input id = "averageConflict5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Overall Workload Contribution"></td>
+                <td><input id = "selfContribution5"></td>
+                <td><input id = "peer1Contribution5"></td>
+                <td><input id = "peer2Contribution5"></td>
+                <td><input id = "peer3Contribution5"></td>
+                <td><input id = "peer4Contribution5"></td>
+                <td><input id = "peer5Contribution5"></td>
+                <td><input id = "averageContribution5"></td>
+	</tr>
+	<tr>
+		<td><input value = "Overall Performance"></td>
+                <td><input id = "selfPerformance5"></td>
+                <td><input id = "peer1Performance5"></td>
+                <td><input id = "peer2Performance5"></td>
+                <td><input id = "peer3Performance5"></td>
+                <td><input id = "peer4Performance5"></td>
+                <td><input id = "peer5Performance5"></td>
+                <td><input id = "averagePerformance5"></td>
+	</tr>
+		<tr>
+		<td><input id ="name6" value = ""></td>
+		<td>Self </td>
+		<td><input id = "teamMember6.1" value = ""></td>
+		<td><input id = "teamMember6.2" value = ""></td>
+		<td><input id = "teamMember6.3" value = ""></td>
+		<td><input id = "teamMember6.4" value = ""></td>
+		<td><input id = "teamMember6.5" value = ""></td>
+		<td><input id = "average6" value = Average></td>
+	</tr>
+		<tr>
+		<td><input value = "Meeting Reliability"></td>
+                <td><input id = "selfMeetingReliability6"></td>
+                <td><input id = "peer1MeetingReliability6"></td>
+                <td><input id = "peer2MeetingReliability6"></td>
+                <td><input id = "peer3MeetingReliability6"></td>
+                <td><input id = "peer4MeetingReliability6"></td>
+                <td><input id = "peer5MeetingReliability6"></td>
+                <td><input id = "averageMeetingReliability6"></td>
+	</tr>
+	<tr>
+		<td><input value = "Meeting Preparadness"></td>
+                <td><input id = "selfMeetingPreparadness6"></td>
+                <td><input id = "peer1MeetingPreparadness6"></td>
+                <td><input id = "peer2MeetingPreparadness6"></td>
+                <td><input id = "peer3MeetingPreparadness6"></td>
+                <td><input id = "peer4MeetingPreparadness6"></td>
+                <td><input id = "peer5MeetingPreparadness6"></td>
+                <td><input id = "averageMeetingPreparadness6"></td>
+	</tr>
+	<tr>
+		<td><input value = "Idea Contribution"></td>
+                <td><input id = "selfIdeaContribution6"></td>
+                <td><input id = "peer1IdeaContribution6"></td>
+                <td><input id = "peer2IdeaContribution6"></td>
+                <td><input id = "peer3IdeaContribution6"></td>
+                <td><input id = "peer4IdeaContribution6"></td>
+                <td><input id = "peer5IdeaContribution6"></td>
+                <td><input id = "averageIdeaContribution6"></td>
+	</tr>
+	<tr>
+		<td><input value = "Discussion Contribution"></td>
+                <td><input id = "selfDiscussionContribution6"></td>
+                <td><input id = "peer1DiscussionContribution6"></td>
+                <td><input id = "peer2DiscussionContribution6"></td>
+                <td><input id = "peer3DiscussionContribution6"></td>
+                <td><input id = "peer4DiscussionContribution6"></td>
+                <td><input id = "peer5DiscussionContribution6"></td>
+                <td><input id = "averageDiscussionContribution6"></td>
+	</tr>
+	<tr>
+		<td><input value = "Respect of Group Members "></td>
+                <td><input id = "selfRespect6"></td>
+                <td><input id = "peer1Respect6"></td>
+                <td><input id = "peer2Respect6"></td>
+		<td><input id = "peer3Respect6"></td>
+                <td><input id = "peer4Respect6"></td>
+                <td><input id = "peer5Respect6"></td>
+                <td><input id = "averageRespect6"></td>
+	</tr>
+	<tr>
+		<td><input value = "Support of Team"></td>
+                <td><input id = "selfSupport6"></td>
+                <td><input id = "peer1Support6"></td>
+                <td><input id = "peer2Support6"></td>
+                <td><input id = "peer3Support6"></td>
+                <td><input id = "peer4Support6"></td>
+                <td><input id = "peer5Support6"></td>
+                <td><input id = "averageSupport6"></td>
+	</tr>
+	<tr>
+		<td><input value = "Role Knowledge and Fullfillment"></td>
+                <td><input id = "selfRole6"></td>
+                <td><input id = "peer1Role6"></td>
+                <td><input id = "peer2Role6"></td>
+                <td><input id = "peer3Role6"></td>
+		<td><input id = "peer4Role6"></td>
+		<td><input id = "peer5Role6"></td>
+		<td><input id = "averageRole6"></td>
+	</tr>
+	<tr>
+            <td><input value = "Providing Prompt Feedback"></td>
+		<td><input id = "selfFeedback6"></td>
+		<td><input id = "peer1Feedback6"></td>
+		<td><input id = "peer2Feedback6"></td>
+		<td><input id = "peer3Feedback6"></td>
+		<td><input id = "peer4Feedback6"></td>
+		<td><input id = "peer5Feedback6"></td>
+		<td><input id = "averageFeedback6"></td>
+	</tr>
+		<tr>
+                    <td><input value = "Effective Contribution"></td>
+		<td><input id = "selfEffective6"></td>
+		<td><input id = "peer1Effective6"></td>
+		<td><input id = "peer2Effective6"></td>
+		<td><input id = "peer3Effective6"></td>
+		<td><input id = "peer4Effective6"></td>
+		<td><input id = "peer5Effective6"></td>
+		<td><input id = "averageEffective6"></td>
+	</tr>
+	<tr>
+            <td><input value = "Addressing Conflict"></td>
+		<td><input id = "selfConflict6"></td>
+		<td><input id = "peer1Conflict6"></td>
+		<td><input id = "peer2Conflict6"></td>
+		<td><input id = "peer3Conflict6"></td>
+		<td><input id = "peer4Conflict6"></td>
+		<td><input id = "peer5Conflict6"></td>
+		<td><input id = "averageConflict6"></td>
+	</tr>
+	<tr>
+            <td><input value = "Overall Workload Contribution"></td>
+		<td><input id = "selfContribution6"></td>
+		<td><input id = "peer1Contribution6"></td>
+		<td><input id = "peer2Contribution6"></td>
+		<td><input id = "peer3Contribution6"></td>
+		<td><input id = "peer4Contribution6"></td>
+		<td><input id = "peer5Contribution6"></td>
+		<td><input id = "averageContribution6"></td>
+	</tr>
+	<tr>
+            <td><input value = "Overall Performance"></td>
+		<td><input id = "selfPerformance6"></td>
+		<td><input id = "peer1Performance6"></td>
+		<td><input id = "peer2Performance6"></td>
+		<td><input id = "peer3Performance6"></td>
+		<td><input id = "peer4Performance6"></td>
+		<td><input id = "peer5Performance6"></td>
+		<td><input id = "averagePerformance6"></td>
+	</tr>
+        </table>
+</form>
+</body>
 </html>
