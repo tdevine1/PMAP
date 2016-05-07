@@ -18,19 +18,17 @@
         </script>
     </head>
        <body class="tundra">
-        <div id="loginContainer" style="width:25%; height:20%; position:absolute; left:37.5%; top:40%; border-style:solid; border-width:1px; ">
-            <div id="nestedContainer" style=" height:25%; width:30%; position:absolute; left:31%; top:10%; ">
+        <div id="loginContainer" style="width:25%; height:20%; position:absolute; left:37.5%; top:40%; border-style:solid; border-width:1px;" >
+            <div id="nestedContainer" style=" height:25%; width:30%; position:absolute; left:20%; top:30%; ">
                 <form action="/PMA/processLogin" method="POST" >
-                <label for="username" >Username</label>
                 <input type="text" name="username"
                         data-dojo-type="dijit/form/TextBox"
-                data-dojo-props="trim:true" id="username" />
+                        data-dojo-props="trim:true" placeholder="Username" id="username" />
                 <br><br>
-                <label for="password" >Password</label>
                 <input type="password" name="password"
                 data-dojo-type="dijit/form/TextBox"
-                data-dojo-props="trim:true" id="password" />
-                
+                data-dojo-props="trim:true" placeholder="Password" id="password" />
+                <br>
                 <button type="submit">Login</button>
                 </form>
             </div>

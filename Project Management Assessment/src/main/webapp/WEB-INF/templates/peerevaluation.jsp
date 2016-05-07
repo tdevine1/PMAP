@@ -237,67 +237,67 @@
             </tr>
             <tr>
                 <td class="tg-yw4l">Meeting attendance</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A4-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A4-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A4-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A4-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A4-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A4-5" value="5" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Preparation for meeting</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A5-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A5-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A5-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A5-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A5-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A5-5" value="5" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Efficiency of meeting</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A6-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A6-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A6-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A6-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A6-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A6-5" value="5" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Communication skills</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A7-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A7-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A7-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A7-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A7-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A7-5" value="5" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Equal sharing of workload</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A8-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A8-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A8-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A8-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A8-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A8-5" value="5" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Motivation</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A9-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A9-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A9-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A9-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A9-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A9-5" value="5" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Supportiveness</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A10-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A10-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A10-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A10-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A10-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A10-5" value="5" /></td>
             </tr>
             <tr>
                 <td class="tg-yw4l">Overall performance</td>
-                <td class="tg-yw4l"><input type="checkbox" id="A11-5" value="5" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A11-4" value="4" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A11-3" value="3" /></td>
-                <td class="tg-yw4l"><input type="checkbox" id="A11-2" value="2" /></td>
                 <td class="tg-yw4l"><input type="checkbox" id="A11-1" value="1" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-2" value="2" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-3" value="3" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-4" value="4" /></td>
+                <td class="tg-yw4l"><input type="checkbox" id="A11-5" value="5" /></td>
             </tr>
         </table>
         <br><br>

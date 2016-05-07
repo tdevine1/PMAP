@@ -45,11 +45,16 @@ html, body {
     var classes = "${model.classes}".split(",");
     var assessments = "${model.assessments}".split(",");
     var welcome = "Hello, ".concat("${model.FirstName}".concat(" ".concat("${model.LastName}")));
+    var flag = true;
     var username;
     var selectedGroupId;
     var selectedGroup;
     var peerEvalOf;
+    var cid;
     var name;
+    var memberString;
+    var role;
+    
     
     dojo.ready(function(){
         dojo.byId("header").innerHTML = welcome;
@@ -62,6 +67,8 @@ html, body {
                 title: classes[i],
                 onClick: function(event){
                     var button = dijit.registry.getEnclosingWidget(event.target);
+                    document.getElementById("courseIdent").innerHTML = "Course:".concat(button.label);
+                    cid = button.label;
                     dojo.xhrPost({
                         url: "/PMA/instructor/groupsForClass",
                         handleAs: "json",
@@ -109,12 +116,12 @@ html, body {
         }
     }
     
-    function setAssessmentButtonEvent(type){
-        console.log(type);
-        if(type == "peerAssessment"){
+    function setAssessmentButtonEvent(type, label){
+        if(type == 2){
+            peerEvalOf = label.replace("PeerEvalOf ", "");
             dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
         }
-        else if(type == "selfAssessment"){
+        else if(type == 1){
             dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
         }
         else{
@@ -124,8 +131,9 @@ html, body {
     
     function groupChangeEvent(){
         selectedGroupId = document.getElementById("groups").value;
-        selectedGroup = document.getElementById("groups").text;
-        if(currentGroup != "placehold"){
+        selectedGroup = document.getElementById("groups").options[document.getElementById("groups").selectedIndex].text;
+        console.log(selectedGroup);
+        if(selectedGroupId != "placehold"){
             dojo.xhrPost({
                 url: "/PMA/instructor/membersForGroup",
                 handleAs: "json",
@@ -136,9 +144,94 @@ html, body {
         }
     }
     
+    function addGroup(){
+        var newGroup = document.getElementById("addGroupInput").value;
+        if(newGroup.trim() != ""){
+            dojo.xhrPost({
+                url: "/PMA/instructor/newGroup",
+                handleAs: "json",
+                content:{
+                    "group": newGroup,
+                    "cid": cid
+                },
+                load:populateSelect});
+        }
+    }
+    
+    function addMember(){
+        if(document.getElementById("pm").checked){
+            role = "PM";
+        }
+        else{
+            role = "DEV";
+        }
+        
+        memberString = document.getElementById("addMemberInput").value;
+        if(memberString.trim() != ""){
+            dojo.xhrPost({
+                url: "/PMA/instructor/ucaExistCheck",
+                handleAs: "json",
+                content:{
+                    "ucas": memberString
+                },
+                load:handleExistResponse});
+        }
+        
+    }
+    
+    function handleExistResponse(response){
+        if(response.error == "y"){
+            alert("ERROR ENCOUNTERED ADDING MEMBERS!! PROCESS ABANDONED!!");
+        }
+        console.log(response);
+        var newUCAs = "";
+        var newNames = "";
+        if(response.ucas.length != 0){
+            for(i = 0; i< response.ucas.length; i++){
+                if(newUCAs == ""){newUCAs = response.ucas[i].trim();}
+                else{newUCAs = newUCAs.concat(",".concat(response.ucas[i].trim()));}
+                if(newNames == ""){newNames = prompt("Enter first and last name for ".concat(response.ucas[i].trim()).concat(". (Separate names with one whitespace)"),"");}
+                else{newNames = newNames.concat(",".concat(prompt("Enter first and last name for ".concat(response.ucas.trim()).concat(". (Separate names with one whitespace)"),"")));}
+            }
+            dojo.xhrPost({
+                url: "/PMA/instructor/newUCAs",
+                handleAs: "json",
+                content:{
+                    "ucas": newUCAs,
+                    "names": newNames
+                },
+                load: insertToGroup
+            });
+        }
+        else{
+            insertToGroup(true)
+        }
+    }
+    function insertToGroup(response){
+        console.log(response);
+        if(response == true){
+            dojo.xhrPost({
+                url: "/PMA/instructor/addMembers",
+                handleAs: "json",
+                content:{
+                    "gid": selectedGroupId,
+                    "role": role,
+                    "ucas": memberString
+                },
+                load: populateSelect
+            });
+        }
+        else{
+            alert("ERROR ENCOUNTERED ADDING NEW USERS!! PROCESS ABANDONED!!");
+        }
+    }
+    
     function memberSelectEvent(){
-        name = document.getElementById("members").text;
+        name = document.getElementById("members").options[document.getElementById("members").selectedIndex].text;
         username = document.getElementById("members").value;
+        //console.log(name);
+        //console.log(username);
+        //console.log(selectedGroupId);
         emptyButtonContainer();
         if(username != "placehold"){
             dojo.xhrPost({
@@ -154,18 +247,19 @@ html, body {
     }
     
     function createAssessmentButtons(response){
-        console.log(response);
-//        for(i=0;i<classAssessments.length; i++){
-//            var buttonId = classAssessments[i].replace(" ","").concat(i);
-//            var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
-//            dojo.place(nodePath, "buttonContainer", "after");
-//            new dijit.form.Button({
-//                label: createLabel(assessments[i]),
-//                title: assessments[i],
-//                onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
-//                    }
-//            }, buttonId).startup();
-            
+        //console.log(response);
+        for(i=0;i<response.aids.length; i++){
+            //var buttonId = classAssessments[i].replace(" ","").concat(i);
+            var nodePath = "<button id='".concat(response.assessmentNames[i].replace(" ","").concat("' type='button'></button>"));
+            dojo.place(nodePath, "buttonContainer", "after");
+            new dijit.form.Button({
+                label: response.assessmentNames[i],
+                title: response.aids[i],
+                onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
+                    setAssessmentButtonEvent(button.title, button.label);
+                }
+            }, response.assessmentNames[i].replace(" ","")).startup();      
+        }
     }
    
 </script>
@@ -189,21 +283,35 @@ html, body {
             data-dojo-props="region: 'right', splitter: true">
             <div style="height: 10%;">
                 <div>Tools</div>
+                <div>
+                    <button onclick="" title="Get Passwords for Selected Groups Members">Passwords</button>
+                </div>
             </div>
-            <div style="height: 45%;">
+            <div style="height: 45%; position: relative;">
+                <div id="courseIdent">Course:</div>
                 <div>Groups</div>
                 <div id="groupList">
                     <select id="groups" onchange="groupChangeEvent();">
                         <option value="placehold">Select Group From Class</option>
                     </select>
                 </div>
+                <div style="height: 15%; position: absolute; bottom: 0; left: 0;">
+                    <input id="addGroupInput" type="text" placeholder="Group To Add to Course">
+                    <button onclick="addGroup();">Add Group To Course</button>
+                </div>
             </div>
-            <div style="height: 45%;">
+            <div style="height: 45%; position: relative;">
                 <div>Students in Selected Group</div>
-                <div id="memberList">
+                <div id="memberList" onchange="memberSelectEvent()">
                     <select id="members">
                         <option value="placehold">Select Member From Group</option>
                     </select>
+                </div>
+                <div style="height: 30%; position: absolute; bottom: 0; left: 0;" >
+                    <input id="addMemberInput" type="text" placeholder="Add members to group" title="enter ucas, for mutliple entries separate them by comma">
+                    <button onclick="addMember();">Add Members To Group</button><br>
+                    <input id="pm" type="radio" name="role" value="PM" checked>Project Manager<br>
+                    <input id="dev" type="radio" name="role" value="DEV">Developer<br>
                 </div>
             </div>
         </div>

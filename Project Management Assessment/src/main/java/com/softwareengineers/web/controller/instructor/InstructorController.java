@@ -20,10 +20,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.softwareengineers.web.model.AssessmentsTakenByUser;
 import com.softwareengineers.web.model.GroupsForClass;
 import com.softwareengineers.web.model.MembersOfGroup;
+import com.softwareengineers.web.model.UCASToAdd;
 import com.softwareengineers.web.database.DBHandler;
 import com.softwareengineers.web.database.DatabaseConstants;
+import java.util.Arrays;
 
 @Controller
 public class InstructorController {
@@ -134,6 +137,169 @@ public class InstructorController {
         } catch (SQLException ex) {
             Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
             return new MembersOfGroup();
+        }
+        
+    }
+            
+    @RequestMapping(value="/instructor/assessmentsTaken")
+    public @ResponseBody AssessmentsTakenByUser assessmentsTaken(HttpServletRequest request) {
+        String gid = request.getParameter("gid");
+        String uca = request.getParameter("uca");
+        String name = request.getParameter("name");
+        ArrayList<String> aids = new ArrayList<String>();
+        ArrayList<String> names = new ArrayList<String>();
+        
+        String[] params = {gid, uca};
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.GETANSWEREDASSESSMENTS, params);
+            
+            while(rs.next()){
+                aids.add(rs.getString("AID"));
+                names.add(rs.getString("assessmentName").replace(name+" ", ""));
+            }
+            rs.close();
+            
+            return new AssessmentsTakenByUser(aids.toArray(new String[aids.size()]), names.toArray(new String[names.size()]));
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new AssessmentsTakenByUser();
+        }
+        
+    }
+    
+    @RequestMapping(value="/instructor/newGroup")
+    public @ResponseBody GroupsForClass newGroup(HttpServletRequest request) {
+        String cid = request.getParameter("cid");
+        String gName = request.getParameter("group");
+        String gid;
+        ArrayList<String> gids = new ArrayList<String>();
+        ArrayList<String> groups = new ArrayList<String>();
+        
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.GETMAXGID);
+            if(rs.next()){
+                gid = Integer.toString(rs.getInt("MAX") + 1);
+            }
+            else{
+                gid = "1";
+            }
+            rs.close();
+            
+            if(db.insertGroup(gid, gName, cid)){
+                String[] params = {cid};
+                rs = db.processQuery(DatabaseConstants.GROUPSINCOURSE, params);
+                while(rs.next()){
+                    gids.add(rs.getString("GID"));
+                    groups.add(rs.getString("groupName"));
+                }
+                rs.close();
+                return new GroupsForClass(groups.toArray(new String[groups.size()]), gids.toArray(new String[gids.size()]));
+            }
+            else{
+                return new GroupsForClass();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new GroupsForClass();
+        }
+        
+    }
+    
+    @RequestMapping(value="/instructor/addMembers")
+    public @ResponseBody MembersOfGroup addMembersToGroup(HttpServletRequest request) {
+        String gid = request.getParameter("gid");
+        String role = request.getParameter("role");
+        String[] ucaArray = request.getParameter("ucas").split(",");
+        
+        //TRIMMING WHITESPACE FROM ENTRIES
+        for(int i = 0; i< ucaArray.length; i++){
+            ucaArray[i] = ucaArray[i].trim();
+        }
+        try {
+            if(db.addMembers(gid, role, ucaArray)){
+                ArrayList<String> ucas = new ArrayList<String>();
+                ArrayList<String> names = new ArrayList<String>();
+                String[] params = {gid};
+                ResultSet rs = db.processQuery(DatabaseConstants.PROJECTMANAGERSOFGROUP, params);
+                while(rs.next()){
+                    ucas.add(rs.getString("UCA"));
+                    names.add(rs.getString("fname") + " " + rs.getString("lname"));
+                }
+                rs.close();
+            
+                rs = db.processQuery(DatabaseConstants.DEVSOFGROUP, params);
+                while(rs.next()){
+                    ucas.add(rs.getString("UCA"));
+                    names.add(rs.getString("fname") + " " + rs.getString("lname"));
+                }
+                rs.close();
+            
+                return new MembersOfGroup(ucas.toArray(new String[ucas.size()]), names.toArray(new String[names.size()]));
+            }
+            else{
+                return new MembersOfGroup();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new MembersOfGroup();
+        }
+        
+    }
+    
+    @RequestMapping(value="/instructor/ucaExistCheck")
+    public @ResponseBody UCASToAdd ucaExistCheck(HttpServletRequest request) {
+        String ucaString = request.getParameter("ucas");
+        ArrayList<String> ucasToAdd = new ArrayList<String>(Arrays.asList(ucaString.split(",")));
+        ArrayList<String> ucas = new ArrayList<String>();
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.GETUCALIST);
+            while(rs.next()){
+                ucas.add(rs.getString("UCA"));
+            }
+            rs.close();
+            Logger.getLogger(InstructorController.class.getName()).log(Level.INFO, "UCAS---" + ucas.toString());
+            for(String s: ucasToAdd){
+                //Logger.getLogger(InstructorController.class.getName()).log(Level.INFO, "ITEMTOCheck---" + s);
+                if(ucas.contains(s.trim())){
+                    ucasToAdd.remove(s);
+                }
+            }
+            ucasToAdd.trimToSize();
+            Logger.getLogger(InstructorController.class.getName()).log(Level.INFO, "UCASTOADD---" + ucasToAdd.toString());
+            if(!ucasToAdd.isEmpty()){
+                return new UCASToAdd(ucasToAdd.toArray(new String[ucasToAdd.size()]));
+            }
+            else{
+                return new UCASToAdd(null);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            UCASToAdd err = new UCASToAdd(null);
+            err.error = "y";
+            return err;
+        }
+    }
+    
+    @RequestMapping(value="/instructor/newUCAs")
+    public @ResponseBody boolean newUCAs(HttpServletRequest request) {
+        String ucaStr = request.getParameter("ucas");
+        String nameStr = request.getParameter("names");
+        
+        String[] ucas = ucaStr.split(",");
+        String[] names = nameStr.split(",");
+        ArrayList<String> fnameList = new ArrayList<String>();
+        ArrayList<String> lnameList = new ArrayList<String>();
+        for(String s: names){
+            String[] temp = s.split(" ");
+            fnameList.add(temp[0]);
+            lnameList.add(temp[1]);
+        }
+        try {
+            return db.insertUCA(ucas, fnameList, lnameList);
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         
     }

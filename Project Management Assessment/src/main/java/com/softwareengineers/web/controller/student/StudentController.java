@@ -22,7 +22,7 @@ import com.softwareengineers.web.database.DatabaseConstants;
 
 @Controller
 public class StudentController {
-    DBHandler db;
+    DBHandler db = null;
     
     @RequestMapping(value="/student/show", method=RequestMethod.GET)
     public ModelAndView show(HttpServletRequest request) {
@@ -121,6 +121,9 @@ public class StudentController {
     @RequestMapping(value="/student/getAssessment")
     public @ResponseBody AssessmentAnswers getAssessment(HttpServletRequest request){
         try{
+            if(db == null){
+                db = new DBHandler();
+            }
             ResultSet rs;
             rs = db.getAssessment(Integer.parseInt(request.getParameter("AID")), request.getParameter("UCA"), request.getParameter("GID"), request.getParameter("Name"));
             

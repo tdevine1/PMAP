@@ -26,4 +26,13 @@ public class DatabaseConstants{
         public static final String GROUPSINCOURSE = "SELECT g.GID, g.groupName FROM groupsincourse gic, `group` g WHERE gic.CID = ? AND gic.GIDs = g.GID";
         public static final String PROJECTMANAGERSOFGROUP = "SELECT u.UCA, u.fname, u.lname FROM projectmanager pjm, users u WHERE pjm.GID = ? AND pjm.UCA = u.UCA";
         public static final String DEVSOFGROUP = "SELECT u.UCA, u.fname, u.lname FROM dev d, users u WHERE d.GID = ? AND d.UCA = u.UCA";
+        public static final String GETANSWEREDASSESSMENTS = "SELECT a.AID, a.assessmentName FROM answers a WHERE a.GID = ? AND a.UCA = ?";
+        public static final String GETMAXGID = "SELECT MAX(g.GID) AS MAX FROM(SELECT CAST(GID AS UNSIGNED) AS 'GID' FROM `group`) AS g";
+        public static final String INSERTTOGROUP = "INSERT INTO `group` (GID, groupName) VALUES(?,?)";
+        public static final String INSERTTOGInC = "INSERT INTO groupsincourse (CID, semester, GIDs) VALUES(?,'S2016', ?)";
+        public static final String GETUCALIST = "SELECT UCA FROM users";
+        public static final String INSERTUCA = "INSERT INTO users (UCA, password, fname, lname) VALUES(?,?,?,?)";
+        public static final String INSERTPROJECTMANAGER = "INSERT INTO projectmanager (GID, UCA) VALUES(?,?)";
+        public static final String INSERTDEV = "INSERT INTO dev (GID, UCA) VALUES(?,?)";
+        public static final String UPDATEMEMBERLIST = "UPDATE `group` SET groupMembers = ? WHERE GID = ?";
 }
