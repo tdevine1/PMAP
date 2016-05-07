@@ -7,51 +7,142 @@
   <tr>
 	<td> Evaluator</td>
 	<td> Points Earned</td>
+	<td> Points Possible </td>
 	<td> Weighting</td>
 	<td> Weighted Grade</td>
+	
   </tr>
   <tr>
     <td><input type = "text" id="teachName1" value="" style="width:auto;"></td>
 	<td><input type = "text" id="grade1" value="" style="width:auto;"></td>
-    <td><input type = "text" id="weight1" value="" onblur="gradingFunction()" style="width:auto;"></td>
+    <td><input type = "text" id="possible1" value="" style="width:auto;"></td>
+	<td><input type = "text" id="weight1" value="" onblur="gradingFunction1()" style="width:auto;"></td>
     <td><input type = "text" id="weighted1" value="" style="width:auto;"></td>
   </tr>
   <tr>
     <td><input type = "text" id="teachName2" value="" style="width:auto;"></td>
 	<td><input type = "text" id="grade2" value="" style="width:auto;"></td>
-    <td><input type = "text" id="weight2" value="" onblur="gradingFunction()"style="width:auto;"></td>
+	<td><input type = "text" id="possible2" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight2" value="" onblur="gradingFunction2()"style="width:auto;"></td>
     <td><input type = "text" id="weighted2" value="" style="width:auto;"></td>
   </tr>
   <tr>
     <td><input type = "text" id="teachName3" value="" style="width:auto;"></td>
 	<td><input type = "text" id="grade3" value="" style="width:auto;"></td>
-    <td><input type = "text" id="weight3" value="" onblur="gradingFunction()"style="width:auto;"></td>
+	<td><input type = "text" id="possible3" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight3" value="" onblur="gradingFunction3()"style="width:auto;"></td>
     <td><input type = "text" id="weighted3" value="" style="width:auto;"></td>
   </tr>
   <tr>
     <td><input type = "text" id="teachName4" value="" style="width:auto;"></td>
 	<td><input type = "text" id="grade4" value="" style="width:auto;"></td>
-    <td><input type = "text" id="weight4" value="" onblur="gradingFunction()"style="width:auto;"></td>
+	<td><input type = "text" id="possible4" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight4" value="" onblur="gradingFunction4()"style="width:auto;"></td>
     <td><input type = "text" id="weighted4" value="" style="width:auto;"></td>
   </tr>
+    <tr>
+    <td><input type = "text" id="teachName5" value="" style="width:auto;"></td>
+	<td><input type = "text" id="grade5" value="" style="width:auto;"></td>
+	<td><input type = "text" id="possible5" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight5" value="" onblur="gradingFunction5()"style="width:auto;"></td>
+    <td><input type = "text" id="weighted5" value="" style="width:auto;"></td>
+  </tr>
+    <tr>
+    <td><input type = "text" id="teachName6" value="" style="width:auto;"></td>
+	<td><input type = "text" id="grade6" value="" style="width:auto;"></td>
+	<td><input type = "text" id="possible6" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight6" value="" onblur="gradingFunction6()"style="width:auto;"></td>
+    <td><input type = "text" id="weighted6" value="" style="width:auto;"></td>
+  </tr>
+    <tr>
+    <td><input type = "text" id="teachName7" value="" style="width:auto;"></td>
+	<td><input type = "text" id="grade7" value="" style="width:auto;"></td>
+	<td><input type = "text" id="possible7" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight7" value="" onblur="gradingFunction7()"style="width:auto;"></td>
+    <td><input type = "text" id="weighted7" value="" style="width:auto;"></td>
+  </tr>
+    <tr>
+    <td><input type = "text" id="teachName8" value="" style="width:auto;"></td>
+	<td><input type = "text" id="grade8" value="" style="width:auto;"></td>
+	<td><input type = "text" id="possible8" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight8" value="" onblur="gradingFunction8()"style="width:auto;"></td>
+    <td><input type = "text" id="weighted8" value="" style="width:auto;"></td>
+  </tr>
+    <tr>
+    <td><input type = "text" id="teachName9" value="" style="width:auto;"></td>
+	<td><input type = "text" id="grade9" value="" style="width:auto;"></td>
+	<td><input type = "text" id="possible9" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight9" value="" onblur="gradingFunction9()"style="width:auto;"></td>
+    <td><input type = "text" id="weighted9" value="" style="width:auto;"></td>
+  </tr>
+    <tr>
+    <td><input type = "text" id="teachName10" value="" style="width:auto;"></td>
+	<td><input type = "text" id="grade10" value="" style="width:auto;"></td>
+	<td><input type = "text" id="possible10" value="" style="width:auto;"></td>
+    <td><input type = "text" id="weight10" value="" onblur="gradingFunction10()"style="width:auto;"></td>
+    <td><input type = "text" id="weighted10" value="" style="width:auto;"></td>
+  </tr>
   <tr>
-	<th colspan="3">Weighted Total</th>
+	<th colspan="4">Weighted Total</th>
 	<td><input type = "text" id="total" value="0" ></td>
 </table>
 </form>
 
 <script>
-function gradingFunction() {
+function gradingFunction1() {
     document.getElementById(
-"weighted1").value = document.getElementById("weight1").value * document.getElementById("grade1").value;
-    document.getElementById(
-"weighted2").value = document.getElementById("weight2").value * document.getElementById("grade2").value;
-    document.getElementById(
-"weighted3").value = document.getElementById("weight3").value * document.getElementById("grade3").value;
-    document.getElementById(
-"weighted4").value = document.getElementById("weight4").value * document.getElementById("grade4").value;
-    document.getElementById(
-"total").value = Number(document.getElementById("weighted1").value) + Number(document.getElementById("weighted2").value) + Number(document.getElementById("weighted3").value) + Number(document.getElementById("weighted4").value);
+"weighted1").value = document.getElementById("weight1").value / document.getElementById("grade1").value * document.getElementById("possible1").value;
+addValues();
+}
+function gradingFunction2() {
+document.getElementById(
+"weighted2").value = document.getElementById("weight2").value / document.getElementById("grade2").value * document.getElementById("possible2").value;
+addValues();
+}
+function gradingFunction3() {
+document.getElementById(
+"weighted3").value = document.getElementById("weight3").value / document.getElementById("grade3").value * document.getElementById("possible3").value;
+addValues();
+}
+function gradingFunction4() {
+ document.getElementById(
+"weighted4").value = document.getElementById("weight4").value / document.getElementById("grade4").value * document.getElementById("possible4").value;
+addValues();
+}
+function gradingFunction4() {
+ document.getElementById(
+"weighted5").value = document.getElementById("weight5").value / document.getElementById("grade5").value * document.getElementById("possible5").value;
+addValues();
+}
+function gradingFunction4() {
+ document.getElementById(
+"weighted6").value = document.getElementById("weight6").value / document.getElementById("grade6").value * document.getElementById("possible6").value;
+addValues();
+}
+function gradingFunction4() {
+ document.getElementById(
+"weighted7").value = document.getElementById("weight7").value / document.getElementById("grade7").value * document.getElementById("possible7").value;
+addValues();
+}
+function gradingFunction4() {
+ document.getElementById(
+"weighted8").value = document.getElementById("weight8").value / document.getElementById("grade8").value * document.getElementById("possible8").value;
+addValues();
+}
+function gradingFunction4() {
+ document.getElementById(
+"weighted9").value = document.getElementById("weight9").value / document.getElementById("grade9").value * document.getElementById("possible9").value;
+addValues();
+}
+function gradingFunction10() {
+ document.getElementById(
+"weighted10").value = document.getElementById("weight10").value / document.getElementById("grade10").value * document.getElementById("possible10").value;
+addValues();
+}
+function addValues()
+{
+document.getElementById(
+"total").value = (Number(document.getElementById("weighted1").value) + Number(document.getElementById("weighted2").value) + Number(document.getElementById("weighted3").value) + Number(document.getElementById("weighted4").value)+ Number(document.getElementById("weighted5").value)+ Number(document.getElementById("weighted6").value)+ Number(document.getElementById("weighted7").value)+ Number(document.getElementById("weighted8").value)+ Number(document.getElementById("weighted9").value)+ Number(document.getElementById("weighted10").value)) * 100 + "%";
 }
 </script>
 </body>
