@@ -16,9 +16,13 @@
             dojo.require("dojo/parser");
             dojo.require("dijit/form/TextBox");
         </script>
+		<style>
+            body {background-color:#860038}
+		</style>
     </head>
        <body class="tundra">
-        <div id="loginContainer" style="width:25%; height:20%; position:absolute; left:37.5%; top:40%; border-style:solid; border-width:1px;" >
+        <img src="https://fairmontstate.studentaidcalculator.com/1/logo.sepng" style="margin: auto;position: absolute; left:40.7%; top:27%">
+		<div id="loginContainer" style="width:25%; height:20%; position:absolute; left:37.5%; top:40%; border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026; " >
             <div id="nestedContainer" style=" height:25%; width:30%; position:absolute; left:20%; top:30%; ">
                 <form action="/PMA/processLogin" method="POST" >
                 <input type="text" name="username"
