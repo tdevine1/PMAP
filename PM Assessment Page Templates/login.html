@@ -10,12 +10,14 @@
             dojo.require("dojo/parser");
             dojo.require("dijit/form/TextBox");
         </script>
-		<style>
-		body {background-color:#860038}
-		</style>
+	<style>
+            body {background-color:#860038}
+	</style>
     </head>
-       <body class="tundra">
-	   <img src="FSULOGO.jpg" style="width:100%;height:256px";>
+    <body class="tundra" style="height: 100%;width: 100%;">
+        <div style="width: 360px;height: auto;position: relative;">
+	   <img src="FSULOGO.jpg" style="width:auto;height:auto;margin: auto;position: absolute;" align="middle">
+        </div>
         <div id="loginContainer" style="width:25%; height:13%; position:absolute; left:37.5%; top:40%; border-style:ridge; border-width:5px; border-color:#F58026;color:#F58026; ">
             <div id="nestedContainer" style=" height:25%; width:32%; position:absolute; left:20%; top:10%; ">
                 <label for="username" >Username</label>
