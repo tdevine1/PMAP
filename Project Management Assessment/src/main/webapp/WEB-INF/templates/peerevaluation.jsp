@@ -187,6 +187,28 @@
                 document.getElementById("A13").value = answerMap.A13;
                 document.getElementById("A14").value = answerMap.A14;
                 document.getElementById("A15").value = answerMap.A15;
+                
+                if(parent.flag){
+                    disableFields();
+                }
+            }
+            
+            function disableFields(){
+                for(i = 1; i <= 15; i++){
+                    var id = "A".concat(i);
+                    if(i > 3 && i <= 11 ){
+                        document.getElementById(id.concat("-1")).disabled = true;
+                        document.getElementById(id.concat("-2")).disabled = true;
+                        document.getElementById(id.concat("-3")).disabled = true;
+                        document.getElementById(id.concat("-4")).disabled = true;
+                        document.getElementById(id.concat("-5")).disabled = true;
+                    }
+                    else{
+                        document.getElementById(id).disabled = true;
+                    }
+                }
+                var but = document.getElementById("saveButton");
+                but.parentNode.removeChild(but);
             }
             
             
