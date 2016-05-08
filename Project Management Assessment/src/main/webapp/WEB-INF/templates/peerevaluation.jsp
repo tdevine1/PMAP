@@ -7,6 +7,12 @@
             .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
             .tg .tg-yfvh{font-weight:bold;font-style:italic;vertical-align:top}
             .tg .tg-yw4l{vertical-align:top}
+			body {
+				background-color: #860038;
+			}
+			p{
+				font-color #F58026;
+			}
         </style>
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css" >
         <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"     
@@ -206,27 +212,27 @@
         </script>
     </head>
     <body class="claro">
-        <div style="width: 150px; margin: auto;">Peer Evaluation Form</div>
+        <div style="width: 150px; margin: auto; color:#F58026">Peer Evaluation Form</div>
         <br><br>
         <div style="width: 80%; margin: auto;">
-            <label for="date">Date:</label>
+            <label for="date" style = "color:#F58026">Date:</label>
             <input type="text" name="date" id="A1" title="Date"
             data-dojo-type="dijit/form/DateTextBox"
             required="true" />
-            <label for="teamMemberName" >Team Member Name:</label>
+            <label for="teamMemberName" style = "color:#F58026" >Team Member Name:</label>
             <input type="text" name="teamMemberName" title="Team Member Name"
             data-dojo-type="dijit/form/TextBox"
             data-dojo-props="trim:true" id="A2" />
-            <label for="project" >Project:</label>
+            <label for="project" style = "color:#F58026" >Project:</label>
             <input type="text" name="project" title="Project"
             data-dojo-type="dijit/form/TextBox"
             data-dojo-props="trim:true" id="A3" />
             <button data-dojo-type="dijit/form/Button" type="button" id="saveButton" label="Save" onclick="saveSelfAssessment"></button>
         </div>
         <br><br>
-        <div style="font-weight: bold;">1.  Please rate your peer on the following*:</div>
+        <div style="font-weight: bold ; color:#F58026">1.  Please rate your peer on the following*:</div>
         <br>
-        <table class="tg">
+        <table class="tg" border = 1 style = "border-color:#F58026 ; color:#FFDE00; border-style:ridge; border-width:5px">
             <tr>
                 <th class="tg-yw4l"></th>
                 <th class="tg-yfvh">Excellent</th>
@@ -301,25 +307,25 @@
             </tr>
         </table>
         <br><br>
-        <div style="font-weight: bold;">
+        <div style="font-weight: bold;color:#F58026">
         2.  Please provide a narrative with evidence to support any factors for which you have rated your peer as Excellent or Unacceptable.
         </div>
         <br>
         <textarea id="A12" name="textarea1" style="width:50%;"></textarea>
         <br><br>
-        <div style="font-weight: bold;">
+        <div style="font-weight: bold;color:#F58026">
         3.  Please list any additional factors that you believe are important for consideration in assessing the performance of your peer to date.
         </div>
         <br>
         <textarea id="A13" name="textarea2" style="width:50%;"></textarea>
         <br><br>
-        <div style="font-weight: bold;">
+        <div style="font-weight: bold;color:#F58026">
         4. Describe two strengths that this team member brings to your team.
         </div>
         <br>
         <textarea id="A14" name="textarea3" style="width:50%;"></textarea>
         <br><br>
-        <div style="font-weight: bold;">
+        <div style="font-weight: bold;color:#F58026">
         5. Describe the two most significant areas for improvement for this team member.
         </div>
         <br>
@@ -327,7 +333,7 @@
         <br><br>
         <hr>
         <br>
-        <div>*Adapted from the "Management Communications for Undergraduates" (15.279), Sloan School of Management, MIT, by Dr. Lori Breslow, 2000</div>
+        <div style = "color:#FFFFFF";>*Adapted from the "Management Communications for Undergraduates" (15.279), Sloan School of Management, MIT, by Dr. Lori Breslow, 2000</div>
         
     </body>
 </html>

@@ -35,7 +35,7 @@ public class LoginController {
             //logger.debug(request.getAttribute("username"));
             //Map<String,String> model = new HashMap<String,String>();
             SimpleDriverDataSource dataSource;
-            dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , "jdbc:mysql://127.0.0.1:3306/mydb", "root", "Prog1");
+            dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , "jdbc:mysql://localhost:3306/mydb", "root", "Ir0nk3y1991");
             con = dataSource.getConnection();
             java.sql.PreparedStatement pStmt = con.prepareStatement("SELECT IF( uca is not null  , 1, 0) as IsUser FROM users WHERE uca = ? and password = ?");
             pStmt.clearParameters();

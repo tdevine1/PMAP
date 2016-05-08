@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <!-- simple presentation grading tool, requested by Girocialli-->
 <html>
+<head>
+<style>
+input[type=text] {
+    background-color: #860038;
+    color: #FFDE00;
+	border: none
+}
+</style>
+</head>
 <body>
 <form>
-<table border = 1 style="width:10%">
+<table border = 1 style="width:10%; border-color:#F58026 ; color:#FFDE00; border-width:5px">
   <tr>
-	<td> Evaluator</td>
-	<td> Points Earned</td>
-	<td> Points Possible </td>
-	<td> Weighting</td>
-	<td> Weighted Grade</td>
+	<td style= "background-color:#860038"> Evaluator</td>
+	<td style= "background-color:#860038"> Points Earned</td>
+	<td style= "background-color:#860038"> Points Possible </td>
+	<td style= "background-color:#860038"> Weighting</td>
+	<td style= "background-color:#860038"> Weighted Grade</td>
 	
   </tr>
   <tr>
@@ -83,7 +92,7 @@
     <td><input type = "text" id="weighted10" value="" style="width:auto;"></td>
   </tr>
   <tr>
-	<th colspan="4">Weighted Total</th>
+	<th colspan="4" style= "background-color:#860038">Weighted Total</th>
 	<td><input type = "text" id="total" value="0" ></td>
 </table>
 </form>

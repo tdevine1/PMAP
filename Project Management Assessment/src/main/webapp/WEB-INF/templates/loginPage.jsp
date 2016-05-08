@@ -27,11 +27,11 @@
                 <form action="/PMA/processLogin" method="POST" >
                 <input type="text" name="username"
                         data-dojo-type="dijit/form/TextBox"
-                        data-dojo-props="trim:true" placeholder="Username" id="username" />
+                        data-dojo-props="trim:true" placeholder="Username" id="username" style = "border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026;" />
                 <br><br>
-                <input type="password" name="password"
+                <input type="password" name="password" 
                 data-dojo-type="dijit/form/TextBox"
-                data-dojo-props="trim:true" placeholder="Password" id="password" />
+                data-dojo-props="trim:true" placeholder="Password" id="password"  style = "border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026;" />
                 <br>
                 <button type="submit">Login</button>
                 </form>
