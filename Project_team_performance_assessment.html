@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+<!-- large table that is used for ranking yourself and peers on various facets of the project -->
 <html>
 <body onload = "loadNames()">
 <form>
+<!--Building the table row by row. Each <tr> tag is a new row, each <td> tag is a new cell -->
 	<table border = 1 style="width:10%">
 		<tr>
 			<th colspan="3">Meeting Reliability</th>
@@ -503,8 +505,8 @@
 </form>
 </body>
 <script>
-var nameArray = ["Chris Browning", "Sam Blakenship", "Alica Taylor", "Tom Devine","Ryan Browning","Dave Poling"];
-	function loadNames()
+var nameArray = ["Chris Browning", "Sam Blakenship", "Alica Taylor", "Tom Devine","Ryan Browning","Dave Poling"]; //placeholder array for testing
+	function loadNames() //massive function that fills in names for the table. Has to be this big because each name cell has its own name.
 		{
 			document.getElementById("name1.1").value = nameArray[0];
 			document.getElementById("name2.1").value = nameArray[0];

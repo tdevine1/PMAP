@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Displays and averages peer and self evaulations for easy access on a per group basis -->
 <html>
 <head>
 <script>
@@ -59,7 +60,7 @@
 		document.getElementById("teamMember6.5").value = varNameArray[5];
 		findAverages();
 	}
-	function findAverages ()
+	function findAverages () //Computes averages from various self and peer evauations. Displays computed average in the averages coulumn
 	{
 		//Computing averages for first person
 		document.getElementById("averageMeetingReliability1").value = (Number(document.getElementById("selfMeetingReliability1").value) + Number(document.getElementById("peer1MeetingReliability1").value) + Number(document.getElementById("peer2MeetingReliability1").value) + Number(document.getElementById("peer3MeetingReliability1").value) + Number(document.getElementById("peer4MeetingReliability1").value) + Number(document.getElementById("peer5MeetingReliability1").value) ) / 6;
@@ -160,7 +161,7 @@
 		<td>Unacceptable</td>
 	</tr>
 	</table>
-	<table border = 1 style ="width:10%"> <!--Building the table -->
+	<table border = 1 style ="width:10%"> <!--Building the table row by row. Each <tr> tag is a new row, each <td> tag is a new cell -->
 	<tr>
             <td><input id = "name1" Value = ""/></td>
             <td><input value = "Self"/></td>

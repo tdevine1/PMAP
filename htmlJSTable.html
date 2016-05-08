@@ -2,7 +2,7 @@
 <!-- simple presentation grading tool, requested by Girocialli-->
 <html>
 <head>
-<style>
+<style> <!-- Styles the background, change background style here-->
 input[type=text] {
     background-color: #860038;
     color: #FFDE00;
@@ -12,7 +12,8 @@ input[type=text] {
 </head>
 <body>
 <form>
-<table border = 1 style="width:10%; border-color:#F58026 ; color:#FFDE00; border-width:5px">
+<!--Building the table row by row. Each <tr> tag is a new row, each <td> tag is a new cell -->
+<table border = 1 style="width:10%; border-color:#F58026 ; color:#FFDE00; border-width:5px"> 
   <tr>
 	<td style= "background-color:#860038"> Evaluator</td>
 	<td style= "background-color:#860038"> Points Earned</td>
@@ -98,6 +99,7 @@ input[type=text] {
 </form>
 
 <script>
+//These functions, gradingFunctions 1- 10, grade each individual line once stuff is entered into the lines, then calls addValues to compute the total.
 function gradingFunction1() {
     document.getElementById(
 "weighted1").value = document.getElementById("grade1").value / document.getElementById("possible1").value * document.getElementById("weight1").value;
@@ -148,7 +150,7 @@ function gradingFunction10() {
 "weighted10").value = document.getElementById("grade10").value / document.getElementById("possible10").value * document.getElementById("weight10").value;
 addValues();
 }
-function addValues()
+function addValues() //computes the final total by addding each of the weighted grades and multiplying by 100.
 {
 document.getElementById(
 "total").value = (Number(document.getElementById("weighted1").value) + Number(document.getElementById("weighted2").value) + Number(document.getElementById("weighted3").value) + Number(document.getElementById("weighted4").value)+ Number(document.getElementById("weighted5").value)+ Number(document.getElementById("weighted6").value)+ Number(document.getElementById("weighted7").value)+ Number(document.getElementById("weighted8").value)+ Number(document.getElementById("weighted9").value)+ Number(document.getElementById("weighted10").value)) * 100 + "%";

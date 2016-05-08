@@ -14,6 +14,7 @@ html, body {
     margin: 0; 
     overflow: hidden; 
     padding: 0; 
+	background-color:#860038;
 } 
 #appLayout { 
     height: 100%; 
