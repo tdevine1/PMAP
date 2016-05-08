@@ -26,6 +26,7 @@ import com.softwareengineers.web.model.MembersOfGroup;
 import com.softwareengineers.web.model.UCASToAdd;
 import com.softwareengineers.web.database.DBHandler;
 import com.softwareengineers.web.database.DatabaseConstants;
+import com.softwareengineers.web.model.GroupInfo;
 import java.util.Arrays;
 
 @Controller
@@ -85,6 +86,44 @@ public class InstructorController {
         } catch (SQLException ex) {
             Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
             return new ModelAndView("error");
+        }
+    }
+    
+    @RequestMapping(value="/instructor/groupInfo")
+    public ModelAndView groupLogin(){
+        return new ModelAndView("studentPW");
+    }
+    
+    @RequestMapping(value="/instructor/getInfo")
+    public @ResponseBody GroupInfo getInfo(HttpServletRequest request){
+        String gid = request.getParameter("gid");
+        String[] params = {gid};
+        ArrayList<String> ucas = new ArrayList<String>();
+        ArrayList<String> pws = new ArrayList<String>();
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.GETDEVLOGIN, params);
+            while(rs.next()){
+                ucas.add(rs.getString("UCA"));
+                pws.add(rs.getString("password"));
+            }
+            rs.close();
+            
+            rs = db.processQuery(DatabaseConstants.GETPROJECTMANAGERLOGIN, params);
+            while(rs.next()){
+                ucas.add(rs.getString("UCA"));
+                pws.add(rs.getString("password"));
+            }
+            rs.close();
+            
+            if(ucas.isEmpty()){
+                return new GroupInfo();
+            }
+            else{
+                return new GroupInfo(ucas.toArray(new String[ucas.size()]), pws.toArray(new String[pws.size()]));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new GroupInfo();
         }
     }
     

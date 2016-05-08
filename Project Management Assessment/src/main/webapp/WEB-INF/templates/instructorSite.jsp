@@ -129,6 +129,10 @@ html, body {
         }
     }
     
+    function getPasswords(){
+        dojo.place("<iframe id='assessmentDiv' src='/PMA/instructor/groupInfo' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
+    }
+    
     function groupChangeEvent(){
         selectedGroupId = document.getElementById("groups").value;
         selectedGroup = document.getElementById("groups").options[document.getElementById("groups").selectedIndex].text;
@@ -191,7 +195,7 @@ html, body {
                 if(newUCAs == ""){newUCAs = response.ucas[i].trim();}
                 else{newUCAs = newUCAs.concat(",".concat(response.ucas[i].trim()));}
                 if(newNames == ""){newNames = prompt("Enter first and last name for ".concat(response.ucas[i].trim()).concat(". (Separate names with one whitespace)"),"");}
-                else{newNames = newNames.concat(",".concat(prompt("Enter first and last name for ".concat(response.ucas.trim()).concat(". (Separate names with one whitespace)"),"")));}
+                else{newNames = newNames.concat(",".concat(prompt("Enter first and last name for ".concat(response.ucas[i].trim()).concat(". (Separate names with one whitespace)"),"")));}
             }
             dojo.xhrPost({
                 url: "/PMA/instructor/newUCAs",
@@ -284,7 +288,7 @@ html, body {
             <div style="height: 10%;">
                 <div>Tools</div>
                 <div>
-                    <button onclick="" title="Get Passwords for Selected Groups Members">Passwords</button>
+                    <button onclick="getPasswords();" title="Get Passwords for Selected Groups Members">Passwords</button>
                 </div>
             </div>
             <div style="height: 45%; position: relative;">
