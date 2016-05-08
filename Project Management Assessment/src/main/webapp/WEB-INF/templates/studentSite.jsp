@@ -72,38 +72,32 @@ html, body {
     });
     
     function createAssessmentButtons(gMembers){
-        var node = dojo.byId("assessmentButtonContainer");
-        while(node.hasChildNodes()){
-            node.destory(true);
+        while (document.getElementById("assessmentButtonContainer").hasChildNodes()) {   
+            document.getElementById("assessmentButtonContainer").removeChild(list.firstChild);
         }
-        dojo.byId("assessmentButtonContainer").innerHTML = "";
-        console.log(gMembers);
+        var btn = document.createElement("BUTTON");
+        var text = document.createTextNode("Self Evaluation");
+        btn.appendChild(text);
+        btn.title = "selfAssessment";
+        btn.addEventListener("click", function(event){var button = event.target;
+            setAssessmentButtonEvent(button.title);});
+        document.getElementById("assessmentButtonContainer").appendChild(btn);
         for(i=0;i < gMembers.length; i++){
             if(gMembers[i].trim() != "${model.Name}"){
                 var gMember = gMembers[i];
-                var buttonId = gMember.replace(" ","").concat("PeerAseessment");
-                var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
-                dojo.place(nodePath, "assessmentButtonContainer", "after");
-                new dijit.form.Button({
-                    label: "Peer Assessment of ".concat(gMember.trim()),
-                    title: "peerAssessment",
-                    name: gMember,
-                    onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
+                var btn = document.createElement("BUTTON");
+                var text = document.createTextNode("Peer Assessment of ".concat(gMember.trim()));
+                btn.appendChild(text);
+                btn.name = gMember;
+                btn.title = "peerAssessment";
+                btn.addEventListener("click", function(event){var button = event.target;
                         peerEvalOf = button.name;
-                        setAssessmentButtonEvent(button.title);}
-                }, buttonId).startup();
+                        console.log(button.title);
+                        console.log(button.name);
+                        setAssessmentButtonEvent(button.title);});
+                document.getElementById("assessmentButtonContainer").appendChild(btn);
             }
         }
-        
-        var buttonId = "${model.Name}".replace(" ","").concat("SelfEval");
-        var nodePath = "<button id='".concat(buttonId.concat("' type='button'></button>"));
-        dojo.place(nodePath, "assessmentButtonContainer", "after");
-        new dijit.form.Button({
-            label: "Self Evaluation",
-            title: "selfAssessment",
-            onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
-                setAssessmentButtonEvent(button.title);}
-        }, buttonId).startup();
     }
     
     function setAssessmentButtonEvent(type){

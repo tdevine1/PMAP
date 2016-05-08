@@ -56,7 +56,13 @@ html, body {
     var memberString;
     var role;
     
-    
+    /**
+     * Function is fired after the HTML page has been loaded.  Assigns a Welcome message for the user,
+     * and creates buttons for eash course the user teaches using parameters from the model passed to the
+     * web page from the controller.
+     * 
+     * @returns void
+     */
     dojo.ready(function(){
         dojo.byId("header").innerHTML = welcome;
         for(i=0; i< classes.length; i++){
@@ -81,6 +87,13 @@ html, body {
         }
     });
     
+    /**
+     * Function will populate the the select element associated with the
+     * selectId attribute of the response, with an array attribute of the response
+     * 
+     * @param response
+     * @returns void
+     */
     function populateSelect(response){
         emptySelect(response.selectId);
         console.log(response.selectId);
@@ -103,6 +116,13 @@ html, body {
         }
     }
     
+    /**
+     * Empties the options of the select element associated with the
+     * id parameter
+     * 
+     * @param id
+     * @returns void
+     */
     function emptySelect(id){
         var sel = document.getElementById(id);
         for(i = 1; i < sel.length;){
@@ -110,6 +130,12 @@ html, body {
         }     
     }
     
+    /**
+     * Function that clears the buttons from the HTML DOM element with the id of
+     * "buttonContainer"
+     * 
+     * @returns void
+     */
     function emptyButtonContainer(){
         var div = document.getElementById("buttonContainer");
         while (div.hasChildNodes()) {
@@ -117,6 +143,15 @@ html, body {
         }
     }
     
+    /**
+     * Function that is called when any of the assessment buttons are clicked.
+     * Depending upon the button type attribute, the function replaces the HTML DOM element 
+     * with id "assessmentDiv" with an iframe element with the same id, loading in that iframe the .jsp page of the
+     * appropriate assessment.
+     * 
+     * @param type, label
+     * @returns void
+     */
     function setAssessmentButtonEvent(type, label){
         if(type == 2){
             peerEvalOf = label.replace("PeerEvalOf ", "");
@@ -130,19 +165,43 @@ html, body {
         }
     }
     
+    /**
+     * Function is called when the Passwords button is clicked.
+     * The function replaces the HTML DOM element with id "assessmentDiv" with an iframe element 
+     * with the same id, loading in that iframe the .jsp page of the login and password for the currently selected group.
+     * 
+     * @returns 
+     */
     function getPasswords(){
         dojo.place("<iframe id='assessmentDiv' src='/PMA/instructor/groupInfo' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
     }
     
+    /**
+     * Function is called when the Presentation Grade button is clicked.
+     * The function replaces the HTML DOM element with id "assessmentDiv" with an iframe element 
+     * with the same id, loading in that iframe the .jsp page of the grading table.
+     * 
+     * @returns 
+     */
     function getTable(){
         dojo.place("<iframe id='assessmentDiv' src='/PMA/instructor/weightedGradeTable' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
     }
     
+    /**
+     * Function is called when a new selection is made in the group member select input.
+     * Will send the name of the currently selected group to the server to get the list
+     * of members in the group.  The response will be sent to the populateSelect() function
+     * 
+     * @returns void
+     */
     function groupChangeEvent(){
         selectedGroupId = document.getElementById("groups").value;
         selectedGroup = document.getElementById("groups").options[document.getElementById("groups").selectedIndex].text;
         console.log(selectedGroup);
         if(selectedGroupId != "placehold"){
+            document.getElementById("addGroupButton").disabled = false;
+            document.getElementById("getPasswordButton").disabled = false;
+            document.getElementById("getTableButton").disabled = false;
             dojo.xhrPost({
                 url: "/PMA/instructor/membersForGroup",
                 handleAs: "json",
@@ -151,8 +210,21 @@ html, body {
                 },
                 load:populateSelect});
         }
+        else{
+            document.getElementById("addGroupButton").disabled = true;
+            document.getElementById("getPasswordButton").disabled = true;
+            document.getElementById("getTableButton").disabled = true;
+        }
     }
     
+    /**
+     * Function called when the Add Group button is clicked
+     * While send the name of the group that the users wishes to add to the 
+     * currently selected group.  The response from the server will be sent
+     * to the populateSelect() function
+     * 
+     * @returns void
+     */
     function addGroup(){
         var newGroup = document.getElementById("addGroupInput").value;
         if(newGroup.trim() != ""){
@@ -167,6 +239,14 @@ html, body {
         }
     }
     
+    /**
+     * Function that is called when the Add Member button is clicked.
+     * It will pass the string of new member ucas for the selected group to the controller on the server,
+     * as well as their roles which is defined by the radio button selection.  The
+     * server response will be sent to the handleExistResponse() function
+     * 
+     * @returns void
+     */
     function addMember(){
         if(document.getElementById("pm").checked){
             role = "PM";
@@ -188,11 +268,22 @@ html, body {
         
     }
     
+    /**
+     * The function receives a response from the controller on the server.
+     * If the error flag of the response is set to "y" then the user will be notified and error has occurred
+     * Otherwise, if there are users who do no exist in the database that the user wishes to add to the selected group,
+     * the user will be asked to give their names so that they can be added. A call will then be sent to the controller on
+     * the server to create these new users and the response from the server will be sent to the insertToGroup() function.
+     * 
+     * If no new users need to be created, the insertToGroup() function is called passing it true as an argument
+     * 
+     * @param response
+     * @returns void
+     */
     function handleExistResponse(response){
         if(response.error == "y"){
             alert("ERROR ENCOUNTERED ADDING MEMBERS!! PROCESS ABANDONED!!");
         }
-        console.log(response);
         var newUCAs = "";
         var newNames = "";
         if(response.ucas.length != 0){
@@ -216,6 +307,18 @@ html, body {
             insertToGroup(true)
         }
     }
+    
+    /**
+     * Function receives a response from the controller on the server.
+     * If the response is true, then the page will make a call to the server
+     * to finish adding members to the group and the server response will be sent
+     * to the populateSelect() function
+     * If the response if false, then an alert will be given letting the user
+     * know that a problem has occurred.
+     * 
+     * @param response
+     * @returns void
+     */
     function insertToGroup(response){
         console.log(response);
         if(response == true){
@@ -235,14 +338,21 @@ html, body {
         }
     }
     
+    /**
+     * Function is called when the selection for the member select input changes.
+     * If the selection is not the placeholder item, the function sends an ajax
+     * call to the server to get the assessments taken by the student.
+     * The resonse from this call will then be sent to the createAssessmentButtons() function
+     * 
+     * @param
+     * @returns void
+     */
     function memberSelectEvent(){
         name = document.getElementById("members").options[document.getElementById("members").selectedIndex].text;
         username = document.getElementById("members").value;
-        //console.log(name);
-        //console.log(username);
-        //console.log(selectedGroupId);
         emptyButtonContainer();
         if(username != "placehold"){
+            document.getElementById("addMemberButton").disabled = false;
             dojo.xhrPost({
                 url: "/PMA/instructor/assessmentsTaken",
                 handleAs: "json",
@@ -253,21 +363,30 @@ html, body {
                 },
                 load:createAssessmentButtons});
         }
+        else{
+            document.getElementById("addMemberButton").disabled = true;
+        }
     }
     
+    /**
+     * Function receives response from the controller on the server.
+     * Using this reponse object it creates buttons for assessments that have answers
+     * for the currently selected student.
+     * 
+     * @param response
+     * @returns void
+     */
     function createAssessmentButtons(response){
-        //console.log(response);
         for(i=0;i<response.aids.length; i++){
-            //var buttonId = classAssessments[i].replace(" ","").concat(i);
-            var nodePath = "<button id='".concat(response.assessmentNames[i].replace(" ","").concat("' type='button'></button>"));
-            dojo.place(nodePath, "buttonContainer", "after");
-            new dijit.form.Button({
-                label: response.assessmentNames[i],
-                title: response.aids[i],
-                onClick: function(event){var button = dijit.registry.getEnclosingWidget(event.target);
+            var btn = document.createElement("BUTTON");
+            var text = document.createTextNode(response.assessmentNames[i]);
+            btn.appendChild(text);
+            btn.label = response.assessmentNames[i];
+            btn.title = response.aids[i];
+            btn.addEventListener("click", function(event){var button = event.target;
                     setAssessmentButtonEvent(button.title, button.label);
-                }
-            }, response.assessmentNames[i].replace(" ","")).startup();      
+                });
+            document.getElementById("buttonContainer").appendChild(btn);  
         }
     }
    
@@ -293,8 +412,8 @@ html, body {
             <div style="height: 10%;">
                 <div>Tools</div>
                 <div>
-                    <button onclick="getPasswords();" title="Get Passwords for Selected Groups Members">Passwords</button>
-                    <button onclick="getTable();" title="Weighted Presentation Grading Table">Presentation Grade</button>
+                    <button id="getPasswordButton" onclick="getPasswords();" title="Get Passwords for Selected Groups Members" disabled="true">Passwords</button>
+                    <button id="getTableButton" onclick="getTable();" title="Weighted Presentation Grading Table" disabled="true">Presentation Grade</button>
                 </div>
             </div>
             <div style="height: 45%; position: relative;">
@@ -307,19 +426,19 @@ html, body {
                 </div>
                 <div style="height: 15%; position: absolute; bottom: 0; left: 0;">
                     <input id="addGroupInput" type="text" placeholder="Group To Add to Course">
-                    <button onclick="addGroup();">Add Group To Course</button>
+                    <button id="addGroupButton" onclick="addGroup();" disabled="true">Add Group To Course</button>
                 </div>
             </div>
             <div style="height: 45%; position: relative;">
                 <div>Students in Selected Group</div>
                 <div id="memberList" onchange="memberSelectEvent()">
                     <select id="members">
-                        <option value="placehold">Select Member From Group</option>
+                        <option value="placehold" >Select Member From Group</option>
                     </select>
                 </div>
                 <div style="height: 30%; position: absolute; bottom: 0; left: 0;" >
                     <input id="addMemberInput" type="text" placeholder="Add members to group" title="enter ucas, for mutliple entries separate them by comma">
-                    <button onclick="addMember();">Add Members To Group</button><br>
+                    <button id="addMemberButton" onclick="addMember();" disabled="true">Add Members To Group</button><br>
                     <input id="pm" type="radio" name="role" value="PM" checked>Project Manager<br>
                     <input id="dev" type="radio" name="role" value="DEV">Developer<br>
                 </div>
