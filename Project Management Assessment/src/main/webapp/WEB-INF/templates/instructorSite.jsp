@@ -14,7 +14,7 @@ html, body {
     margin: 0; 
     overflow: hidden; 
     padding: 0; 
-	background-color:#860038;
+    background-color: #860038;
 } 
 #appLayout { 
     height: 100%; 
@@ -120,10 +120,10 @@ html, body {
     function setAssessmentButtonEvent(type, label){
         if(type == 2){
             peerEvalOf = label.replace("PeerEvalOf ", "");
-            dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
+            dojo.place("<iframe id='assessmentDiv' src='/PMA/peer' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
         }
         else if(type == 1){
-            dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
+            dojo.place("<iframe id='assessmentDiv' src='/PMA/self' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
         }
         else{
             console.log("Nothing here");
@@ -131,7 +131,11 @@ html, body {
     }
     
     function getPasswords(){
-        dojo.place("<iframe id='assessmentDiv' src='/PMA/instructor/groupInfo' style='height:75%;width:100%;'></iframe>", "assessmentDiv", "replace");
+        dojo.place("<iframe id='assessmentDiv' src='/PMA/instructor/groupInfo' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
+    }
+    
+    function getTable(){
+        dojo.place("<iframe id='assessmentDiv' src='/PMA/instructor/weightedGradeTable' style='height:100%;width:100%;'></iframe>", "assessmentDiv", "replace");
     }
     
     function groupChangeEvent(){
@@ -290,6 +294,7 @@ html, body {
                 <div>Tools</div>
                 <div>
                     <button onclick="getPasswords();" title="Get Passwords for Selected Groups Members">Passwords</button>
+                    <button onclick="getTable();" title="Weighted Presentation Grading Table">Presentation Grade</button>
                 </div>
             </div>
             <div style="height: 45%; position: relative;">

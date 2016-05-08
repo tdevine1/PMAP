@@ -193,6 +193,26 @@ public class DBHandler {
         }
     }
     
+    public boolean savePresentationGrades(String gid, String[] evaluators, Double[] ptsEarned, Double[] ptsPos, Double[] weights) throws SQLException{
+        java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.INSERTORUPDATEPRESENTATIONGRADE);
+        for(int i = 0; i < evaluators.length; i++){
+            pStmt.clearParameters();
+            pStmt.setString(1, gid);
+            pStmt.setString(2, evaluators[i]);
+            pStmt.setDouble(3, ptsEarned[i]);
+            pStmt.setDouble(4, ptsPos[i]);
+            pStmt.setDouble(5, weights[i]);
+            pStmt.setDouble(6, ptsEarned[i]);
+            pStmt.setDouble(7, ptsPos[i]);
+            pStmt.setDouble(8, weights[i]);
+            
+            if(pStmt.executeUpdate() == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     private String PWGen(){
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         int length = 8;

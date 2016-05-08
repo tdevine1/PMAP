@@ -2,18 +2,13 @@ package com.softwareengineers.web.controller.instructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -26,6 +21,8 @@ import com.softwareengineers.web.model.MembersOfGroup;
 import com.softwareengineers.web.model.UCASToAdd;
 import com.softwareengineers.web.database.DBHandler;
 import com.softwareengineers.web.database.DatabaseConstants;
+import com.softwareengineers.web.model.GroupInfo;
+import com.softwareengineers.web.model.PresentationGradeInfo;
 import java.util.Arrays;
 
 @Controller
@@ -85,6 +82,49 @@ public class InstructorController {
         } catch (SQLException ex) {
             Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
             return new ModelAndView("error");
+        }
+    }
+    
+    @RequestMapping(value="/instructor/groupInfo")
+    public ModelAndView groupLogin(){
+        return new ModelAndView("studentPW");
+    }
+    
+    @RequestMapping(value="/instructor/weightedGradeTable")
+    public ModelAndView displayTable(){
+        return new ModelAndView("weightedGradeTable");
+    }
+    
+    @RequestMapping(value="/instructor/getInfo")
+    public @ResponseBody GroupInfo getInfo(HttpServletRequest request){
+        String gid = request.getParameter("gid");
+        String[] params = {gid};
+        ArrayList<String> ucas = new ArrayList<String>();
+        ArrayList<String> pws = new ArrayList<String>();
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.GETDEVLOGIN, params);
+            while(rs.next()){
+                ucas.add(rs.getString("UCA"));
+                pws.add(rs.getString("password"));
+            }
+            rs.close();
+            
+            rs = db.processQuery(DatabaseConstants.GETPROJECTMANAGERLOGIN, params);
+            while(rs.next()){
+                ucas.add(rs.getString("UCA"));
+                pws.add(rs.getString("password"));
+            }
+            rs.close();
+            
+            if(ucas.isEmpty()){
+                return new GroupInfo();
+            }
+            else{
+                return new GroupInfo(ucas.toArray(new String[ucas.size()]), pws.toArray(new String[pws.size()]));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new GroupInfo();
         }
     }
     
@@ -302,5 +342,68 @@ public class InstructorController {
             return false;
         }
         
+    }
+    
+    /**
+     * Method that is used to get the info for the Weighted Presentation Grading Table.
+     * If no grading data exists for the group then the object returned will have a flag set to false 
+     * representing that no data currently exists in the presentationgrades table for this group.
+     * @param request
+     * @return PresentationGradeInfo object that will be converted to JSON by the Spring Framework 
+     */
+    @RequestMapping(value="/instructor/presentationGrades")
+    public @ResponseBody PresentationGradeInfo presentationGrades(HttpServletRequest request) {
+        String gid = request.getParameter("gid");
+        String[] params = {gid};
+        ArrayList<String> evaluators = new ArrayList<String>();
+        ArrayList<Double> pointsEarned = new ArrayList<Double>();
+        ArrayList<Double> pointsTotal = new ArrayList<Double>();
+        ArrayList<Double> weights = new ArrayList<Double>();
+        try {
+            ResultSet rs = db.processQuery(DatabaseConstants.PRESENTATIONGRADEFORGROUP, params);
+            while(rs.next()){
+                evaluators.add(rs.getString("Evaluator"));
+                pointsEarned.add(rs.getDouble("Points_earned"));
+                pointsTotal.add(rs.getDouble("Points_possible"));
+                weights.add(rs.getDouble("weighting"));
+            }
+            if(evaluators.size() == 0){
+                return new PresentationGradeInfo();
+            }
+            else{
+                return new PresentationGradeInfo(evaluators.toArray(new String[evaluators.size()]), pointsEarned.toArray(new Double[pointsEarned.size()]), pointsTotal.toArray(new Double[pointsTotal.size()]), weights.toArray(new Double[weights.size()]));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return new PresentationGradeInfo();
+        }  
+    }
+    
+    @RequestMapping(value="/instructor/savePresentationGrades")
+    public @ResponseBody boolean savePresentationGrades(HttpServletRequest request) {
+        String gid = request.getParameter("gid");
+        String[] evaluators = request.getParameter("evaluators").split(",");
+        String[] ptsEarnedStr = request.getParameter("ptsErnd").split(",");
+        String[] ptsPosStr = request.getParameter("ptsPos").split(",");
+        String[] weightsStr = request.getParameter("weights").split(",");
+        Double[] ptsEarned = convertToDoubleArray(ptsEarnedStr);
+        Double[] ptsPos = convertToDoubleArray(ptsPosStr);
+        Double[] weights = convertToDoubleArray(weightsStr);
+        
+        try {
+            return db.savePresentationGrades(gid, evaluators, ptsEarned, ptsPos, weights);
+        } catch (SQLException ex) {
+            Logger.getLogger(InstructorController.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+    }
+    
+    public Double[] convertToDoubleArray(String[] arr){
+        Double[] answer = new Double[arr.length];
+        for(int i = 0; i< arr.length; i++){
+            answer[i] = Double.parseDouble(arr[i]);
+        }
+        return answer;
     }
 }

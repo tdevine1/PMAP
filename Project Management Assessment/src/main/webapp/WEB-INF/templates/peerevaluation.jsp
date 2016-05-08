@@ -11,7 +11,7 @@
 				background-color: #860038;
 			}
 			p{
-				font-color #F58026;
+				font-color: #F58026;
 			}
         </style>
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css" >

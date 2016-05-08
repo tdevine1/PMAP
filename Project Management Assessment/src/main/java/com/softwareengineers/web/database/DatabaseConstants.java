@@ -35,4 +35,10 @@ public class DatabaseConstants{
         public static final String INSERTPROJECTMANAGER = "INSERT INTO projectmanager (GID, UCA) VALUES(?,?)";
         public static final String INSERTDEV = "INSERT INTO dev (GID, UCA) VALUES(?,?)";
         public static final String UPDATEMEMBERLIST = "UPDATE `group` SET groupMembers = ? WHERE GID = ?";
+        public static final String GETDEVLOGIN = "SELECT u.UCA, u.password FROM dev d, users u WHERE d.GID = ? AND d.UCA = u.UCA";
+        public static final String GETPROJECTMANAGERLOGIN = "SELECT u.UCA, u.password FROM projectmanager pm, users u WHERE pm.GID = ? AND pm.UCA = u.UCA";
+        public static final String PRESENTATIONGRADEFORGROUP = "SELECT * FROM presentationgrades WHERE GID = ?";
+        public static final String INSERTORUPDATEPRESENTATIONGRADE = "INSERT into presentationgrades (GID, Evaluator, Points_earned, Points_possible, weighting) "
+                                                                   + "VALUES (?, ?, ?, ?, ?) "
+                                                                   + "ON DUPLICATE KEY UPDATE Points_earned=?, Points_possible=?, weighting=?";
 }
