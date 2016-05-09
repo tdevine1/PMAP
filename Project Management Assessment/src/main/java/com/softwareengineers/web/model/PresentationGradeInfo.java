@@ -1,3 +1,8 @@
+/**
+ * Plain Old Java Object that stores presentation grade info for the grading table.
+ * Used as a model to transfer this info to the webpage.
+ */
+
 package com.softwareengineers.web.model;
 
 /**

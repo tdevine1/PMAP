@@ -1,9 +1,10 @@
+/**
+ * Controller that handles calls made by the login page.
+ */
+
 package com.softwareengineers.web.controller.login;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -19,7 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class LoginController {
     
-
+    /**
+     * This function displays the login page for the web app.
+     * 
+     * @return 
+     */
     @RequestMapping(value="/login", method=RequestMethod.GET)
     public ModelAndView login() {
         Map<String,String> model = new HashMap<String,String>();
@@ -28,6 +33,17 @@ public class LoginController {
         return new ModelAndView("loginPage", "model", model);
     }
     
+    /**
+     * This function handles the login process.
+     * Using the data provided within the request, this function checks if the user login
+     * information is valid.  If it is, the function then checks if the user is an instructor or not
+     * and send redirects them to their respective page accordingly. If the user login info is invalid,
+     * the error page is called.
+     * 
+     * @param request
+     * @param redirectAttributes
+     * @return 
+     */
     @RequestMapping(value="/processLogin", method=RequestMethod.POST)
     public String processLogin(HttpServletRequest request, RedirectAttributes redirectAttributes){
         java.sql.Connection con;

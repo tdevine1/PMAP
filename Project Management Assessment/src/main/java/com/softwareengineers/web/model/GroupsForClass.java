@@ -1,3 +1,8 @@
+/**
+ * Plain Old Java Object used to store the gids and group names associated with a class.
+ * Used as a model for transferring this data to the web page. 
+ */
+
 package com.softwareengineers.web.model;
 
 /**

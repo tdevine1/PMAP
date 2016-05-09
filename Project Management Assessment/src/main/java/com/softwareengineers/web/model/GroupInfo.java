@@ -1,3 +1,9 @@
+/**
+ * Plain Old Java Object used to store the ucas and password info for members of a particular group.
+ * Used as a model to transfer this data to the web page.
+ * 
+ */
+
 package com.softwareengineers.web.model;
 
 /**

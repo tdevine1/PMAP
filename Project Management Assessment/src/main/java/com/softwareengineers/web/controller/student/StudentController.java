@@ -24,6 +24,15 @@ import com.softwareengineers.web.database.DatabaseConstants;
 public class StudentController {
     DBHandler db = null;
     
+    /**
+     * This function is used to call the studentSite web page.
+     * Information for the user who has logged in is retrieved from the database and then
+     * passed to website as a HashMap.
+     * 
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/student/show", method=RequestMethod.GET)
     public ModelAndView show(HttpServletRequest request) {
         try {
@@ -35,23 +44,15 @@ public class StudentController {
             Vector<Integer> gids = new Vector<Integer>();
             String groups;
             String groupMembers;
-            //SAME AS INSTRUCTOR CONTROLLER. THESE NEED PUT IN A DIFFERENT CLASS
-            SimpleDriverDataSource dataSource;
-            dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , "jdbc:mysql://127.0.0.1:3306/mydb", "root", "Prog1");
-            java.sql.Connection con = dataSource.getConnection();
-            java.sql.PreparedStatement pStmt = con.prepareStatement("SELECT fname, lname FROM users WHERE UCA = ?");
-            pStmt.clearParameters();
-            pStmt.setString(1, model.get("username"));
-            rs = pStmt.executeQuery();
+            String[] params = {model.get("username")};
+            rs = db.processQuery(DatabaseConstants.GETNAME, params);
             while(rs.next()){
                 model.put("Name", rs.getString("fname") + " " + rs.getString("lname"));
             }
             rs.close();
             
-            pStmt = con.prepareStatement("SELECT GID, groupName FROM `group` WHERE groupMembers like ?");
-            pStmt.clearParameters();
-            pStmt.setString(1, "%" + model.get("Name") + "%");
-            rs = pStmt.executeQuery();
+            params[0] = "%" + model.get("Name") + "%";
+            rs = db.processQuery(DatabaseConstants.GETGIDS, params);
             rs.next();
             groups = rs.getString("groupName");
             gids.add(rs.getInt("GID"));
@@ -61,17 +62,14 @@ public class StudentController {
             }
             rs.close();
             
-            pStmt = con.prepareStatement("SELECT groupMembers FROM `group` WHERE GID = ?");
-            pStmt.clearParameters();
-            pStmt.setString(1, gids.get(0).toString());
-            rs = pStmt.executeQuery();
+            params[0] = gids.get(0).toString();
+            rs = db.processQuery(DatabaseConstants.GETGROUPMEMBERS, params);
             rs.next();
             groupMembers = rs.getString("groupMembers");
             rs.close();
             for(int i = 1; i < gids.size(); i++){
-                pStmt.clearParameters();
-                pStmt.setString(1, gids.get(i).toString());
-                rs = pStmt.executeQuery();
+                params[0] = gids.get(i).toString();
+                rs = db.processQuery(DatabaseConstants.GETGROUPMEMBERS, params);
                 while(rs.next()){
                     groupMembers += "%" + rs.getString("groupMembers");
                 }
@@ -88,6 +86,17 @@ public class StudentController {
         }
     }
     
+    /**
+     * Function that saves the assessment.
+     * This functions saves the assessment using the data provided within the request.
+     * If successful, the function returns an AssessmentAnswers object to the web page, 
+     * with the answers that were saved stored within it. If unsuccessful, the function
+     * still returns an AssessmentAnswers object, but the default constructor is used and
+     * and its msg attribute is set with a message for the web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/student/saveSelf")
     public @ResponseBody AssessmentAnswers saveAssessment(HttpServletRequest request){
         try {
@@ -118,6 +127,17 @@ public class StudentController {
         }
     }
     
+    /**
+     * Function that gets the answers for an assessment.
+     * This function retrieves an assessment from the database using the primary key info provided
+     * in the request.  If successful, an AssessAnswers object is returned with the answers stored within.
+     * If no answers are in the database, then the object is returned using the default constructor.
+     * If an error occurs during the process, the object is returned using the default constructor, and
+     * a message set for the web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/student/getAssessment")
     public @ResponseBody AssessmentAnswers getAssessment(HttpServletRequest request){
         try{
@@ -130,6 +150,7 @@ public class StudentController {
             if(rs.next()){
                 AssessmentAnswers answer;
                 String[] array = populateArray(rs);
+                rs.close();
                 answer = new AssessmentAnswers(array);
                 answer.setmsg("Display");
                 return answer;
@@ -146,6 +167,15 @@ public class StudentController {
         }
     }
     
+    /**
+     * Function used to populate the answer array.
+     * This function uses the ResultSet passed to it to populate the answer array that
+     * will be used to build the AssessmentAnswers object.
+     * 
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
     public String[] populateArray(ResultSet rs) throws SQLException{
         String output;
         String [] array = new String[20];
@@ -162,6 +192,15 @@ public class StudentController {
         return array;
     }
     
+    /**
+     * Function is used to retrieve the gid for a group.
+     * Using the info within the request, the gid for the group is question is retrieved.
+     * All the info for the group is then stored within the GroupInfoForAssessment object and returned
+     * to the web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/student/getGroupInfo")
     public @ResponseBody GroupInfoForAssessment getGroupInfo(HttpServletRequest request){
         String type = request.getParameter("Type");

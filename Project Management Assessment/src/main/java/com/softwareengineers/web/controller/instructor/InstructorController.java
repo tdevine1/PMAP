@@ -1,3 +1,4 @@
+//Object that handles most of the calls associated with the instructor view
 package com.softwareengineers.web.controller.instructor;
 
 import java.util.ArrayList;
@@ -13,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.softwareengineers.web.model.AssessmentsTakenByUser;
 import com.softwareengineers.web.model.GroupsForClass;
@@ -142,6 +142,14 @@ public class InstructorController {
         }
     }
     
+    /**
+     * This function gathers the groups associated with the cid that was sent within the request.
+     * The groups are gathered from the database and stored within the GroupsForClass object and returned to the
+     * web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/groupsForClass")
     public @ResponseBody GroupsForClass groupsForClass(HttpServletRequest request) {
         String cid = request.getParameter("course");
@@ -165,6 +173,16 @@ public class InstructorController {
         
     }
     
+    /**
+     * Function retrieves the members associated with a group.
+     * Using the gid provided within the request, this function get the users who are
+     * considered members of the group associated with the gid.  The info for these user 
+     * are then stored within a MembersOfGroup object and this object is returned to the 
+     * web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/membersForGroup")
     public @ResponseBody MembersOfGroup membersForGroup(HttpServletRequest request) {
         String gid = request.getParameter("gid");
@@ -194,7 +212,16 @@ public class InstructorController {
         }
         
     }
-            
+     
+    /**
+     * This function returns the list of assessments a user has taken.
+     * Using the gid, uca, and assessment name provided by the request, the function gathers the
+     * assessments the user has taken for the group associated with the gid and stores them in an
+     * AssessmentsTakenByUser object.  This object is then returned to the web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/assessmentsTaken")
     public @ResponseBody AssessmentsTakenByUser assessmentsTaken(HttpServletRequest request) {
         String gid = request.getParameter("gid");
@@ -221,6 +248,15 @@ public class InstructorController {
         
     }
     
+    /**
+     * This function adds a new group to the database.
+     * The course is added to the database and it is associated with the course cid provided by
+     * the request sent to the function.  The function then retrieves the new group list for the
+     * course, stores it within the GroupsForClass object, and returns that object to the web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/newGroup")
     public @ResponseBody GroupsForClass newGroup(HttpServletRequest request) {
         String cid = request.getParameter("cid");
@@ -259,6 +295,16 @@ public class InstructorController {
         
     }
     
+    /**
+     * This function adds members to the group.
+     * This function adds new members to the groups associated with the gid provided by
+     * the request sent to the function.  The members that are added with the role provided by
+     * the request. The function then retrieves the new member list for the groups, stores it within
+     * the MembersOfGroup object, and returns that object to the web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/addMembers")
     public @ResponseBody MembersOfGroup addMembersToGroup(HttpServletRequest request) {
         String gid = request.getParameter("gid");
@@ -300,6 +346,15 @@ public class InstructorController {
         
     }
     
+    /**
+     * Function checks if the ucas exist within the database.
+     * Functions checks if the list of ucas provided by the request exist within the database.
+     * The function will the store the ucas that do not exist within a UCASToAdd object, and then
+     * return that object to the web page.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/ucaExistCheck")
     public @ResponseBody UCASToAdd ucaExistCheck(HttpServletRequest request) {
         String ucaString = request.getParameter("ucas");
@@ -335,6 +390,15 @@ public class InstructorController {
         }
     }
     
+    /**
+     * Function adds new users to the database.
+     * The function takes the list of users and names provided by the request, and
+     * adds them to the database.  If the process is successful, then the function returns true
+     * to the web page. Otherwise, it will return false.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/newUCAs")
     public @ResponseBody boolean newUCAs(HttpServletRequest request) {
         String ucaStr = request.getParameter("ucas");
@@ -394,7 +458,11 @@ public class InstructorController {
     }
     
     /**
-     * 
+     * Function to save presentation grades.
+     * The function takes the array provided to it by the request and stores them in the
+     * database, associating them with the gid that was also provided by the request.
+     * If the process is successful, the function returns true to the web page. Otherwise,
+     * it will return false.
      * 
      * @param request
      * @return 

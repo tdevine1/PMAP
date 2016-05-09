@@ -1,3 +1,8 @@
+/**
+ * Plain Old Java Object used to store the list of assessment aids and the names of the assessment a user has taken.
+ * This is used as a model to send this info to the web page.
+ */
+
 package com.softwareengineers.web.model;
 
 /**

@@ -1,3 +1,8 @@
+/**
+ * Plain Old Java Object that stored the ucas and names of members of a group and used to populate a select object.
+ * Used as a model to transfer this data to the web page.
+ */
+
 package com.softwareengineers.web.model;
 /**
  *

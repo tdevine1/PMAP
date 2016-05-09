@@ -1,3 +1,8 @@
+/**
+ * Plain Old Java Object used to store ucas that need to be added to the database.
+ * Used as a model to transfer this data to the web page.
+ */
+
 package com.softwareengineers.web.model;
 
 /**
