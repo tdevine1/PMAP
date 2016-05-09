@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.softwareengineers.web.database.DBHandler;
 import com.softwareengineers.web.database.DatabaseConstants;

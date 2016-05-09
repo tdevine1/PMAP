@@ -66,6 +66,14 @@ function addValues() //computes the final total by addding each of the weighted 
     document.getElementById("total").value = (Number(document.getElementById("weighted1").value) + Number(document.getElementById("weighted2").value) + Number(document.getElementById("weighted3").value) + Number(document.getElementById("weighted4").value)+ Number(document.getElementById("weighted5").value)+ Number(document.getElementById("weighted6").value)+ Number(document.getElementById("weighted7").value)+ Number(document.getElementById("weighted8").value)+ Number(document.getElementById("weighted9").value)+ Number(document.getElementById("weighted10").value)) * 100 + "%";
 }
 
+/**
+ * Function to populate the grading table.
+ * Using the response from the server, if the attribute recordsExist of the response is true,
+ * the function will use the data within the response to populate the grading table.
+ * 
+ * @param response
+ * @returns void
+ */
 function populateTable(response){
     if(response.recordsExist){
         for(i = 0; i < response.evaluators.length; i++){
@@ -78,6 +86,9 @@ function populateTable(response){
     }
 }
 
+/**
+ * Function that is used to fire of the grading function associated with the row argument passes to this function.
+ */
 function fireRowMath(row){
     if(row==1){
         gradingFunction1();
@@ -111,6 +122,13 @@ function fireRowMath(row){
     }
 }
 
+/**
+ * Function that is called when the save button is pressed.
+ * This function parses through the table and will gather the elements of completed rows and send them as
+ * part of the arguments to the server to save the grading data for the table. The servers response is sent
+ * to the saveResponse() function.
+ * 
+ */
 function save(){
     var evaluators = "";
     var ptsErnd = "";
@@ -160,12 +178,23 @@ function save(){
     }
 }
 
+/**
+ * Function that handles the response from the servers grading save process.
+ * If the response is false, then the page will alert the user that the save was unsuccessful.
+ */
 function saveResponse(response){
     if(!response){
         alert("Save Unsuccessful");
     }
 }
 
+/**
+ * Function to load grading data.
+ * Function is called on page load.Using the gid provided by the parent page, the function 
+ * sends a call to see if there is any grading data stored within the database.
+ * The server response is then sent to the populateTable() function.
+ * 
+ */
 dojo.ready(function(){
     gid = parent.selectedGroupId;
     dojo.xhrPost({

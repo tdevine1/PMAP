@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- Simple page to connect and login to the database and to check for proper logins of users -->
 <!-- takes user input from textboxes and sends it to the controller to be sent to the database-->
+<!-- the page has the address for the specific controller call stored within the action attribute of the form tag -->
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,6 @@
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css">
         <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="parseOnLoad: true"></script>
         <script>
-		<!-- these tell the page where to get various parts-->
             dojo.require("dojo/parser");
             dojo.require("dijit/form/TextBox");
         </script>

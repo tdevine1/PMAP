@@ -1,3 +1,4 @@
+<!--THIS FILES GIVE DESCRIPTION OF THE PROJECT FOR MAVEN.  DETAILS PLUGINS AND REQUIRED DEPENDENCIES SO THAT MAVEN KNOW WHAT TO DOWNLOAD AND WHERE TO DOWNLOAD THEM FROM-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 

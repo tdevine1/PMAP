@@ -22,6 +22,12 @@
         <script>
             dojo.require("dojo.parser");
             
+            /**
+             * Function that fills the pages with the info provided within the response.
+             * 
+             * @param response
+             * @returns
+             */
             function fillPage(response){
                 var el = document.getElementById("passwordContainer");
                 for(i = 0; i < response.ucas.length; i++){
@@ -32,6 +38,11 @@
                 }
             }
             
+            /**
+             * On page load, the function uses the selectedGroupId variable within the pages parent page
+             * and sends it as an argument to the controller to request the login info for the members of that group.
+             * The server respone is sent to the fillPage() function.
+             */
             dojo.ready(function(){
                 dojo.xhrPost({
                     url: "/PMA/instructor/getInfo",
