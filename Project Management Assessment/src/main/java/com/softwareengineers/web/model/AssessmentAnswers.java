@@ -1,3 +1,7 @@
+/**
+ * A Plain Old Java Object that is used to pass data containing the answers for assessment to the web page.
+ */
+
 package com.softwareengineers.web.model;
 
 /**

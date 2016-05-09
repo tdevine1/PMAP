@@ -1,3 +1,5 @@
+<!--This page is the main view for the site when logged in as a student-->
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -52,6 +54,13 @@ html, body {
     var selectedGroup;
     var selectedGroupId;
     
+    
+    /**
+     * Upon loading the page, this function is called and creates buttons for each group
+     * the logged in user belongs to. 
+     * 
+     * @returns void
+     */
      dojo.ready(function(){
         dojo.byId("header").innerHTML = welcome;
         for(i=0; i < groups.length; i++){
@@ -71,6 +80,14 @@ html, body {
         }
     });
     
+    /**
+     * Function receives response from the controller on the server.
+     * Using this reponse object it creates buttons for the assessments
+     * the user need to take for the currently selected group
+     * 
+     * @param response
+     * @returns void
+     */
     function createAssessmentButtons(gMembers){
         while (document.getElementById("assessmentButtonContainer").hasChildNodes()) {   
             document.getElementById("assessmentButtonContainer").removeChild(list.firstChild);
@@ -100,6 +117,15 @@ html, body {
         }
     }
     
+    /**
+     * Function that is called when any of the assessment buttons are clicked.
+     * Depending upon the button type attribute, the function replaces the HTML DOM element 
+     * with id "assessmentDiv" with an iframe element with the same id, loading in that iframe the .jsp page of the
+     * appropriate assessment.
+     * 
+     * @param type, label
+     * @returns void
+     */
     function setAssessmentButtonEvent(type){
         dojo.xhrPost({
             url:  "/PMA/student/getGroupInfo",

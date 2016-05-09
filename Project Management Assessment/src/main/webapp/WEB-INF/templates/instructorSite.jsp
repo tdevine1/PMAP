@@ -371,7 +371,7 @@ html, body {
     /**
      * Function receives response from the controller on the server.
      * Using this reponse object it creates buttons for assessments that have answers
-     * for the currently selected student.
+     * for the currently selected student and group.
      * 
      * @param response
      * @returns void

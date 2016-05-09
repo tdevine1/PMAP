@@ -1,3 +1,7 @@
+/**
+ * This object is used to handle most of the transactions between the server and the database.
+ */
+
 package com.softwareengineers.web.database;
 
 import java.sql.Connection;
@@ -16,11 +20,26 @@ public class DBHandler {
     private final SimpleDriverDataSource dataSource;
     private final java.sql.Connection con;
 
+    /**
+     * Constructor for the DBHandler
+     * 
+     * @throws SQLException 
+     */
     public DBHandler() throws SQLException {
         this.dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD);
         this.con =  dataSource.getConnection();
     }
     
+    /**
+     * Function that is used to build a preparedStatement from the queryString 
+     * and then assign its parameters with the string array that is passed to it.
+     * Executes the query and the ResultSet is returned
+     * 
+     * @param queryString, 
+     * @param params
+     * @return ResultSet
+     * @throws SQLException 
+     */
     public ResultSet processQuery(String queryString, String[] params) throws SQLException{
         java.sql.PreparedStatement pStmt = con.prepareStatement(queryString);
         pStmt.clearParameters();
@@ -30,11 +49,32 @@ public class DBHandler {
         return pStmt.executeQuery();
     }
     
+    /**
+     * Function that build a statement from the queryString and then executes the query.
+     * the ResultSet is then returned
+     * 
+     * @param queryString
+     * @return
+     * @throws SQLException 
+     */
     public ResultSet processQuery(String queryString) throws SQLException{
         java.sql.Statement stmt = con.createStatement();
         return stmt.executeQuery(queryString);
     }
     
+    /**
+     * The function takes the info passed to it to to build a preparesStatement for saving the answers to the database.
+     * Once the preparedStatement is built, the update is then executed and the int value that is
+     * returned from the update is the return value for the function.
+     * 
+     * @param AID
+     * @param UCA
+     * @param GID
+     * @param Name
+     * @param answers
+     * @return
+     * @throws SQLException 
+     */
     public int insertOrUpdateAssessment(int AID, String UCA, String GID, String Name, String[] answers) throws SQLException{
         java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.INSERTORUPDATEASSESSMENT);
         
@@ -65,6 +105,18 @@ public class DBHandler {
         return pStmt.executeUpdate();
     }
     
+    /**
+     * The function creates and preparedStatement for getting assessment answers. The arguments passed
+     * to the function are set to the prepared state and the ResultSet that results from executing the
+     * query is the return value.
+     * 
+     * @param AID
+     * @param UCA
+     * @param GID
+     * @param Name
+     * @return
+     * @throws SQLException 
+     */
     public ResultSet getAssessment(int AID, String UCA, String GID, String Name) throws SQLException{
         java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.GETASSESSMENT);
         
@@ -77,6 +129,17 @@ public class DBHandler {
         return pStmt.executeQuery();
     }
     
+    /**
+     * The function uses the arguments passed to it to build a preparedStatement
+     * for adding a group to the database.  If successful true is returned, other the return
+     * value is false.
+     * 
+     * @param gid
+     * @param name
+     * @param cid
+     * @return
+     * @throws SQLException 
+     */
     public boolean insertGroup(String gid, String name, String cid) throws SQLException{
         java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.INSERTTOGROUP);
         pStmt.clearParameters();
@@ -102,6 +165,17 @@ public class DBHandler {
         }
     }
     
+    /**
+     * This function uses to data passed to it to build preparedStatements for adding users to
+     * the database.  If any of the inserts fail, the function will return false. Otherwise, the return value
+     * is true.
+     * 
+     * @param ucas
+     * @param fnames
+     * @param lnames
+     * @return
+     * @throws SQLException 
+     */
     public boolean insertUCA(String[] ucas, ArrayList<String> fnames, ArrayList<String> lnames) throws SQLException{
         java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.INSERTUCA);
         pStmt.clearParameters();
@@ -121,6 +195,18 @@ public class DBHandler {
         return true;
     }
     
+    /**
+     * Function is used to add the member ucas passed to it to either the dev or projectmanager table,
+     * which is specified by the role, and to associate them with the group gid that is provided. The members are then
+     * appended to the groupMember column for the group they have been added to.  If this is successful, true is returned. Otherwise,
+     * the function returns false.
+     * 
+     * @param gid
+     * @param role
+     * @param ucas
+     * @return
+     * @throws SQLException 
+     */
     public boolean addMembers(String gid, String role, String[] ucas) throws SQLException{
         java.sql.PreparedStatement pStmt;
         ResultSet rs;
@@ -193,6 +279,18 @@ public class DBHandler {
         }
     }
     
+    /**
+     * This function takes the arrays passed to it and creates a preparedStatement for inserting the presentation grades into the 
+     * database and associating them with the gid provided.  If successful, the function returns true. Otherwise, false is returned.
+     * 
+     * @param gid
+     * @param evaluators
+     * @param ptsEarned
+     * @param ptsPos
+     * @param weights
+     * @return
+     * @throws SQLException 
+     */
     public boolean savePresentationGrades(String gid, String[] evaluators, Double[] ptsEarned, Double[] ptsPos, Double[] weights) throws SQLException{
         java.sql.PreparedStatement pStmt = con.prepareStatement(DatabaseConstants.INSERTORUPDATEPRESENTATIONGRADE);
         for(int i = 0; i < evaluators.length; i++){
@@ -213,6 +311,12 @@ public class DBHandler {
         return true;
     }
     
+    /**
+     * The function is used to generate and 8 character long random String value
+     * to be used as a password for new users added to the database
+     * 
+     * @return 
+     */
     private String PWGen(){
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         int length = 8;

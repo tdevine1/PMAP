@@ -1,6 +1,8 @@
+/**
+ * This Object is used to store queries, transactions, and connection info for the database
+ */
+
 package com.softwareengineers.web.database;
-
-
 
 public class DatabaseConstants{
 	//Login Queries

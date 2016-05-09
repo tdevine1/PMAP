@@ -1,3 +1,5 @@
+<!-- This is the page that displays the self evaluation form -->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,7 +47,17 @@
                 A15: ""
             };
             
-            function saveSelfAssessment(){
+            /**
+             * the function is fired when the user clicks the save button.
+             * The function gathers data input into the input fields on the page and assigns them to
+             * the answer maps. The values stored in the answer map are then passed to the controller
+             * on the server to save the answers that have been entered. The response from the server 
+             * is sent to the response() function
+             * 
+             * @param 
+             * @returns void
+             */
+            function saveAssessment(){
                 if(document.getElementById("A1").value.trim() != ""){
                     answerMap.A1 = document.getElementById("A1").value.trim();
                 }
@@ -72,8 +84,6 @@
                     answerMap.A15 = document.getElementById("A15").value.trim();
                 }
                 
-                console.log(answerMap);
-                
                 dojo.xhrPost({
                    url:  "/PMA/student/saveSelf",
                    handleAs: "json",
@@ -99,21 +109,32 @@
                        "A15": answerMap.A15,
                        "answers": 15
                    },
-                   load: test
+                   load: response
                 });
             }
             
-            function test(response){
-                console.log("I got a response");
-                //console.log(response);
-                //var json = JSON.parse(response);
-                //console.log(response.a15);
+            /**
+             * Function receives and assessment from the server and if the msg attribute of the
+             * response is not an empty String, then the function alerts the user and error occurred
+             * while saving.
+             * 
+             * @param response
+             * @returns void
+             */
+            function response(response){
+                if(response.msg != ""){
+                    alert("An error occurred while saving the assessment");
+                }
             }
             
-//            function disableFields(){
-//                
-//            }
             
+            /**
+             * This function checks to see which checkbox of the question parameter passed is selected.
+             * If none, then the return value is null 
+             * 
+             * @param question
+             * @return
+             */
             function getCheckBoxAnswer(question){
                 if(document.getElementById(question.concat("-5")).checked){
                     return 5;
@@ -135,6 +156,16 @@
                 }
             }
             
+            /**
+             * This function receives a response from the server.
+             * If the response attribute answers is set to "y" the answers within
+             * the response are stored within the answerMap.  Then if the msg is set to
+             * "Display" then the function will call the display() function.  If the boolean flag
+             * of the parent element is set to true (representing an instructor is accessing this page)
+             * the disableFields() function is called 
+             * 
+             * @returns void
+             */
             function loadAssessment(response){
                 if(response.answers == "Y"){
                     answerMap.A1 = response.a1;
@@ -163,6 +194,12 @@
                 }
             }
             
+            /**
+             * This function assigns the answers stored in the answerMap to their respective input fields 
+             * on the page
+             * 
+             * @returns void
+             */
             function display(){
                 document.getElementById("A1").value = answerMap.A1;
                 document.getElementById("A2").value = answerMap.A2;
@@ -201,6 +238,13 @@
                 }
             }
             
+            /**
+             * This function disables the input fields and removes the save button rom the page.
+             * Is only called if the flag (representing an instructor is accessing the page) is 
+             * set to true.
+             * 
+             * @returns void
+             */
             function disableFields(){
                 for(i = 1; i <= 15; i++){
                     var id = "A".concat(i);
@@ -220,6 +264,12 @@
             }
             
             
+            
+            /**
+             * On page load, this function is called and sends the primary key info for the answer table to the server to check
+             * if any data is present for this assessment.  The reponse from the server is sent to the loadAssessment() function
+             * 
+             */
             dojo.ready(function(){
                 dojo.xhrPost({
                    url:  "/PMA/student/getAssessment",
@@ -251,7 +301,7 @@
             <input type="text" name="project" title="Project"
             data-dojo-type="dijit.form.TextBox"
             data-dojo-props="trim:true" id="A3" />
-            <button data-dojo-type="dijit/form/Button" type="button" id="saveButton" label="Save" onclick="saveSelfAssessment"></button>
+            <button data-dojo-type="dijit/form/Button" type="button" id="saveButton" label="Save" onclick="saveAssessment"></button>
         </div>
         <br><br>
         <div style="font-weight: bold;  color:#F58026">1.  Please rate yourself on the following*:</div>

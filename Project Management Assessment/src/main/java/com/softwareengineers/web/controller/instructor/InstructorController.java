@@ -29,6 +29,14 @@ import java.util.Arrays;
 public class InstructorController {
     DBHandler db;
     
+    /**
+     * This function is used to call the instructorSite web page.
+     * Information for the user who has logged in is retrieved from the database and then
+     * passed to website as a HashMap.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/show", method=RequestMethod.GET)
     public ModelAndView show(HttpServletRequest request) {
         try {
@@ -39,24 +47,15 @@ public class InstructorController {
             ResultSet rs;
             String classArray;
             String assessments;
-            //ALL DB TRANSACTIONS NEED PUT IN A NEW CLASS AND NEED TO WORK ON POJO MODELS TO HOLD REQUESTS IN ALL FUTURE QUERIES SINCE THEY WILL BE AJAX CALLS
-            SimpleDriverDataSource dataSource;
-            dataSource = new SimpleDriverDataSource(new com.mysql.jdbc.Driver() , "jdbc:mysql://127.0.0.1:3306/mydb", "root", "Prog1");
-            java.sql.Connection con = dataSource.getConnection();
-            java.sql.PreparedStatement pStmt = con.prepareStatement("SELECT fname, lname FROM users WHERE UCA = ?");
-            pStmt.clearParameters();
-            pStmt.setString(1, model.get("username"));
-            rs = pStmt.executeQuery();
+            String[] params = {model.get("username")};
+            rs = db.processQuery(DatabaseConstants.GETNAME, params);
             while(rs.next()){
                 model.put("FirstName", rs.getString("fname"));
                 model.put("LastName", rs.getString("lname"));
             }
             rs.close();
             
-            pStmt = con.prepareStatement("SELECT CID FROM taughtCourse WHERE UCA = ?");
-            pStmt.clearParameters();
-            pStmt.setString(1, model.get("username"));
-            rs = pStmt.executeQuery();
+            rs = db.processQuery(DatabaseConstants.TAUGHTCOURSE, params);
             rs.next();
             classArray = rs.getString("CID");
             while(rs.next()){
@@ -64,10 +63,7 @@ public class InstructorController {
             }
             rs.close();
             
-            pStmt = con.prepareStatement("SELECT aName FROM assessments WHERE CID = ?");
-            pStmt.clearParameters();
-            pStmt.setString(1, classArray);
-            rs = pStmt.executeQuery();
+            rs = db.processQuery(DatabaseConstants.GETANAME, classArray.split(","));
             rs.next();
             assessments = rs.getString("aName");
             while(rs.next()){
@@ -85,16 +81,34 @@ public class InstructorController {
         }
     }
     
+    /**
+     * Function is called to return the student password site.
+     * 
+     * @return 
+     */
     @RequestMapping(value="/instructor/groupInfo")
     public ModelAndView groupLogin(){
         return new ModelAndView("studentPW");
     }
     
+    /**
+     * This function is called to return the weightedGradeTable site.
+     * 
+     * @return 
+     */
     @RequestMapping(value="/instructor/weightedGradeTable")
     public ModelAndView displayTable(){
         return new ModelAndView("weightedGradeTable");
     }
     
+    /**
+     * This function returns the ucas and passwords for the members of a group.
+     * Using the provided gid, the function gets the login info for each members of the group
+     * and stores it within the GroupInfo object.  This object is then used as the return value.
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/getInfo")
     public @ResponseBody GroupInfo getInfo(HttpServletRequest request){
         String gid = request.getParameter("gid");
@@ -379,6 +393,12 @@ public class InstructorController {
         }  
     }
     
+    /**
+     * 
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/instructor/savePresentationGrades")
     public @ResponseBody boolean savePresentationGrades(HttpServletRequest request) {
         String gid = request.getParameter("gid");
@@ -399,6 +419,13 @@ public class InstructorController {
         
     }
     
+    /**
+     * Function takes the String array passed to it and returns an array
+     * that is a conversion of that array into the Double data type
+     * 
+     * @param arr
+     * @return 
+     */
     public Double[] convertToDoubleArray(String[] arr){
         Double[] answer = new Double[arr.length];
         for(int i = 0; i< arr.length; i++){
