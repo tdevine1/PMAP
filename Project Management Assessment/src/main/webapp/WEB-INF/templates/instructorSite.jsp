@@ -76,6 +76,7 @@ html, body {
                     var button = dijit.registry.getEnclosingWidget(event.target);
                     document.getElementById("courseIdent").innerHTML = "Course:".concat(button.label);
                     cid = button.label;
+                    document.getElementById("addGroupButton").disabled = false;
                     dojo.xhrPost({
                         url: "/PMA/instructor/groupsForClass",
                         handleAs: "json",
@@ -199,9 +200,9 @@ html, body {
         selectedGroup = document.getElementById("groups").options[document.getElementById("groups").selectedIndex].text;
         console.log(selectedGroup);
         if(selectedGroupId != "placehold"){
-            document.getElementById("addGroupButton").disabled = false;
             document.getElementById("getPasswordButton").disabled = false;
             document.getElementById("getTableButton").disabled = false;
+            document.getElementById("addMemberButton").disabled = false;
             dojo.xhrPost({
                 url: "/PMA/instructor/membersForGroup",
                 handleAs: "json",
@@ -211,9 +212,11 @@ html, body {
                 load:populateSelect});
         }
         else{
-            document.getElementById("addGroupButton").disabled = true;
             document.getElementById("getPasswordButton").disabled = true;
             document.getElementById("getTableButton").disabled = true;
+            document.getElementById("addMemberButton").disabled = true;
+            emptySelect("members");
+            emptyButtonContainer();
         }
     }
     
@@ -352,7 +355,7 @@ html, body {
         username = document.getElementById("members").value;
         emptyButtonContainer();
         if(username != "placehold"){
-            document.getElementById("addMemberButton").disabled = false;
+            //document.getElementById("addMemberButton").disabled = false;
             dojo.xhrPost({
                 url: "/PMA/instructor/assessmentsTaken",
                 handleAs: "json",
@@ -364,7 +367,8 @@ html, body {
                 load:createAssessmentButtons});
         }
         else{
-            document.getElementById("addMemberButton").disabled = true;
+//            document.getElementById("addMemberButton").disabled = true;
+            emptyButtonContainer();
         }
     }
     

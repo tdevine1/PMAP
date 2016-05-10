@@ -7,7 +7,7 @@ all end of year assessments to a digtial format for ease of taking and for instr
 easily see various datapoints shown by the assessments. 
 
 Project Devs: Samuel Blankenship, Christopher Browning
-Project Managers: 
+Project Managers: Alisa Taylor, Quintin Nicholson, Andrew Lyon, Lesly Kuffor
 
 Design: 
 The project is a database backed, web application designed primarily in HTML, CSS, Javascript

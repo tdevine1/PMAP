@@ -26,15 +26,15 @@
        <body class="tundra">
         <img src="https://fairmontstate.studentaidcalculator.com/1/logo.sepng" style="margin: auto;position: absolute; left:40.7%; top:0%">
 		<div id="loginContainer" style="width:25%; height:20%; position:absolute; left:37.5%; top:40%; border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026; " >
-            <div id="nestedContainer" style=" height:25%; width:30%; position:absolute; left:20%; top:30%; ">
+            <div id="nestedContainer" style=" height:25%; width:30%; position:absolute; left:20%; top:10%; ">
                 <form action="/PMA/processLogin" method="POST" >
                 <input type="text" name="username"
                         data-dojo-type="dijit/form/TextBox"
-                        data-dojo-props="trim:true" placeholder="Username" id="username" style = "border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026;" />
+                        data-dojo-props="trim:true" placeholder="Username" id="username" style = "border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026; width: 12em;" />
                 <br><br>
                 <input type="password" name="password" 
                 data-dojo-type="dijit/form/TextBox"
-                data-dojo-props="trim:true" placeholder="Password" id="password"  style = "border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026;" />
+                data-dojo-props="trim:true" placeholder="Password" id="password"  style = "border-style:ridge; border-width:5px;border-color:#F58026;color:#F58026; width: 12em;" />
                 <br>
                 <button type="submit">Login</button>
                 </form>

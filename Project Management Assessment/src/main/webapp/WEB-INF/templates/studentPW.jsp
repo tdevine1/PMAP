@@ -58,7 +58,6 @@
     <body>
         <h1>UCA : Password</h1>
         <div id="passwordContainer" style= "color:#FDB813">
-            uca demo : password demo
         </div>
     </body>
 </html>
